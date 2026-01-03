@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://cjthmd35iu6r8"]
+[gd_scene load_steps=3 format=4 uid="uid://cjthmd35iu6r8"]
 
 [ext_resource type="TileSet" uid="uid://d0icherg27d7h" path="res://assets/testing_tileset.tres" id="1_tyg3f"]
+[ext_resource type="PackedScene" uid="uid://gmr2mrr3v55v" path="res://base_player.tscn" id="2_ue743"]
 
 [node name="TestingArea" type="Node2D"]
 
@@ -9,3 +10,6 @@ tile_map_data = PackedByteArray("AAD8/wAAAAAAAAAAAAD9/wAAAAABAAAAAAD+/wAAAAABAAA
 tile_set = ExtResource("1_tyg3f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BasePlayer" parent="." instance=ExtResource("2_ue743")]
+position = Vector2(15, -41)
