@@ -9,8 +9,15 @@ const MAX_FALL_SPEED = 200
 @export var acceleration_curve: Curve
 
 var can_jump
+var movement_locked
 
 func _physics_process(delta):
+	if not movement_locked:
+		movement(delta)
+
+	move_and_slide()
+
+func movement(delta):
 	# gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -31,9 +38,6 @@ func _physics_process(delta):
 		velocity.x = clampf(velocity.x + acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta, -SPEED, SPEED)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-
 
 func _on_coyote_time_timeout():
 	can_jump = false
