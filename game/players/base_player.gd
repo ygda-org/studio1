@@ -2,8 +2,11 @@ extends CharacterBody2D
 
 
 const SPEED = 100.0
+const ACCELERATION = 1500.0
 const JUMP_VELOCITY = -300.0
 const MAX_FALL_SPEED = 200
+
+@export var acceleration_curve: Curve
 
 var can_jump
 
@@ -25,7 +28,7 @@ func _physics_process(delta):
 	# input dir
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = clampf(velocity.x + acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta, -SPEED, SPEED)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
