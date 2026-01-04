@@ -41,7 +41,7 @@ func movement(delta):
 		else:
 			velocity.x = lerp(velocity.x, 0.0, DECELERATION)
 	else:
-		if direction and (abs(velocity.x) < SPEED or direction * velocity.x<=0):
+		if direction and (abs(velocity.x) < SPEED or direction * velocity.x<0):
 			velocity.x += acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta * AIR_CONTROL
 		elif not direction:
 			velocity.x = lerp(velocity.x, 0.0, DECELERATION * AIR_CONTROL)

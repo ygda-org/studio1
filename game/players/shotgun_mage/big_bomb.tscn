@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dau2l7x2lnmcm"]
+
+[ext_resource type="Script" uid="uid://pwejvbumcglh" path="res://players/shotgun_mage/big_bomb.gd" id="1_vxp4k"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_hgrto"]
+
+[node name="BigBomb" type="CharacterBody2D"]
+script = ExtResource("1_vxp4k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.145, 0.145)
+texture = ExtResource("2_hgrto")

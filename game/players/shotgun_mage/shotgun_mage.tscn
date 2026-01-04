@@ -40,9 +40,14 @@ target_position = Vector2(500, 300)
 wait_time = 0.7
 one_shot = true
 
+[node name="BigBombCD" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="GravityNullDur" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="MainCD" to="." method="_on_main_cd_timeout"]
+[connection signal="timeout" from="BigBombCD" to="." method="_on_big_bomb_cd_timeout"]
 [connection signal="timeout" from="GravityNullDur" to="." method="_on_gravity_null_dur_timeout"]

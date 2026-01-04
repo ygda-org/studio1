@@ -3,9 +3,11 @@ extends Node2D
 const DAMAGE = 10 # no idea what numbers will be good
 
 const NORMAL_RECOIL = 250
-const BIG_RECOIL = 500
+const BIG_RECOIL = 400
+const BOMB_VELOCITY = 400
 
 var can_shoot = true
+var can_shoot_big = true
 
 func _process(delta):
 	if get_global_mouse_position().x > $BasePlayer.global_position.x:
@@ -18,6 +20,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("left_click") and can_shoot:
 		shoot()
 		recoil(NORMAL_RECOIL)
+	if Input.is_action_just_pressed("right_click") and can_shoot_big:
+		shoot_big()
+		recoil(BIG_RECOIL)
 
 func recoil(weight):
 	$GravityNullDur.start()
@@ -33,10 +38,19 @@ func shoot():
 			if damageable:
 				damageable.hit(DAMAGE)
 
+func shoot_big():
+	can_shoot_big = false
+	$BigBombCD.start()
+	var bomb = load("res://players/shotgun_mage/big_bomb.tscn").instantiate()
+	bomb.set_velocity((get_global_mouse_position()-$BasePlayer.global_position).normalized()*BOMB_VELOCITY)
+	bomb.set_global_position($BasePlayer/ShotgunHelper/Shotgun/RayCast2D.global_position)
+	add_child(bomb)
 
 func _on_main_cd_timeout():
 	can_shoot = true
 
-
 func _on_gravity_null_dur_timeout():
 	$BasePlayer.gravity_locked = false
+
+func _on_big_bomb_cd_timeout():
+	can_shoot_big = true
