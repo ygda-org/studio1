@@ -36,6 +36,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="Health" parent="." instance=ExtResource("5_o52tc")]
+health = 150
 
 [node name="PlayerDamageable" parent="Health" instance=ExtResource("5_y7273")]
 
