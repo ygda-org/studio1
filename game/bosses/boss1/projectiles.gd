@@ -20,6 +20,6 @@ func _process(delta):
 func shoot():
 	var target = GameState.players.pick_random()
 	var projectile = load("res://bosses/boss1/bullet.tscn").instantiate()
-	projectile.velocity = projectile.global_position.direction_to(target.global_position) * PROJECTILE_SPEED
+	projectile.velocity = projectile.global_position.direction_to(target.get_node("BasePlayer").global_position) * PROJECTILE_SPEED
 	projectile.dmg = PROJECTILE_DMG
 	add_child(projectile)

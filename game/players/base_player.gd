@@ -10,7 +10,7 @@ const AIR_FRICTION = 0.02
 
 @export var acceleration_curve: Curve
 @export var gravity_curve: Curve
-@export var health_override: int = 0
+@export var health_override: int
 
 var can_jump
 var movement_locked = false
@@ -19,7 +19,8 @@ var gravity_locked = false
 var mouse_position: Vector2 # for syncing up stuffs
 
 func _ready():
-	$Health.health = health_override
+	if health_override:
+		$Health.health = health_override
 
 func _physics_process(delta):
 	mouse_position = get_global_mouse_position()
@@ -55,7 +56,8 @@ func movement(delta):
 			velocity.x = lerp(velocity.x, 0.0, AIR_FRICTION)
 
 func die():
-	queue_free()
+	movement_locked = true
+	visible = false
 
 func _on_coyote_time_timeout():
 	can_jump = false
