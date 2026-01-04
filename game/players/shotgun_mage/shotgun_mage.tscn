@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3yx6fq1qrhfd"]
+
+[ext_resource type="Script" uid="uid://d0vwe5cy56mvd" path="res://players/shotgun_mage/shotgun_mage.gd" id="1_oix6k"]
+[ext_resource type="PackedScene" uid="uid://gmr2mrr3v55v" path="res://players/base_player.tscn" id="2_0rugo"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="3_jpkrd"]
+
+[node name="ShotgunMage" type="Node2D"]
+script = ExtResource("1_oix6k")
+
+[node name="BasePlayer" parent="." instance=ExtResource("2_0rugo")]
+
+[node name="ShotgunHelper" type="Node2D" parent="BasePlayer"]
+
+[node name="Shotgun" type="Sprite2D" parent="BasePlayer/ShotgunHelper"]
+position = Vector2(15, -5)
+scale = Vector2(0.121093765, 0.058593746)
+texture = ExtResource("3_jpkrd")
+
+[node name="RayCast2D" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
+position = Vector2(66.06451, 0)
+target_position = Vector2(500, -300)
+
+[node name="RayCast2D2" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
+position = Vector2(66.06451, 0)
+target_position = Vector2(500, -150)
+
+[node name="RayCast2D3" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
+position = Vector2(66.06451, 0)
+target_position = Vector2(500, 0)
+
+[node name="RayCast2D4" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
+position = Vector2(66.06451, 0)
+target_position = Vector2(500, 150)
+
+[node name="RayCast2D5" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
+position = Vector2(66.06451, 0)
+target_position = Vector2(500, 300)
+
+[node name="MainCD" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="GravityNullDur" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="MainCD" to="." method="_on_main_cd_timeout"]
+[connection signal="timeout" from="GravityNullDur" to="." method="_on_gravity_null_dur_timeout"]

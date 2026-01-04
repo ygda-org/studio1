@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://cjthmd35iu6r8"]
 
 [ext_resource type="TileSet" uid="uid://d0icherg27d7h" path="res://assets/testing_tileset.tres" id="1_tyg3f"]
-[ext_resource type="PackedScene" uid="uid://byl55cel8luie" path="res://players/gravity_mage/gravity_mage.tscn" id="2_ue743"]
+[ext_resource type="PackedScene" uid="uid://c3yx6fq1qrhfd" path="res://players/shotgun_mage/shotgun_mage.tscn" id="2_ue743"]
 
 [node name="TestingArea" type="Node2D"]
 
@@ -10,6 +10,7 @@ tile_map_data = PackedByteArray("AAD8/wAAAAAAAAAAAAD9/wAAAAABAAAAAAD+/wAAAAABAAA
 tile_set = ExtResource("1_tyg3f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.36, 2.36)
 
-[node name="GravityMage" parent="." instance=ExtResource("2_ue743")]
-position = Vector2(13, -45)
+[node name="ShotgunMage" parent="." instance=ExtResource("2_ue743")]
+position = Vector2(-11, -17)

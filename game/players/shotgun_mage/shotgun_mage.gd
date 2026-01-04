@@ -1,0 +1,42 @@
+extends Node2D
+
+const DAMAGE = 10 # no idea what numbers will be good
+
+const NORMAL_RECOIL = 250
+const BIG_RECOIL = 500
+
+var can_shoot = true
+
+func _process(delta):
+	if get_global_mouse_position().x > $BasePlayer.global_position.x:
+		$BasePlayer/ShotgunHelper.scale.x = 1
+		$BasePlayer/ShotgunHelper.look_at(get_global_mouse_position())
+	else:
+		$BasePlayer/ShotgunHelper.scale.x = -1
+		$BasePlayer/ShotgunHelper.look_at(get_global_mouse_position()) 
+		$BasePlayer/ShotgunHelper.rotation += PI
+	if Input.is_action_just_pressed("left_click") and can_shoot:
+		shoot()
+		recoil(NORMAL_RECOIL)
+
+func recoil(weight):
+	$GravityNullDur.start()
+	$BasePlayer.gravity_locked = true
+	$BasePlayer.velocity = weight*(get_global_mouse_position()-$BasePlayer.global_position).normalized()*Vector2(-1,-1)
+
+func shoot():
+	can_shoot = false
+	$MainCD.start()
+	for ray_cast in $BasePlayer/ShotgunHelper/Shotgun.get_children():
+		if ray_cast.is_colliding():
+			var damageable = ray_cast.get_collider().find_child("PlayerDamageable")
+			if damageable:
+				damageable.hit(DAMAGE)
+
+
+func _on_main_cd_timeout():
+	can_shoot = true
+
+
+func _on_gravity_null_dur_timeout():
+	$BasePlayer.gravity_locked = false
