@@ -3,10 +3,11 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const ACCELERATION = 1500.0
-const DECELERATION = 0.5
+const DECELERATION = 0.3
 const JUMP_VELOCITY = -300.0
 const MAX_FALL_SPEED = 200
 const AIR_CONTROL = 0.7
+const AIR_FRICTION = 0.02
 
 @export var acceleration_curve: Curve
 
@@ -44,7 +45,7 @@ func movement(delta):
 		if direction and (abs(velocity.x) < SPEED or direction * velocity.x<0):
 			velocity.x += acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta * AIR_CONTROL
 		elif not direction:
-			velocity.x = lerp(velocity.x, 0.0, DECELERATION * AIR_CONTROL)
+			velocity.x = lerp(velocity.x, 0.0, AIR_FRICTION)
 
 func _on_coyote_time_timeout():
 	can_jump = false
