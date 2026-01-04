@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://4gqrtfo36bvu"]
+
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="1_4qh4n"]
+[ext_resource type="Script" uid="uid://nslpqj1373yv" path="res://bosses/boss1/boss.gd" id="1_5v2qa"]
+[ext_resource type="Script" uid="uid://hp2xtgfv3ld6" path="res://bosses/boss1/projectiles.gd" id="3_xb807"]
+[ext_resource type="Script" uid="uid://c4hcu8gyovk3i" path="res://bosses/boss1/dashing.gd" id="4_y7273"]
+[ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://health.tscn" id="5_o52tc"]
+[ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://player_damageable.tscn" id="5_y7273"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v2qa"]
+size = Vector2(119, 119)
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_5v2qa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4qh4n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_5v2qa")
+
+[node name="States" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="States"]
+script = ExtResource("3_xb807")
+
+[node name="BulletCD" type="Timer" parent="States/Projectiles"]
+one_shot = true
+
+[node name="Dashing" type="Node2D" parent="States"]
+script = ExtResource("4_y7273")
+
+[node name="PhaseTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Health" parent="." instance=ExtResource("5_o52tc")]
+
+[node name="PlayerDamageable" parent="Health" instance=ExtResource("5_y7273")]
+
+[connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]

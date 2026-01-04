@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byjvi3o4x173x"]
+
+[ext_resource type="Script" uid="uid://caxkm7bctihye" path="res://enemy_damageable.gd" id="1_ki3tl"]
+
+[node name="EnemyDamageable" type="Node2D"]
+script = ExtResource("1_ki3tl")
