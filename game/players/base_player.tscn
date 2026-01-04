@@ -37,6 +37,7 @@ one_shot = true
 [node name="GravityChange" parent="." instance=ExtResource("3_o42b7")]
 
 [node name="Health" parent="." instance=ExtResource("4_6pihb")]
+health = 30
 
 [node name="EnemyDamageable" parent="Health" instance=ExtResource("5_botgt")]
 
