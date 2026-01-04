@@ -30,7 +30,7 @@ func _process(delta):
 func recoil(weight):
 	$GravityNullDur.start()
 	$BasePlayer.gravity_locked = true
-	$BasePlayer.velocity = weight*(get_global_mouse_position()-$BasePlayer.global_position).normalized()*Vector2(-1,-1)
+	$BasePlayer.velocity += weight*(get_global_mouse_position()-$BasePlayer.global_position).normalized()*Vector2(-1,-1)
 
 func shoot():
 	can_shoot = false
