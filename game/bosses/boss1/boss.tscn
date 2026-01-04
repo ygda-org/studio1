@@ -7,18 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://health.tscn" id="5_o52tc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://player_damageable.tscn" id="5_y7273"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v2qa"]
-size = Vector2(119, 119)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o52tc"]
+size = Vector2(64, 64)
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="Area2D"]
 script = ExtResource("1_5v2qa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_4qh4n")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
-shape = SubResource("RectangleShape2D_5v2qa")
 
 [node name="States" type="Node2D" parent="."]
 
@@ -31,6 +28,12 @@ one_shot = true
 [node name="Dashing" type="Node2D" parent="States"]
 script = ExtResource("4_y7273")
 
+[node name="DashTimer" type="Timer" parent="States/Dashing"]
+wait_time = 3.0
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="States/Dashing"]
+
 [node name="PhaseTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
@@ -40,4 +43,8 @@ health = 150
 
 [node name="PlayerDamageable" parent="Health" instance=ExtResource("5_y7273")]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o52tc")
+
+[connection signal="screen_exited" from="States/Dashing/VisibleOnScreenNotifier2D" to="States/Dashing" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]

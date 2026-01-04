@@ -1,6 +1,6 @@
 extends BaseState
 
-const RETURN_TO_CENTER_SPEED = 5000
+const RETURN_TO_CENTER_SPEED = 100
 const PROJECTILE_SPEED = 150
 const PROJECTILE_DMG = 10
 @onready var projectile_position = states.get_parent().get_parent().get_node("ProjectilePosition").global_position
@@ -9,7 +9,7 @@ func _process(delta):
 	if not active:
 		return
 	if (states.get_parent().position - projectile_position).length() > 5:
-		states.get_parent().velocity = RETURN_TO_CENTER_SPEED * global_position.direction_to(projectile_position) * delta
+		states.get_parent().velocity = RETURN_TO_CENTER_SPEED * global_position.direction_to(projectile_position)
 	else:
 		states.get_parent().velocity = Vector2.ZERO
 	

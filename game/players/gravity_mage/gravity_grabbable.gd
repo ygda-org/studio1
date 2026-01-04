@@ -7,7 +7,7 @@ var mouse_selected = false
 var grabbed = false
 
 @export var follow_speed: float = 4.0
-@export var max_speed: float = 400.0
+@export var max_speed: float = 600.0
 
 
 func _process(delta):

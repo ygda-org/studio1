@@ -36,7 +36,7 @@ func shoot():
 	can_shoot = false
 	$MainCD.start()
 	for ray_cast in $BasePlayer/ShotgunHelper/Barrel.get_children():
-		if ray_cast.is_colliding():
+		if ray_cast is RayCast2D and ray_cast.is_colliding():
 			var damageable = ray_cast.get_collider().find_child("PlayerDamageable")
 			if damageable:
 				damageable.hit(DAMAGE)
