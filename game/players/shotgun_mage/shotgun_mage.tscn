@@ -16,25 +16,23 @@ position = Vector2(15, -5)
 scale = Vector2(0.121093765, 0.058593746)
 texture = ExtResource("3_jpkrd")
 
-[node name="RayCast2D" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
-position = Vector2(66.06451, 0)
-target_position = Vector2(1000, -1200)
+[node name="Barrel" type="Marker2D" parent="BasePlayer/ShotgunHelper"]
+position = Vector2(22.992188, -5)
 
-[node name="RayCast2D2" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
-position = Vector2(66.06451, 0)
-target_position = Vector2(1000, -600)
+[node name="RayCast2D" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
+target_position = Vector2(150, -120)
 
-[node name="RayCast2D3" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
-position = Vector2(66.06451, 0)
-target_position = Vector2(1000, 0)
+[node name="RayCast2D2" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
+target_position = Vector2(150, -60)
 
-[node name="RayCast2D4" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
-position = Vector2(66.06451, 0)
-target_position = Vector2(1000, 600)
+[node name="RayCast2D3" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
+target_position = Vector2(150, 0)
 
-[node name="RayCast2D5" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Shotgun"]
-position = Vector2(66.06451, 0)
-target_position = Vector2(1000, 1200)
+[node name="RayCast2D4" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
+target_position = Vector2(150, 60)
+
+[node name="RayCast2D5" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
+target_position = Vector2(150, 120)
 
 [node name="MainCD" type="Timer" parent="."]
 wait_time = 0.7

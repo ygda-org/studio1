@@ -35,7 +35,7 @@ func recoil(weight):
 func shoot():
 	can_shoot = false
 	$MainCD.start()
-	for ray_cast in $BasePlayer/ShotgunHelper/Shotgun.get_children():
+	for ray_cast in $BasePlayer/ShotgunHelper/Barrel.get_children():
 		if ray_cast.is_colliding():
 			var damageable = ray_cast.get_collider().find_child("PlayerDamageable")
 			if damageable:
@@ -46,8 +46,9 @@ func shoot_big():
 	$BigBombCD.start()
 	var bomb = load("res://players/shotgun_mage/big_bomb.tscn").instantiate()
 	bomb.set_velocity((get_global_mouse_position()-$BasePlayer.global_position).normalized()*BOMB_VELOCITY)
-	bomb.set_global_position($BasePlayer/ShotgunHelper/Shotgun/RayCast2D.global_position)
-	add_child(bomb)
+	#print($BasePlayer/ShotgunHelper/Shotgun/Barrel.global_position)
+	#bomb.global_position = $BasePlayer/ShotgunHelper/Shotgun/Barrel.global_position
+	$BasePlayer/ShotgunHelper/Barrel.add_child(bomb)
 
 func _on_main_cd_timeout():
 	can_shoot = true
