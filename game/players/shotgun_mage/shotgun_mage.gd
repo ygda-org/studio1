@@ -9,6 +9,9 @@ const BOMB_VELOCITY = 400
 var can_shoot = true
 var can_shoot_big = true
 
+func _ready():
+	GameState.shotgun_mage = self
+
 func _process(delta):
 	if get_global_mouse_position().x > $BasePlayer.global_position.x:
 		$BasePlayer/ShotgunHelper.scale.x = 1

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccpgefu8h6had"]
+
+[ext_resource type="Script" uid="uid://73o0ffn5l4tw" path="res://players/gravity_mage/gravity_grabbable.gd" id="1_xmqp5"]
+
+[node name="GravityGrabbable" type="Area2D"]
+script = ExtResource("1_xmqp5")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -15,7 +15,10 @@ var can_jump
 var movement_locked = false
 var gravity_locked = false
 
+var mouse_position: Vector2 # for syncing up stuffs
+
 func _physics_process(delta):
+	mouse_position = get_global_mouse_position()
 	if not movement_locked:
 		movement(delta)
 
