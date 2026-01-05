@@ -1,19 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhu88rkk847oa"]
+[gd_scene load_steps=5 format=3 uid="uid://bhu88rkk847oa"]
 
 [ext_resource type="Script" uid="uid://b6ol510stbrmc" path="res://bosses/boss1/bullet.gd" id="1_g2qdo"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="1_nxrrh"]
+[ext_resource type="PackedScene" uid="uid://12i740e4ob6y" path="res://players/gravity_mage/gravity_change.tscn" id="3_xuly5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2qdo"]
 radius = 8.0
 height = 16.0
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Area2D"]
 script = ExtResource("1_g2qdo")
-
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CapsuleShape2D_g2qdo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.39224565, 0.32303563, 0.07177249, 1)
@@ -22,5 +18,9 @@ texture = ExtResource("1_nxrrh")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[node name="GravityChange" parent="." instance=ExtResource("3_xuly5")]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_g2qdo")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

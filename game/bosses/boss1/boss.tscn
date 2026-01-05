@@ -43,7 +43,7 @@ health = 150
 
 [node name="PlayerDamageable" parent="Health" instance=ExtResource("5_y7273")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o52tc")
 
 [connection signal="screen_exited" from="States/Dashing/VisibleOnScreenNotifier2D" to="States/Dashing" method="_on_visible_on_screen_notifier_2d_screen_exited"]
