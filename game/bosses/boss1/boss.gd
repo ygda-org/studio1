@@ -22,7 +22,7 @@ func die():
 	queue_free()
 
 
-func _on_hitbox_body_entered(body):
+func _on_body_entered(body):
 	var damageable = body.find_child("EnemyDamageable")
 	if damageable:
 		damageable.hit(CONTACT_DAMAGE)

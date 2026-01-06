@@ -46,5 +46,6 @@ health = 150
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o52tc")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="States/Dashing/VisibleOnScreenNotifier2D" to="States/Dashing" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
