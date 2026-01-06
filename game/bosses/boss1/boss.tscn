@@ -8,13 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://player_damageable.tscn" id="5_y7273"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o52tc"]
-size = Vector2(64, 64)
+size = Vector2(126, 126)
 
 [node name="Boss" type="Area2D"]
 script = ExtResource("1_5v2qa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_4qh4n")
 
 [node name="States" type="Node2D" parent="."]
@@ -29,7 +28,7 @@ one_shot = true
 script = ExtResource("4_y7273")
 
 [node name="DashTimer" type="Timer" parent="States/Dashing"]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="States/Dashing"]

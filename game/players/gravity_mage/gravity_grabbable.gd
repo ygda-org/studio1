@@ -6,8 +6,8 @@ extends Area2D
 var mouse_selected = false
 var grabbed = false
 
-@export var follow_speed: float = 4.0
-@export var max_speed: float = 600.0
+@export var follow_speed: float = 8.0
+@export var max_speed: float = 1200.0
 
 
 func _process(delta):

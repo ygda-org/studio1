@@ -7,7 +7,7 @@
 script = ExtResource("1_vxp4k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.145, 0.145)
+scale = Vector2(0.29, 0.29)
 texture = ExtResource("2_hgrto")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

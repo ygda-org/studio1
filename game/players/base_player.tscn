@@ -15,8 +15,8 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5538461, 0.8988764), -0.324594
 point_count = 3
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qp1xa"]
-radius = 8.0
-height = 32.0
+radius = 15.0
+height = 64.0
 
 [node name="BasePlayer" type="CharacterBody2D"]
 script = ExtResource("1_2a3vx")
@@ -24,7 +24,7 @@ acceleration_curve = SubResource("Curve_o42b7")
 gravity_curve = SubResource("Curve_v4bkq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.25)
+scale = Vector2(0.25, 0.5)
 texture = ExtResource("2_qp1xa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

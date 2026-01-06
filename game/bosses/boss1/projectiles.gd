@@ -22,4 +22,5 @@ func shoot():
 	var projectile = load("res://bosses/boss1/bullet.tscn").instantiate()
 	projectile.velocity = projectile.global_position.direction_to(target.get_node("BasePlayer").global_position) * PROJECTILE_SPEED
 	projectile.dmg = PROJECTILE_DMG
-	add_child(projectile)
+	projectile.global_position = global_position
+	states.get_parent().get_parent().add_child(projectile)

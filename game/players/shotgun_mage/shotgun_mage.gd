@@ -48,9 +48,8 @@ func shoot_big():
 	$BigBombCD.start()
 	var bomb = load("res://players/shotgun_mage/big_bomb.tscn").instantiate()
 	bomb.set_velocity((get_global_mouse_position()-$BasePlayer.global_position).normalized()*BOMB_VELOCITY)
-	#print($BasePlayer/ShotgunHelper/Shotgun/Barrel.global_position)
-	#bomb.global_position = $BasePlayer/ShotgunHelper/Shotgun/Barrel.global_position
-	$BasePlayer/ShotgunHelper/Barrel.add_child(bomb)
+	add_child(bomb)
+	bomb.global_position = $BasePlayer/ShotgunHelper/Barrel.global_position
 
 func _on_main_cd_timeout():
 	can_shoot = true

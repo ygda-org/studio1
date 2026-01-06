@@ -9,7 +9,6 @@ size = Vector2(130, 130)
 [node name="GravityBubble" type="Sprite2D"]
 modulate = Color(0.42913657, 0.2257114, 0.7489682, 1)
 z_index = -1
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_amr8n")
 script = ExtResource("1_qhtrr")
 
