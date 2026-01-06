@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://dacq1xa1gdhw6"]
 
 [ext_resource type="TileSet" uid="uid://d0icherg27d7h" path="res://assets/testing_tileset.tres" id="1_738ix"]
-[ext_resource type="PackedScene" uid="uid://byl55cel8luie" path="res://players/gravity_mage/gravity_mage.tscn" id="3_fwggy"]
+[ext_resource type="PackedScene" uid="uid://c3yx6fq1qrhfd" path="res://players/shotgun_mage/shotgun_mage.tscn" id="3_fwggy"]
 [ext_resource type="PackedScene" uid="uid://4gqrtfo36bvu" path="res://bosses/boss1/boss.tscn" id="3_pg0b6"]
 
 [node name="Level" type="Node2D"]
@@ -19,4 +19,4 @@ position = Vector2(0, -65)
 [node name="ProjectilePosition" type="Marker2D" parent="."]
 position = Vector2(0, -65)
 
-[node name="GravityMage" parent="." instance=ExtResource("3_fwggy")]
+[node name="ShotgunMage" parent="." instance=ExtResource("3_fwggy")]

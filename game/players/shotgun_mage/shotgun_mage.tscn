@@ -39,6 +39,38 @@ collide_with_areas = true
 target_position = Vector2(150, 120)
 collide_with_areas = true
 
+[node name="Tracers" type="Node2D" parent="BasePlayer/ShotgunHelper/Barrel"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
+position = Vector2(74.00391, 0)
+scale = Vector2(1.156311, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
+position = Vector2(74.003914, 29)
+rotation = 0.38397244
+scale = Vector2(1.156311, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D3" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
+position = Vector2(74.004, -29)
+rotation = -0.38397244
+scale = Vector2(1.156311, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D4" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
+position = Vector2(73.7509, -59.7516)
+rotation = -0.6806784
+scale = Vector2(1.4729124, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D5" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
+position = Vector2(73.751, 59.752)
+rotation = 0.6806784
+scale = Vector2(1.4729124, 0.02)
+texture = ExtResource("3_jpkrd")
+
 [node name="MainCD" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
@@ -51,6 +83,10 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="TracerDur" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="timeout" from="MainCD" to="." method="_on_main_cd_timeout"]
 [connection signal="timeout" from="BigBombCD" to="." method="_on_big_bomb_cd_timeout"]
 [connection signal="timeout" from="GravityNullDur" to="." method="_on_gravity_null_dur_timeout"]
+[connection signal="timeout" from="TracerDur" to="." method="_on_tracer_dur_timeout"]

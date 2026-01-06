@@ -35,6 +35,8 @@ func recoil(weight):
 func shoot():
 	can_shoot = false
 	$MainCD.start()
+	$BasePlayer/ShotgunHelper/Barrel/Tracers.visible = true
+	$TracerDur.start()
 	for ray_cast in $BasePlayer/ShotgunHelper/Barrel.get_children():
 		if ray_cast is RayCast2D and ray_cast.is_colliding():
 			var damageable = ray_cast.get_collider().find_child("PlayerDamageable")
@@ -58,3 +60,7 @@ func _on_gravity_null_dur_timeout():
 
 func _on_big_bomb_cd_timeout():
 	can_shoot_big = true
+
+
+func _on_tracer_dur_timeout() -> void:
+	$BasePlayer/ShotgunHelper/Barrel/Tracers.visible = false
