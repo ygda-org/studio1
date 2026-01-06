@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://byjvi3o4x173x" path="res://enemy_damageable.tscn" id="5_botgt"]
 
 [sub_resource type="Curve" id="Curve_o42b7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.71195656, 0.82022476), -0.76789725, -0.76789725, 0, 0, Vector2(1, 0.37078655), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3923077, 0.9662922), -0.6329587, -0.6329587, 0, 0, Vector2(0.74615383, 0.77528095), -0.76789725, -0.76789725, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Curve" id="Curve_v4bkq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5538461, 0.8988764), -0.3245944, -0.3245944, 0, 0, Vector2(0.99999994, 0.64044946), -0.6260033, 0.0, 0, 0]
@@ -34,6 +34,10 @@ shape = SubResource("CapsuleShape2D_qp1xa")
 wait_time = 0.15
 one_shot = true
 
+[node name="JumpBuffer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="GravityChange" parent="." instance=ExtResource("3_o42b7")]
 
 [node name="Health" parent="." instance=ExtResource("4_6pihb")]
@@ -42,3 +46,4 @@ health = 30
 [node name="EnemyDamageable" parent="Health" instance=ExtResource("5_botgt")]
 
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
+[connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]

@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 const ACCELERATION = 1500.0
 const DECELERATION = 0.3
-const JUMP_VELOCITY = -350.0
+const JUMP_VELOCITY = -340.0
 const MAX_FALL_SPEED = 200
 const AIR_CONTROL = 0.7
 const AIR_FRICTION = 0.02
@@ -15,6 +15,7 @@ const AIR_FRICTION = 0.02
 var can_jump
 var movement_locked = false
 var gravity_locked = false
+var jump_input = false # for jump buffering
 
 var mouse_position: Vector2 # for syncing up stuffs
 
@@ -32,14 +33,18 @@ func _physics_process(delta):
 func movement(delta):
 	# gravity
 	if not is_on_floor() and velocity.y < MAX_FALL_SPEED and not gravity_locked:
-		velocity += get_gravity() * delta * gravity_curve.sample(velocity.y / JUMP_VELOCITY if velocity.y < 0 and velocity.y > JUMP_VELOCITY else 1.0)
+		velocity += get_gravity() * delta * gravity_curve.sample((JUMP_VELOCITY-velocity.y)/JUMP_VELOCITY if velocity.y < 0 and velocity.y > JUMP_VELOCITY else 1.0)
 
 	# jump
 	if is_on_floor():
 		can_jump = true
 	elif $CoyoteTime.is_stopped():
 		$CoyoteTime.start()
-	if Input.is_action_just_pressed("jump") and can_jump:
+	if Input.is_action_just_pressed("jump"):
+		jump_input = true
+		$JumpBuffer.start()
+	if jump_input and can_jump:
+		jump_input = false
 		velocity.y = JUMP_VELOCITY
 
 	# movement
@@ -61,3 +66,7 @@ func die():
 
 func _on_coyote_time_timeout():
 	can_jump = false
+
+
+func _on_jump_buffer_timeout():
+	jump_input = false
