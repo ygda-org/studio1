@@ -13,13 +13,13 @@ func _ready():
 	GameState.shotgun_mage = self
 
 func _process(delta):
-	if get_global_mouse_position().x > $BasePlayer.global_position.x:
-		$BasePlayer/ShotgunHelper.scale.x = 1
-		$BasePlayer/ShotgunHelper.look_at(get_global_mouse_position())
+	if get_global_mouse_position().x > global_position.x:
+		$ShotgunHelper.scale.x = 1
+		$ShotgunHelper.look_at(get_global_mouse_position())
 	else:
-		$BasePlayer/ShotgunHelper.scale.x = -1
-		$BasePlayer/ShotgunHelper.look_at(get_global_mouse_position()) 
-		$BasePlayer/ShotgunHelper.rotation += PI
+		$ShotgunHelper.scale.x = -1
+		$ShotgunHelper.look_at(get_global_mouse_position()) 
+		$ShotgunHelper.rotation += PI
 	if Input.is_action_just_pressed("left_click") and can_shoot:
 		shoot()
 		recoil(NORMAL_RECOIL)
@@ -29,15 +29,15 @@ func _process(delta):
 
 func recoil(weight):
 	$GravityNullDur.start()
-	$BasePlayer.gravity_locked = true
-	$BasePlayer.velocity += weight*(get_global_mouse_position()-$BasePlayer.global_position).normalized()*Vector2(-1,-1)
+	get_parent().gravity_locked = true
+	get_parent().velocity += weight*(get_global_mouse_position()-global_position).normalized()*Vector2(-1,-1)
 
 func shoot():
 	can_shoot = false
 	$MainCD.start()
-	$BasePlayer/ShotgunHelper/Barrel/Tracers.visible = true
+	$ShotgunHelper/Barrel/Tracers.visible = true
 	$TracerDur.start()
-	for ray_cast in $BasePlayer/ShotgunHelper/Barrel.get_children():
+	for ray_cast in $ShotgunHelper/Barrel.get_children():
 		if ray_cast is RayCast2D and ray_cast.is_colliding():
 			var damageable = ray_cast.get_collider().find_child("PlayerDamageable")
 			if damageable:
@@ -47,19 +47,20 @@ func shoot_big():
 	can_shoot_big = false
 	$BigBombCD.start()
 	var bomb = load("res://players/shotgun_mage/big_bomb.tscn").instantiate()
-	bomb.set_velocity((get_global_mouse_position()-$BasePlayer.global_position).normalized()*BOMB_VELOCITY)
+	bomb.set_velocity((get_global_mouse_position()-global_position).normalized()*BOMB_VELOCITY)
+	bomb.top_level = true
 	add_child(bomb)
-	bomb.global_position = $BasePlayer/ShotgunHelper/Barrel.global_position
+	bomb.global_position = $ShotgunHelper/Barrel.global_position
 
 func _on_main_cd_timeout():
 	can_shoot = true
 
 func _on_gravity_null_dur_timeout():
-	$BasePlayer.gravity_locked = false
+	get_parent().gravity_locked = false
 
 func _on_big_bomb_cd_timeout():
 	can_shoot_big = true
 
 
 func _on_tracer_dur_timeout() -> void:
-	$BasePlayer/ShotgunHelper/Barrel/Tracers.visible = false
+	$ShotgunHelper/Barrel/Tracers.visible = false

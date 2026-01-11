@@ -15,7 +15,7 @@ func _process(delta):
 		GameState.gravity_mage.connect("gravity_attempt_grab", grab)
 		GameState.gravity_mage.connect("gravity_release", release)
 	if grabbed and GameState.gravity_mage:
-		get_parent().velocity += get_parent().global_position.direction_to(GameState.gravity_mage.get_node("BasePlayer").mouse_position) * follow_speed * abs(GameState.gravity_mage.get_node("BasePlayer").mouse_position-get_parent().global_position) * delta
+		get_parent().velocity += get_parent().global_position.direction_to(GameState.gravity_mage.get_parent().mouse_position) * follow_speed * abs(GameState.gravity_mage.get_parent().mouse_position-get_parent().global_position) * delta
 		if abs(get_parent().velocity.length()) > max_speed:
 			get_parent().velocity = get_parent().velocity.normalized() * max_speed
 

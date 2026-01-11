@@ -1,75 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3yx6fq1qrhfd"]
+[gd_scene load_steps=3 format=3 uid="uid://c3yx6fq1qrhfd"]
 
 [ext_resource type="Script" uid="uid://d0vwe5cy56mvd" path="res://players/shotgun_mage/shotgun_mage.gd" id="1_oix6k"]
-[ext_resource type="PackedScene" uid="uid://gmr2mrr3v55v" path="res://players/base_player.tscn" id="2_0rugo"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="3_jpkrd"]
 
 [node name="ShotgunMage" type="Node2D"]
 script = ExtResource("1_oix6k")
-
-[node name="BasePlayer" parent="." instance=ExtResource("2_0rugo")]
-
-[node name="ShotgunHelper" type="Node2D" parent="BasePlayer"]
-
-[node name="Shotgun" type="Sprite2D" parent="BasePlayer/ShotgunHelper"]
-position = Vector2(15, -5)
-scale = Vector2(0.121093765, 0.058593746)
-texture = ExtResource("3_jpkrd")
-
-[node name="Barrel" type="Marker2D" parent="BasePlayer/ShotgunHelper"]
-position = Vector2(22.992188, -5)
-
-[node name="RayCast2D" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
-target_position = Vector2(150, -120)
-collide_with_areas = true
-
-[node name="RayCast2D2" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
-target_position = Vector2(150, -60)
-collide_with_areas = true
-
-[node name="RayCast2D3" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
-target_position = Vector2(150, 0)
-collide_with_areas = true
-
-[node name="RayCast2D4" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
-target_position = Vector2(150, 60)
-collide_with_areas = true
-
-[node name="RayCast2D5" type="RayCast2D" parent="BasePlayer/ShotgunHelper/Barrel"]
-target_position = Vector2(150, 120)
-collide_with_areas = true
-
-[node name="Tracers" type="Node2D" parent="BasePlayer/ShotgunHelper/Barrel"]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
-position = Vector2(74.00391, 0)
-scale = Vector2(1.156311, 0.02)
-texture = ExtResource("3_jpkrd")
-
-[node name="Sprite2D2" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
-position = Vector2(74.003914, 29)
-rotation = 0.38397244
-scale = Vector2(1.156311, 0.02)
-texture = ExtResource("3_jpkrd")
-
-[node name="Sprite2D3" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
-position = Vector2(74.004, -29)
-rotation = -0.38397244
-scale = Vector2(1.156311, 0.02)
-texture = ExtResource("3_jpkrd")
-
-[node name="Sprite2D4" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
-position = Vector2(73.7509, -59.7516)
-rotation = -0.6806784
-scale = Vector2(1.4729124, 0.02)
-texture = ExtResource("3_jpkrd")
-
-[node name="Sprite2D5" type="Sprite2D" parent="BasePlayer/ShotgunHelper/Barrel/Tracers"]
-position = Vector2(73.751, 59.752)
-rotation = 0.6806784
-scale = Vector2(1.4729124, 0.02)
-texture = ExtResource("3_jpkrd")
 
 [node name="MainCD" type="Timer" parent="."]
 wait_time = 0.7
@@ -85,6 +20,68 @@ one_shot = true
 
 [node name="TracerDur" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="ShotgunHelper" type="Node2D" parent="."]
+
+[node name="Shotgun" type="Sprite2D" parent="ShotgunHelper"]
+position = Vector2(15, -5)
+scale = Vector2(0.121093765, 0.058593746)
+texture = ExtResource("3_jpkrd")
+
+[node name="Barrel" type="Marker2D" parent="ShotgunHelper"]
+position = Vector2(22.992188, -5)
+
+[node name="RayCast2D" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+target_position = Vector2(150, -120)
+collide_with_areas = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+target_position = Vector2(150, -60)
+collide_with_areas = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+target_position = Vector2(150, 0)
+collide_with_areas = true
+
+[node name="RayCast2D4" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+target_position = Vector2(150, 60)
+collide_with_areas = true
+
+[node name="RayCast2D5" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+target_position = Vector2(150, 120)
+collide_with_areas = true
+
+[node name="Tracers" type="Node2D" parent="ShotgunHelper/Barrel"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+position = Vector2(74.00391, 0)
+scale = Vector2(1.156311, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+position = Vector2(74.003914, 29)
+rotation = 0.38397244
+scale = Vector2(1.156311, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+position = Vector2(74.004, -29)
+rotation = -0.38397244
+scale = Vector2(1.156311, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+position = Vector2(73.7509, -59.7516)
+rotation = -0.6806784
+scale = Vector2(1.4729124, 0.02)
+texture = ExtResource("3_jpkrd")
+
+[node name="Sprite2D5" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+position = Vector2(73.751, 59.752)
+rotation = 0.6806784
+scale = Vector2(1.4729124, 0.02)
+texture = ExtResource("3_jpkrd")
 
 [connection signal="timeout" from="MainCD" to="." method="_on_main_cd_timeout"]
 [connection signal="timeout" from="BigBombCD" to="." method="_on_big_bomb_cd_timeout"]

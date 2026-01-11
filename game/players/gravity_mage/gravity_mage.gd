@@ -17,6 +17,7 @@ func _process(delta):
 		var beble = load("res://players/gravity_mage/gravity_bubble.tscn").instantiate()
 		beble.position = mouse_pos1
 		beble.set_vector((mouse_pos2-mouse_pos1).normalized())
+		beble.top_level = true
 		add_child(beble)
 	if Input.is_action_just_pressed("left_click"):
 		gravity_attempt_grab.emit()
