@@ -14,7 +14,7 @@ func _process(delta):
 		dash()
 
 func dash():
-	states.get_parent().velocity = states.get_parent().global_position.direction_to(target.get_node("BasePlayer").global_position) * DASH_SPEED
+	states.get_parent().velocity = states.get_parent().global_position.direction_to(target.global_position) * DASH_SPEED
 
 func activation():
 	target = GameState.players.pick_random()
