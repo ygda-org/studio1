@@ -1,7 +1,7 @@
 extends BaseState
 
 var target
-const DASH_SPEED = 400
+const DASH_SPEED = 200
 
 func _ready():
 	connect("activating", activation)
