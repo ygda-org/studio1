@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 GameState="*res://main/globals/game_state.gd"
+NetworkState="*res://main/globals/network_state.gd"
 
 [display]
 

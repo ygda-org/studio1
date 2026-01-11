@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://8gved06fsv7b"]
+
+[ext_resource type="Script" uid="uid://dk5ppqlqwqrsn" path="res://main/lobby/lobby.gd" id="1_howap"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_howap")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 248.0
+offset_right = 640.0
+offset_bottom = 840.0
+
+[node name="PlayerList" type="VBoxContainer" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 160.0
+offset_right = 265.0
+offset_bottom = 204.66667
+theme_override_font_sizes/font_size = 32
+text = "Player List:"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 1368.0
+offset_top = 792.0
+offset_right = 1760.0
+offset_bottom = 840.0
+text = "Ready?"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
