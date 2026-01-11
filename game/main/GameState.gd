@@ -13,3 +13,12 @@ func _process(delta):
 		players.append(shotgun_mage)
 	if ninja_mage and ninja_mage not in players:
 		players.append(ninja_mage)
+
+func log(message: String) -> void:
+	print_rich("[color=white][LOG][/color] " + message)
+
+func critical(message: String) -> void:
+	print_rich("[color=yellow][CRITICAL][/color] " + message)
+
+func error(message: String) -> void:
+	print_rich("[color=red][ERROR][/color] " + message)
