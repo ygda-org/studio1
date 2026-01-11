@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://d0icherg27d7h" path="res://assets/testing_tileset.tres" id="1_tyg3f"]
 [ext_resource type="PackedScene" uid="uid://byl55cel8luie" path="res://players/gravity_mage/gravity_mage.tscn" id="2_ue743"]
-[ext_resource type="PackedScene" uid="uid://dq6lrdnm62wfc" path="res://test_gravity_mage_grab.tscn" id="3_cn3b6"]
+[ext_resource type="PackedScene" uid="uid://dq6lrdnm62wfc" path="res://testing/test_gravity_mage_grab.tscn" id="3_cn3b6"]
 [ext_resource type="PackedScene" uid="uid://gmr2mrr3v55v" path="res://players/base_player.tscn" id="3_y6c48"]
 
 [node name="TestingArea" type="Node2D"]

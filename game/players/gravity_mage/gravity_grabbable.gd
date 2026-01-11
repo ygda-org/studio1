@@ -11,7 +11,7 @@ var grabbed = false
 
 
 func _process(delta):
-	if GameState.gravity_mage:
+	if GameState.gravity_mage and not GameState.gravity_mage.is_connected("gravity_attempt_grab", grab) and not GameState.gravity_mage.is_connected("gravity_release", release):
 		GameState.gravity_mage.connect("gravity_attempt_grab", grab)
 		GameState.gravity_mage.connect("gravity_release", release)
 	if grabbed and GameState.gravity_mage:

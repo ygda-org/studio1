@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dq6lrdnm62wfc"]
 
-[ext_resource type="Script" uid="uid://tupwuys770mg" path="res://test_gravity_mage_grab.gd" id="1_oj8b6"]
+[ext_resource type="Script" uid="uid://tupwuys770mg" path="res://testing/test_gravity_mage_grab.gd" id="1_oj8b6"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="1_t025x"]
 [ext_resource type="PackedScene" uid="uid://ccpgefu8h6had" path="res://players/gravity_mage/gravity_grabbable.tscn" id="2_oj8b6"]
 
