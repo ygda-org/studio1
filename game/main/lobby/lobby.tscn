@@ -40,12 +40,48 @@ offset_bottom = 204.66667
 theme_override_font_sizes/font_size = 32
 text = "Player List:"
 
-[node name="CheckButton" type="CheckButton" parent="."]
+[node name="ReadyToggle" type="CheckButton" parent="."]
 layout_mode = 0
-offset_left = 1368.0
-offset_top = 792.0
-offset_right = 1760.0
-offset_bottom = 840.0
+offset_left = 1376.0
+offset_top = 776.0
+offset_right = 1720.0
+offset_bottom = 824.0
 text = "Ready?"
 
-[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[node name="Begin" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1368.0
+offset_top = 648.0
+offset_right = 1720.0
+offset_bottom = 760.0
+disabled = true
+text = "Begin"
+
+[node name="LevelSelect" type="OptionButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1368.0
+offset_top = 472.0
+offset_right = 1720.0
+offset_bottom = 608.0
+item_count = 2
+popup/item_0/text = "Test Scenes"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Playground"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 116.0
+offset_bottom = 31.0
+text = "Select a level:"
+
+[connection signal="pressed" from="ReadyToggle" to="." method="_on_level_select_pressed"]
+[connection signal="toggled" from="ReadyToggle" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Begin" to="." method="_on_begin_pressed"]
+[connection signal="item_selected" from="LevelSelect" to="." method="_on_level_select_item_selected"]

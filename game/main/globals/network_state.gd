@@ -13,6 +13,11 @@ signal player_list_updated()
 var room_password: String = "placeholder_password"
 var players: Dictionary[int, PlayerInfo] = {} # ID -> Player info
 
+func _ready() -> void:
+	multiplayer.peer_connected.connect(_player_joined)
+	multiplayer.peer_disconnected.connect(_player_left)
+	multiplayer.connection_failed.connect(_connection_failed)
+
 func exit_session(message: String, is_error: bool):
 	if is_error:
 		GameState.critical(message)
@@ -76,6 +81,8 @@ func start_client(address: String, port: int, username: String,password: String)
 func send_credentials(player_info: PlayerInfo, password: String):
 	var remote_id: int = multiplayer.get_remote_sender_id()
 	
+	player_info.id = remote_id
+	
 	if not is_server():
 		GameState.error("Player with id %s tried to register on another client!" % remote_id)
 		return
@@ -94,7 +101,35 @@ func register_player(player_info: PlayerInfo, id: int):
 	player_list_updated.emit()
 
 
-func _ready() -> void:
-	multiplayer.peer_connected.connect(_player_joined)
-	multiplayer.peer_disconnected.connect(_player_left)
-	multiplayer.connection_failed.connect(_connection_failed)
+
+### Switching Scenes Logic
+
+func server_switch_scene(path: String) -> void:
+	if not is_server():
+		GameState.error("Client tried calling server_switch_scene")
+		return
+	
+	for player: PlayerInfo in players.values():
+		player.has_loaded_in = false
+	
+	var new_scene: Level = load(path).instantiate() as Level
+	
+	new_scene.has_loaded.connect(switch_clients.rpc)
+	
+	get_tree().root.get_child(-1).queue_free()
+	get_tree().set_deferred("current_scene", new_scene)
+	get_tree().root.add_child(new_scene)
+	
+@rpc("authority", "call_remote", "reliable")
+func switch_clients(path: String) -> void: # This is called once the server has loaded the new scene, and now clients can as well
+	if is_server():
+		GameState.error("Server tried called switch_clients")
+		return
+	
+	get_tree().change_scene_to_file(path)
+	
+func are_all_players_loaded() -> bool:
+	for player: PlayerInfo in players.values():
+		if player.has_loaded_in == false:
+			return false
+	return true
