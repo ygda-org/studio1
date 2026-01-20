@@ -10,6 +10,8 @@ enum State {
 
 signal player_list_updated()
 
+var peer: ENetMultiplayerPeer
+
 var room_password: String = "placeholder_password"
 var players: Dictionary[int, PlayerInfo] = {} # ID -> Player info
 
@@ -52,7 +54,7 @@ func _connection_failed():
 	
 func start_server(port: int, password: String):
 	room_password = password
-	var peer = ENetMultiplayerPeer.new()
+	peer = ENetMultiplayerPeer.new()
 	var err: Error = peer.create_server(port, MAX_CLIENTS)
 	if err != OK:
 		GameState.critical("Failed to start server!")
@@ -62,7 +64,7 @@ func start_server(port: int, password: String):
 	multiplayer.allow_object_decoding = true
 	
 func start_client(address: String, port: int, username: String,password: String):
-	var peer = ENetMultiplayerPeer.new()
+	peer = ENetMultiplayerPeer.new()
 	var err: Error = peer.create_client(address, port)
 	if err != OK:
 		GameState.critical("Failed to start client!")
@@ -92,7 +94,11 @@ func send_credentials(player_info: PlayerInfo, password: String):
 		GameState.log("Client with id %s tried connecting with an incorrect password" % remote_id)
 	else:
 		GameState.log("Player with id %s registered successfully" % remote_id)
+			
 		register_player.rpc(player_info, remote_id)
+		for player_id: int in players.keys():
+			show_present_player.rpc_id(remote_id, player_id, players[player_id])
+			
 		
 	
 @rpc("authority", "call_local", "reliable")
@@ -100,6 +106,10 @@ func register_player(player_info: PlayerInfo, id: int):
 	players[id] = player_info
 	player_list_updated.emit()
 
+@rpc("authority", "call_remote", "reliable")
+func show_present_player(id: int, player: PlayerInfo):
+	players[id] = player
+	player_list_updated.emit()
 
 
 ### Switching Scenes Logic

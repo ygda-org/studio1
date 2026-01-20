@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://gmr2mrr3v55v"]
+[gd_scene load_steps=10 format=3 uid="uid://gmr2mrr3v55v"]
 
 [ext_resource type="Script" uid="uid://4022vrnuk032" path="res://players/base_player.gd" id="1_2a3vx"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_qp1xa"]
@@ -17,6 +17,11 @@ point_count = 3
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qp1xa"]
 radius = 7.0
 height = 32.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6pihb"]
+properties/0/path = NodePath(".:net_id")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [node name="BasePlayer" type="CharacterBody2D"]
 script = ExtResource("1_2a3vx")
@@ -44,6 +49,9 @@ one_shot = true
 health = 30
 
 [node name="EnemyDamageable" parent="Health" instance=ExtResource("5_botgt")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6pihb")
 
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]

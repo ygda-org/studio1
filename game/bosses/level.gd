@@ -9,7 +9,7 @@ func _ready() -> void:
 	has_loaded.emit(scene_file_path)
 	
 	if not NetworkState.is_server():
-		client_loaded_in.rpc_id(0)
+		client_loaded_in.rpc_id(1)
 
 @rpc("any_peer", "call_remote", "reliable")
 func client_loaded_in():
@@ -29,3 +29,6 @@ func start_game():
 		new_player.net_id = player.id
 		add_child(new_player)
 			
+func _process(_delta: float) -> void:
+	if not NetworkState.is_server():
+		%Ping.text = str(NetworkState.peer.get_peer(1).get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME))

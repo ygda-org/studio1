@@ -20,7 +20,9 @@ var jump_input = false # for jump buffering
 var mouse_position: Vector2 # for syncing up stuffs
 
 ### Network Vars
-var net_id = -1
+const MAXIMUM_RECONCILE_DISTANCE: float = 40 # we can experiment with this value later
+
+@export var net_id: int = -1
 
 var latest_server_state: ClientState = null
 const BUFFER_SIZE = 1024
@@ -29,9 +31,13 @@ var input_buffer: Array[ClientInput] = []
 var input_id: int = 0
 var state_buffer: Array[ClientState] = []
 
-### Serevr vars
+### Server vars
 var input_queue: Array[ClientInput] = []
-var last_client_input: ClientInput = null
+var last_client_input: ClientInput = ClientInput.new()
+
+### Other client vars
+var prev_state: ClientState = ClientState.new()
+var curr_state: ClientState = ClientState.new()
 
 func _ready():
 	input_buffer.resize(BUFFER_SIZE)
@@ -57,13 +63,30 @@ func get_current_input() -> ClientInput:
 	
 	return input
 	
-func reconcile_state():	
-	return # I'll finish this later i want to commit something
-
+func reconcile_state(delta: float):	
+	if latest_server_state == null or state_buffer[latest_server_state.tick % BUFFER_SIZE] == null:
+		return
+	
+	var difference: float = latest_server_state.position.distance_to(state_buffer[latest_server_state.tick % BUFFER_SIZE].position)
+	if difference > MAXIMUM_RECONCILE_DISTANCE:
+		GameState.log("Client %s position desync!" % multiplayer.get_unique_id())
+		
+		position = latest_server_state.position
+		velocity = latest_server_state.velocity
+				
+		state_buffer[latest_server_state.tick % BUFFER_SIZE] = latest_server_state
+		
+		for tick in range(latest_server_state.tick, current_tick):
+			var buffer_index: int = tick % BUFFER_SIZE
+			movement(input_buffer[buffer_index], delta) # delta should be bout the same anyways
+			state_buffer[buffer_index] = get_current_state()
+	
+	latest_server_state = null
+	
 func _physics_process(delta: float):
 	var buffer_index: int = current_tick % BUFFER_SIZE
-
-	if NetworkState.is_server():
+	
+	if NetworkState.is_server(): # The server
 		buffer_index = -1 
 		while not input_queue.is_empty():
 			last_client_input = input_queue.pop_front()
@@ -73,9 +96,11 @@ func _physics_process(delta: float):
 		
 		if buffer_index != -1:
 			send_state_to_client_wrapper(state_buffer[buffer_index])
+		else:
+			movement(last_client_input, delta)
 		
-	else:
-		reconcile_state()
+	elif multiplayer.get_unique_id() == net_id: # The player controlling this player node
+		reconcile_state(delta)
 			
 		var input: ClientInput = get_current_input()
 		input_buffer[buffer_index] = input
@@ -85,26 +110,26 @@ func _physics_process(delta: float):
 		state_buffer[buffer_index] = get_current_state()
 		
 		send_input_to_server_wrapper(input)
-		
+	else: # Another remote peer 
+		position = prev_state.position.lerp(curr_state.position, delta)
 		
 	current_tick += 1
 
 func send_input_to_server_wrapper(input: ClientInput):
-	await get_tree().create_timer(0.250).timeout
-	send_input_to_server.rpc_id(0, input.x_direction, input.is_jumping)
+	send_input_to_server.rpc_id(1, input.x_direction, input.is_jumping, input.tick)
 
 @rpc("any_peer", "call_remote", "unreliable")
-func send_input_to_server(x_direction, is_jumping):
+func send_input_to_server(x_direction, is_jumping, tick):
 	if not NetworkState.is_server():
 		GameState.error("Client tried receiving input in send_input")
 		return
 	var input: ClientInput = ClientInput.new()
 	input.x_direction = x_direction
 	input.is_jumping = is_jumping
+	input.tick = tick
 	input_queue.append(input)
 
 func send_state_to_client_wrapper(state: ClientState):
-	await get_tree().create_timer(0.250).timeout
 	send_state_to_client.rpc_id(net_id, state.position, state.velocity, state.tick)
 
 @rpc("authority", "call_remote", "unreliable")
@@ -114,8 +139,24 @@ func send_state_to_client(pos: Vector2, vel: Vector2, tick: int):
 	state.velocity = vel
 	state.tick = tick
 	
-	latest_server_state = state
+	if latest_server_state == null or tick > latest_server_state.tick:
+		latest_server_state = state
 
+func send_state_to_other_clients_wrapper(state: ClientState):
+	for id in multiplayer.get_peers():
+		if id == 1:
+			continue
+		
+		send_state_to_other_clients.rpc_id(id, state.position, state.velocity)
+	
+@rpc("authority", "call_remote", "unreliable")
+func send_state_to_other_clients(pos, vel):
+	prev_state = curr_state
+	curr_state = ClientState.new()
+	curr_state.position = position
+	curr_state.velocity = vel
+	
+	
 func movement(input: ClientInput, delta: float):
 	if movement_locked:
 		return

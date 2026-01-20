@@ -33,7 +33,7 @@ func set_ready(is_ready: bool):
 	update_player_list()
 
 func _on_begin_pressed() -> void:
-	start_game.rpc_id(0, %LevelSelect.selected)
+	start_game.rpc_id(1, %LevelSelect.selected)
 
 
 @rpc("any_peer", "call_remote", "reliable")
