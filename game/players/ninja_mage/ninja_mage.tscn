@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnsrnd6fed7hc"]
+
+[ext_resource type="Script" uid="uid://dukw8uq676glt" path="res://players/ninja_mage/ninja_mage.gd" id="1_krw7d"]
+
+[node name="NinjaMage" type="Node2D"]
+script = ExtResource("1_krw7d")

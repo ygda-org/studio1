@@ -14,6 +14,11 @@ func _process(_delta):
 	if ninja_mage and ninja_mage not in players:
 		players.append(ninja_mage)
 
+@rpc("any_peer")
+func ninja_swap(swapped):
+	var ninja = ninja_mage.get_parnet().get_node("ninja_swappable") # two guys are the two swappables nodes
+	ninja.ninja_swap.rpc(swapped)
+	swapped.ninja_swap.rpc(ninja)
 
 
 func log(message: String) -> void:

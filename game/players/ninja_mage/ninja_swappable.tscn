@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbnwbqbv4llig"]
+
+[ext_resource type="Script" uid="uid://bpotkb2xs72f3" path="res://players/ninja_mage/ninja_swappable.gd" id="1_qduso"]
+
+[node name="NinjaSwappable" type="Area2D"]
+script = ExtResource("1_qduso")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
