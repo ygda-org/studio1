@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://buaq673iyr04d"]
 
 [ext_resource type="Script" uid="uid://cw08jtc0thxmv" path="res://main/main.gd" id="1_53q0u"]
-
-[sub_resource type="Theme" id="Theme_pjrb6"]
+[ext_resource type="Theme" uid="uid://s1t65a1dm36r" path="res://assets/UI.tres" id="1_pjrb6"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -11,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_pjrb6")
+theme = ExtResource("1_pjrb6")
 script = ExtResource("1_53q0u")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -21,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.18000486, 0.18000486, 0.18000486, 1)
+color = Color(0.09802442, 2.362919e-05, 0.120188944, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
