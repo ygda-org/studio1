@@ -7,7 +7,6 @@ signal has_loaded()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	has_loaded.emit(scene_file_path)
-	
 	if not NetworkState.is_server():
 		client_loaded_in.rpc_id(1)
 
@@ -31,4 +30,5 @@ func start_game():
 			
 func _process(_delta: float) -> void:
 	if not NetworkState.is_server():
-		%Ping.text = str(NetworkState.peer.get_peer(1).get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME))
+		if %Ping: 
+			%Ping.text = str(NetworkState.peer.get_peer(1).get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME))

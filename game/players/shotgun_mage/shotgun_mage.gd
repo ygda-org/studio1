@@ -12,25 +12,25 @@ var can_shoot_big = true
 func _ready():
 	GameState.shotgun_mage = self
 
-func _process(delta):
-	if get_global_mouse_position().x > global_position.x:
+func process_input(input):
+	if input.mouse_pos.x > global_position.x:
 		$ShotgunHelper.scale.x = 1
-		$ShotgunHelper.look_at(get_global_mouse_position())
+		$ShotgunHelper.look_at(input.mouse_pos)
 	else:
 		$ShotgunHelper.scale.x = -1
-		$ShotgunHelper.look_at(get_global_mouse_position()) 
+		$ShotgunHelper.look_at(input.mouse_pos) 
 		$ShotgunHelper.rotation += PI
-	if Input.is_action_just_pressed("left_click") and can_shoot:
+	if input.left_click and can_shoot:
 		shoot()
-		recoil(NORMAL_RECOIL)
-	if Input.is_action_just_pressed("right_click") and can_shoot_big:
-		shoot_big()
-		recoil(BIG_RECOIL)
+		recoil(NORMAL_RECOIL, input.mouse_pos)
+	if input.right_click and can_shoot_big:
+		shoot_big(input.mouse_pos)
+		recoil(BIG_RECOIL, input.mouse_pos)
 
-func recoil(weight):
+func recoil(weight, mouse_pos):
 	$GravityNullDur.start()
 	get_parent().gravity_locked = true
-	get_parent().velocity += weight*(get_global_mouse_position()-global_position).normalized()*Vector2(-1,-1)
+	get_parent().velocity += weight*(mouse_pos-global_position).normalized()*Vector2(-1,-1)
 
 func shoot():
 	can_shoot = false
@@ -43,11 +43,11 @@ func shoot():
 			if damageable:
 				damageable.hit(DAMAGE)
 
-func shoot_big():
+func shoot_big(mouse_pos):
 	can_shoot_big = false
 	$BigBombCD.start()
 	var bomb = load("res://players/shotgun_mage/big_bomb.tscn").instantiate()
-	bomb.set_velocity((get_global_mouse_position()-global_position).normalized()*BOMB_VELOCITY)
+	bomb.set_velocity((mouse_pos-global_position).normalized()*BOMB_VELOCITY)
 	bomb.top_level = true
 	add_child(bomb)
 	bomb.global_position = $ShotgunHelper/Barrel.global_position

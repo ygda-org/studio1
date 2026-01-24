@@ -45,6 +45,7 @@ func _ready():
 	
 	if health_override:
 		$Health.health = health_override
+	add_child(load("uid://c3yx6fq1qrhfd").instantiate()) # just having all players set to shotgun for now
 
 func get_current_state() -> ClientState:
 	var state: ClientState = ClientState.new()
@@ -59,6 +60,9 @@ func get_current_input() -> ClientInput:
 	input.is_jumping = Input.is_action_just_pressed("jump")
 	@warning_ignore("narrowing_conversion")
 	input.x_direction = Input.get_axis("move_left", "move_right")
+	input.mouse_pos = get_global_mouse_position()
+	input.left_click = Input.is_action_just_pressed("left_click")
+	input.right_click = Input.is_action_just_pressed("right_click")
 	input.tick = current_tick
 	
 	return input
@@ -104,7 +108,6 @@ func _physics_process(delta: float):
 			
 		var input: ClientInput = get_current_input()
 		input_buffer[buffer_index] = input
-		
 		movement(input, delta)
 		
 		state_buffer[buffer_index] = get_current_state()
@@ -116,16 +119,19 @@ func _physics_process(delta: float):
 	current_tick += 1
 
 func send_input_to_server_wrapper(input: ClientInput):
-	send_input_to_server.rpc_id(1, input.x_direction, input.is_jumping, input.tick)
+	send_input_to_server.rpc_id(1, input.x_direction, input.is_jumping, input.mouse_pos, input.left_click, input.right_click, input.tick)
 
 @rpc("any_peer", "call_remote", "unreliable")
-func send_input_to_server(x_direction, is_jumping, tick):
+func send_input_to_server(x_direction, is_jumping, mouse_pos, left_click, right_click, tick):
 	if not NetworkState.is_server():
 		GameState.error("Client tried receiving input in send_input")
 		return
 	var input: ClientInput = ClientInput.new()
 	input.x_direction = x_direction
 	input.is_jumping = is_jumping
+	input.left_click = left_click
+	input.right_click = right_click
+	input.mouse_pos = mouse_pos
 	input.tick = tick
 	input_queue.append(input)
 
@@ -160,8 +166,6 @@ func send_state_to_other_clients(pos, vel):
 func movement(input: ClientInput, delta: float):
 	if movement_locked:
 		return
-		
-	mouse_position = get_global_mouse_position()
 
 	# gravity
 	if not is_on_floor() and velocity.y < MAX_FALL_SPEED and not gravity_locked:
@@ -191,6 +195,15 @@ func movement(input: ClientInput, delta: float):
 			velocity.x += acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta * AIR_CONTROL
 		elif not direction:
 			velocity.x = lerp(velocity.x, 0.0, AIR_FRICTION)
+	
+	# send input to specific class handlers
+	var role
+	for node in get_children():
+		if node.name == "ShotgunMage" or node.name == "NinjaMage" or node.name == "GravityMage":
+			role = node
+			break
+	if role:
+		role.process_input(input)
 	
 	move_and_slide()
 

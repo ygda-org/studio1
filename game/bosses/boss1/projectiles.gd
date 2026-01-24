@@ -5,7 +5,7 @@ const PROJECTILE_SPEED = 150
 const PROJECTILE_DMG = 10
 @onready var projectile_position = states.get_parent().get_parent().get_node("ProjectilePosition").global_position
 
-func _process(delta):
+func _process(_delta):
 	if not active:
 		return
 	if (states.get_parent().position - projectile_position).length() > 5:
@@ -13,12 +13,15 @@ func _process(delta):
 	else:
 		states.get_parent().velocity = Vector2.ZERO
 	
-	if active and $BulletCD.is_stopped():
+	if active and $BulletCD.is_stopped() and NetworkState.is_server():
 		$BulletCD.start()
-		shoot()
+		var target = GameState.players.pick_random()
+		shoot.rpc(target)
 
-func shoot():
-	var target = GameState.players.pick_random()
+@rpc ("authority", "call_local")
+func shoot(target):
+	if not target:
+		return
 	var projectile = load("res://bosses/boss1/bullet.tscn").instantiate()
 	projectile.velocity = projectile.global_position.direction_to(target.global_position) * PROJECTILE_SPEED
 	projectile.dmg = PROJECTILE_DMG

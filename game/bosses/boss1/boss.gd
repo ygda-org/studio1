@@ -10,10 +10,13 @@ var velocity = Vector2.ZERO
 func _ready():
 	phases[0].activate()
 	
-func _process(delta):
-	position = position + (velocity * delta)
-
 func _on_phase_timer_timeout(): # switch phase
+	if NetworkState.is_server():
+		phase_change.rpc()
+		
+
+@rpc ("call_local", "authority")
+func phase_change():
 	phases[current_phase].deactivate()
 	current_phase = (current_phase + 1) % len(phases)
 	phases[current_phase].activate()
