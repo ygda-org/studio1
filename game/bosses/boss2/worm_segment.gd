@@ -4,6 +4,8 @@ extends Node2D
 var front
 var back
 
+var velocity = Vector2(0,0) # unchanging value
+
 @onready var end = $End
 @onready var start = $Start
 

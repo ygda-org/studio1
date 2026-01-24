@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dne37ue311bbo"]
+[gd_scene load_steps=5 format=3 uid="uid://dne37ue311bbo"]
 
 [ext_resource type="Script" uid="uid://bcnhfyduvjit5" path="res://bosses/boss2/worm_segment.gd" id="1_chuqe"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_71m4s"]
+[ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="3_71m4s"]
 
-[node name="WormSegment" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chuqe"]
+size = Vector2(126, 28)
+
+[node name="WormSegment" type="Area2D"]
 script = ExtResource("1_chuqe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,3 +19,8 @@ position = Vector2(64, 0)
 
 [node name="Start" type="Marker2D" parent="."]
 position = Vector2(-64, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_chuqe")
+
+[node name="PositionSyncNoCollision" parent="." instance=ExtResource("3_71m4s")]

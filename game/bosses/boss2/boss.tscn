@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmq26vykccdr8"]
+[gd_scene load_steps=3 format=3 uid="uid://bmq26vykccdr8"]
 
 [ext_resource type="Script" uid="uid://rdjobiqxvgmr" path="res://bosses/boss2/boss.gd" id="1_vvsd4"]
+[ext_resource type="Script" uid="uid://d2o8crrex1nv3" path="res://bosses/boss2/dashing.gd" id="2_s7amn"]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_vvsd4")
+
+[node name="States" type="Node2D" parent="."]
+
+[node name="Dashing" type="Node2D" parent="States"]
+script = ExtResource("2_s7amn")
+
+[node name="StartTime" type="Timer" parent="States/Dashing"]
+one_shot = true
+
+[node name="PhaseTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="vis" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="States/Dashing/StartTime" to="States/Dashing" method="_on_start_time_timeout"]
+[connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
+[connection signal="screen_exited" from="vis" to="States/Dashing" method="_on_vis_screen_exited"]
