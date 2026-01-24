@@ -27,6 +27,7 @@ properties/0/replication_mode = 2
 script = ExtResource("1_2a3vx")
 acceleration_curve = SubResource("Curve_o42b7")
 gravity_curve = SubResource("Curve_v4bkq")
+health_override = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.25)

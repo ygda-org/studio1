@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://4gqrtfo36bvu"]
 
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="1_4qh4n"]
 [ext_resource type="Script" uid="uid://nslpqj1373yv" path="res://bosses/boss1/boss.gd" id="1_5v2qa"]
+[ext_resource type="Texture2D" uid="uid://ri5gbcy4mo4h" path="res://assets/WingEye.png" id="2_o52tc"]
 [ext_resource type="Script" uid="uid://hp2xtgfv3ld6" path="res://bosses/boss1/projectiles.gd" id="3_xb807"]
 [ext_resource type="Script" uid="uid://c4hcu8gyovk3i" path="res://bosses/boss1/dashing.gd" id="4_y7273"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="5_o52tc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="5_y7273"]
-[ext_resource type="PackedScene" uid="uid://cf8631qo87vur" path="res://bosses/boss_sync.tscn" id="7_2acpk"]
+[ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="7_2acpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o52tc"]
 size = Vector2(62, 62)
@@ -15,8 +15,7 @@ size = Vector2(62, 62)
 script = ExtResource("1_5v2qa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_4qh4n")
+texture = ExtResource("2_o52tc")
 
 [node name="States" type="Node2D" parent="."]
 
@@ -47,7 +46,7 @@ health = 150
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o52tc")
 
-[node name="BossSync" parent="." instance=ExtResource("7_2acpk")]
+[node name="PositionSyncNoCollision" parent="." instance=ExtResource("7_2acpk")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="States/Dashing/VisibleOnScreenNotifier2D" to="States/Dashing" method="_on_visible_on_screen_notifier_2d_screen_exited"]

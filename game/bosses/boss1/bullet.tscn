@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhu88rkk847oa"]
+[gd_scene load_steps=6 format=3 uid="uid://bhu88rkk847oa"]
 
 [ext_resource type="Script" uid="uid://b6ol510stbrmc" path="res://bosses/boss1/bullet.gd" id="1_g2qdo"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="1_nxrrh"]
 [ext_resource type="PackedScene" uid="uid://12i740e4ob6y" path="res://players/gravity_mage/gravity_change.tscn" id="3_xuly5"]
+[ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="4_ua7pb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2qdo"]
 radius = 8.0
@@ -22,6 +23,8 @@ texture = ExtResource("1_nxrrh")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g2qdo")
+
+[node name="PositionSyncNoCollision" parent="." instance=ExtResource("4_ua7pb")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

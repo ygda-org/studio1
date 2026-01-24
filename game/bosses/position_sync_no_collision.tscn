@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr1c766dxmmos"]
+
+[ext_resource type="Script" uid="uid://cya3aay7q4wp8" path="res://bosses/position_sync_no_collision.gd" id="1_tbd14"]
+
+[node name="PositionSyncNoCollision" type="Node2D"]
+editor_description = "Sync position using position += velocity * delta
+No collision with this one.
+Parent must have velocity and position variables"
+script = ExtResource("1_tbd14")

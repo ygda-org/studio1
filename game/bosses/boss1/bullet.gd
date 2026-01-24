@@ -3,7 +3,12 @@ extends Node2D
 var velocity
 var dmg
 
+func _ready():
+	position = get_parent().get_node("Boss").position
+
 func _process(delta):
+	if not velocity:
+		queue_free()
 	position += velocity*delta
 
 
