@@ -1,18 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dne37ue311bbo"]
+[gd_scene load_steps=4 format=3 uid="uid://cet34f3s5qph"]
 
-[ext_resource type="Script" uid="uid://bcnhfyduvjit5" path="res://bosses/boss2/worm_segment.gd" id="1_chuqe"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_71m4s"]
 [ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="3_71m4s"]
+
+[sub_resource type="GDScript" id="GDScript_amqnb"]
+script/source = "class_name WormSegment
+extends Node2D
+
+var front
+var back
+
+var velocity = Vector2(0,0) # unchanging value
+
+@onready var end = $End
+@onready var start = $Start
+
+func _process(_delta):
+	if front:
+		global_position = global_position.lerp(front.global_position, 0.03) #+ (start.global_position - global_position)#- (front.end.global_position - start.global_position)
+		var pos_diff = front.end.global_position-global_position
+		rotation = atan(pos_diff.y/pos_diff.x) + (PI if front.end.global_position.x < start.global_position.x else 0.0) #look_at(front.end.global_position)
+	else:
+		rotation = atan(get_parent().velocity.y/get_parent().velocity.x) + (PI if get_parent().velocity.x > 0 else 0.0)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chuqe"]
 size = Vector2(126, 28)
 
 [node name="WormSegment" type="Area2D"]
-script = ExtResource("1_chuqe")
+script = SubResource("GDScript_amqnb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 0.2421875)
-texture = ExtResource("2_71m4s")
+region_enabled = true
 
 [node name="End" type="Marker2D" parent="."]
 position = Vector2(64, 0)
