@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://dli5wcy0r3pan"]
 
+[ext_resource type="Script" uid="uid://cpjmddkp0kwim" path="res://bosses/boss3/boss3_level.gd" id="1_rocqg"]
 [ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/tiles.tres" id="1_yh4d1"]
 
 [node name="Level" type="Node2D" unique_id=828389712]
+script = ExtResource("1_rocqg")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=434583238]
 offset_left = -322.0
@@ -19,5 +21,5 @@ tile_set = ExtResource("1_yh4d1")
 zoom = Vector2(3, 3)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1055208482]
-_spawnable_scenes = PackedStringArray("uid://gmr2mrr3v55v", "")
+_spawnable_scenes = PackedStringArray("uid://gmr2mrr3v55v", "uid://cnn2tvrs7l0ql")
 spawn_path = NodePath("..")
