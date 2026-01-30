@@ -54,6 +54,8 @@ func start_game(level_id):
 			path = "res://bosses/boss1/level.tscn"
 		3:
 			path = "res://bosses/boss2/level.tscn"
+		4:
+			path = "res://bosses/boss3/level.tscn"
 		_:
 			return
 	

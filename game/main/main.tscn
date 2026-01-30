@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://buaq673iyr04d"]
+[gd_scene format=3 uid="uid://buaq673iyr04d"]
 
 [ext_resource type="Script" uid="uid://cw08jtc0thxmv" path="res://main/main.gd" id="1_53q0u"]
 [ext_resource type="Theme" uid="uid://s1t65a1dm36r" path="res://assets/UI.tres" id="1_pjrb6"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=1625839182]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_pjrb6")
 script = ExtResource("1_53q0u")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=242989242]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 color = Color(0.09802442, 2.362919e-05, 0.120188944, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1902697938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,17 +31,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=202887835]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 current_tab = 1
 
-[node name="Play" type="Control" parent="MarginContainer/TabContainer"]
+[node name="Play" type="Control" parent="MarginContainer/TabContainer" unique_id=895347844]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Play"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Play" unique_id=1705108548]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,18 +57,18 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 38
 text = "Can't wait till the game gets finished"
 
-[node name="Debug" type="Control" parent="MarginContainer/TabContainer"]
+[node name="Debug" type="Control" parent="MarginContainer/TabContainer" unique_id=1171587652]
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Client" type="Panel" parent="MarginContainer/TabContainer/Debug"]
+[node name="Client" type="Panel" parent="MarginContainer/TabContainer/Debug" unique_id=21262275]
 layout_mode = 0
 offset_left = 416.0
 offset_top = 175.0
 offset_right = 887.0
 offset_bottom = 802.0
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Debug/Client"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Debug/Client" unique_id=1892189098]
 layout_mode = 0
 offset_left = 118.0
 offset_top = 37.0
@@ -78,7 +78,7 @@ theme_override_font_sizes/font_size = 32
 text = "Client"
 horizontal_alignment = 1
 
-[node name="ClientConnect" type="Button" parent="MarginContainer/TabContainer/Debug/Client"]
+[node name="ClientConnect" type="Button" parent="MarginContainer/TabContainer/Debug/Client" unique_id=746554184]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 501.0
@@ -86,7 +86,7 @@ offset_right = 406.0
 offset_bottom = 573.0
 text = "Connect"
 
-[node name="ClientPort" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client"]
+[node name="ClientPort" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client" unique_id=804570356]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
@@ -96,7 +96,7 @@ offset_bottom = 200.0
 text = "8080"
 placeholder_text = "Port"
 
-[node name="ClientAddress" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client"]
+[node name="ClientAddress" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client" unique_id=1064992613]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
@@ -106,7 +106,7 @@ offset_bottom = 285.0
 text = "localhost"
 placeholder_text = "Address"
 
-[node name="ClientPassword" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client"]
+[node name="ClientPassword" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client" unique_id=906232220]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
@@ -116,7 +116,7 @@ offset_bottom = 376.0
 text = "placeholder_password"
 placeholder_text = "Address"
 
-[node name="ClientUsername" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client"]
+[node name="ClientUsername" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Client" unique_id=1697362696]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
@@ -126,14 +126,14 @@ offset_bottom = 472.0
 text = "placeholder_name"
 placeholder_text = "Username..."
 
-[node name="Server" type="Panel" parent="MarginContainer/TabContainer/Debug"]
+[node name="Server" type="Panel" parent="MarginContainer/TabContainer/Debug" unique_id=538707182]
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 175.0
 offset_right = 1495.0
 offset_bottom = 802.0
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Debug/Server"]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Debug/Server" unique_id=61844857]
 layout_mode = 0
 offset_left = 136.0
 offset_top = 32.0
@@ -143,7 +143,7 @@ theme_override_font_sizes/font_size = 32
 text = "Server"
 horizontal_alignment = 1
 
-[node name="ServerConnect" type="Button" parent="MarginContainer/TabContainer/Debug/Server"]
+[node name="ServerConnect" type="Button" parent="MarginContainer/TabContainer/Debug/Server" unique_id=713737019]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 496.0
@@ -151,7 +151,7 @@ offset_right = 400.0
 offset_bottom = 568.0
 text = "Connect"
 
-[node name="ServerPort" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Server"]
+[node name="ServerPort" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Server" unique_id=143962392]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
@@ -161,7 +161,7 @@ offset_bottom = 277.0
 text = "8080"
 placeholder_text = "Port"
 
-[node name="ServerPassword" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Server"]
+[node name="ServerPassword" type="TextEdit" parent="MarginContainer/TabContainer/Debug/Server" unique_id=940110704]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
@@ -171,7 +171,7 @@ offset_bottom = 429.0
 text = "placeholder_password"
 placeholder_text = "Password"
 
-[node name="Error" type="Label" parent="MarginContainer/TabContainer/Debug"]
+[node name="Error" type="Label" parent="MarginContainer/TabContainer/Debug" unique_id=1441831276]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 712.0

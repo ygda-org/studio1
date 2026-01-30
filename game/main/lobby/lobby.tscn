@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://8gved06fsv7b"]
+[gd_scene format=3 uid="uid://8gved06fsv7b"]
 
 [ext_resource type="Script" uid="uid://dk5ppqlqwqrsn" path="res://main/lobby/lobby.gd" id="1_howap"]
 [ext_resource type="Theme" uid="uid://s1t65a1dm36r" path="res://assets/UI.tres" id="1_mpvql"]
 
-[node name="Lobby" type="Control"]
+[node name="Lobby" type="Control" unique_id=469289397]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_vertical = 2
 theme = ExtResource("1_mpvql")
 script = ExtResource("1_howap")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1972243938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,18 +22,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1728327, 0.17283267, 0.17283267, 1)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=98438899]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 248.0
 offset_right = 640.0
 offset_bottom = 840.0
 
-[node name="PlayerList" type="VBoxContainer" parent="PanelContainer"]
+[node name="PlayerList" type="VBoxContainer" parent="PanelContainer" unique_id=2096689787]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2010737322]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 160.0
@@ -42,7 +42,7 @@ offset_bottom = 204.66667
 theme_override_font_sizes/font_size = 32
 text = "Player List:"
 
-[node name="ReadyToggle" type="CheckButton" parent="."]
+[node name="ReadyToggle" type="CheckButton" parent="." unique_id=1465395096]
 layout_mode = 0
 offset_left = 1376.0
 offset_top = 776.0
@@ -50,7 +50,7 @@ offset_right = 1720.0
 offset_bottom = 824.0
 text = "Ready?"
 
-[node name="Begin" type="Button" parent="."]
+[node name="Begin" type="Button" parent="." unique_id=1899156165]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1368.0
@@ -60,14 +60,14 @@ offset_bottom = 760.0
 disabled = true
 text = "Begin"
 
-[node name="LevelSelect" type="OptionButton" parent="."]
+[node name="LevelSelect" type="OptionButton" parent="." unique_id=1099611369]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1368.0
 offset_top = 472.0
 offset_right = 1720.0
 offset_bottom = 608.0
-item_count = 4
+item_count = 5
 popup/item_0/text = "Test Scenes"
 popup/item_0/id = 0
 popup/item_0/disabled = true
@@ -78,8 +78,10 @@ popup/item_2/text = "Boss1"
 popup/item_2/id = 2
 popup/item_3/text = "Boss2"
 popup/item_3/id = 3
+popup/item_4/text = "Boss3"
+popup/item_4/id = 4
 
-[node name="Label" type="Label" parent="LevelSelect"]
+[node name="Label" type="Label" parent="LevelSelect" unique_id=888302211]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 8.0
@@ -87,7 +89,7 @@ offset_right = 116.0
 offset_bottom = 31.0
 text = "Select a level:"
 
-[node name="CharacterSelect" type="OptionButton" parent="."]
+[node name="CharacterSelect" type="OptionButton" parent="." unique_id=864477972]
 layout_mode = 0
 offset_left = 1365.0
 offset_top = 326.0
@@ -101,7 +103,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Ninja"
 popup/item_2/id = 2
 
-[node name="Label" type="Label" parent="CharacterSelect"]
+[node name="Label" type="Label" parent="CharacterSelect" unique_id=1401498715]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 3.0
