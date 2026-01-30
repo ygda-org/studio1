@@ -7,7 +7,9 @@ func start_game():
 	boss.position = Vector2(0,0)
 	add_child(boss)
 
-#@rpc ("call_local", "authority", "reliable")
-#func set_positions(pos1, pos2):
-#	get_node("ProjectilePosition").position = pos1
-#	get_node("Boss").position = pos2
+@rpc ("call_local", "authority")
+func phase2():
+	$CirclePath.call_deferred("queue_free")
+	$TileMapLayer2.visible = true
+	$AnimationPlayer.play("PhaseTransition")
+	$TileMapLayer.queue_free()

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cog8hrfm74aaq"]
+
+[ext_resource type="Script" uid="uid://stktollt63kk" path="res://bosses/boss2/segment_hitbox.gd" id="1_y8uad"]
+[ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="2_tpkmm"]
+
+[node name="SegmentHitbox" type="Area2D" unique_id=1342047276]
+script = ExtResource("1_y8uad")
+
+[node name="PlayerDamageable" parent="." unique_id=516598044 instance=ExtResource("2_tpkmm")]

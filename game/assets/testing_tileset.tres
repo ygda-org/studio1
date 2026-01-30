@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d0icherg27d7h"]
+[gd_resource type="TileSet" format=3 uid="uid://d0icherg27d7h"]
 
 [ext_resource type="Texture2D" uid="uid://d2rqdx35431pk" path="res://assets/neon_tile_map_2.png" id="1_uh8t0"]
 

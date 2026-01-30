@@ -7,11 +7,14 @@ var current_phase = 0
 var current_tick = 0
 
 const SPEED = 200
+const WIGGLE = 1
 
 var segments = []
-var wiggle = 1
+var base_rotations = [null]
 var head_anim_frame = 0
 var skip_center = false
+
+var stage = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +22,7 @@ func _ready():
 	phases[0].activate()
 	var n = $Skeleton2D/Bone2D
 	while n.get_children():
+		base_rotations.append(0)
 		segments.append(n)
 		n = n.get_children()[0]
 
@@ -35,25 +39,28 @@ func phase_change():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$VisibleOnScreenNotifier2D.global_position = segments[-1].global_position
+	$VisibleOnScreenNotifier2D.global_position = segments[0].global_position
 	var n = $Skeleton2D/Bone2D
 	var start = 1
 	while n.get_children():
 		n = n.get_children()[0]
-		n.rotation += PI/4 * wiggle * start * delta
-		start *= -1
-	#if front_seg:
-	#	$vis.position = front_seg.position
-	#	front_seg.position += velocity * delta
+		if stage == 1 and $States/Circle.active:
+			n.rotation += WIGGLE*delta*sin(float(current_tick)/10+start)
+		else:
+			n.rotation = WIGGLE*delta*sin(float(current_tick)/10+start)
+		start += 1
+	$CollisionPivot.rotation = segments[0].rotation
+	current_tick += 1
+	
 
-
-func _on_wiggle_dur_timeout():
-	if skip_center:
-		skip_center = false
-	else:
-		wiggle = wiggle * -1
-		skip_center = true
-
+func die():
+	if not NetworkState.is_server():
+		return
+	elif stage == 1:
+		for n in $States.get_children():
+			n.queue_free()
+		stage = 2
+		get_parent().phase2.rpc()
 
 func _on_head_anim_timeout():
 	$Polygons/Head.texture_offset.x = int($Polygons/Head.texture_offset.x + 38) % (38*4)
