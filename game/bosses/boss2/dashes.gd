@@ -1,7 +1,5 @@
 extends BaseState
 
-@onready var boss = states.get_parent()
-
 const DASH_SPEED = 200
 
 var leaving_screen = false

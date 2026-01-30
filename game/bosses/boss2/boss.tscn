@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://k11n2301hx1l" path="res://bosses/boss2/timer.gd" id="3_y0c7d"]
 [ext_resource type="Texture2D" uid="uid://ci6yjddexcxv3" path="res://assets/wormface-spritesheet.png" id="4_8w0dp"]
 [ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="4_ap83x"]
+[ext_resource type="Script" uid="uid://ccrtr6pj42fkk" path="res://bosses/boss2/slam.gd" id="5_uf8xv"]
 [ext_resource type="Script" uid="uid://dndupog4cs4ly" path="res://bosses/boss2/collision_pivot.gd" id="8_ah8y3"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="8_wu4lc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="9_s8npy"]
@@ -36,6 +37,18 @@ one_shot = true
 [node name="Cooldown" type="Timer" parent="States/Dashes" unique_id=1837901082]
 wait_time = 0.5
 one_shot = true
+
+[node name="States2" type="Node2D" parent="." unique_id=1033481878]
+
+[node name="Slam" type="Node2D" parent="States2" unique_id=1378243755]
+script = ExtResource("5_uf8xv")
+
+[node name="TimeBetween" type="Timer" parent="States2/Slam" unique_id=546016774]
+wait_time = 3.0
+one_shot = true
+
+[node name="Extras" type="Node2D" parent="States2/Slam" unique_id=473799891]
+modulate = Color(0.50219375, 0.50219357, 0.50219345, 1)
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
 wait_time = 10.0
@@ -217,13 +230,14 @@ shape = SubResource("RectangleShape2D_wu4lc")
 
 [node name="Health" parent="CollisionPivot" unique_id=1181094200 instance=ExtResource("8_wu4lc")]
 position = Vector2(0, 50)
-health = 100
+health = 20
 
 [node name="PlayerDamageable" parent="CollisionPivot/Health" unique_id=327038509 instance=ExtResource("9_s8npy")]
 
 [connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HeadAnim" to="." method="_on_head_anim_timeout"]

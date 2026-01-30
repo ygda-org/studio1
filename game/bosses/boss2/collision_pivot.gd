@@ -1,4 +1,5 @@
 extends Area2D
 
 func die():
-	get_parent().die()
+	if NetworkState.is_server():
+		get_parent().die.rpc()

@@ -9,6 +9,8 @@ var current_tick = 0
 const SPEED = 200
 const WIGGLE = 1
 
+const PHASE_2_HEALTH = 400
+
 var segments = []
 var base_rotations = [null]
 var head_anim_frame = 0
@@ -52,15 +54,18 @@ func _process(delta):
 	$CollisionPivot.rotation = segments[0].rotation
 	current_tick += 1
 	
-
+@rpc ("authority", "call_local")
 func die():
-	if not NetworkState.is_server():
-		return
-	elif stage == 1:
-		for n in $States.get_children():
-			n.queue_free()
+	if stage == 1:
+		$CollisionPivot/Health.health = PHASE_2_HEALTH
 		stage = 2
-		get_parent().phase2.rpc()
+		get_parent().phase2()
+		for n in phases:
+			n.deactivate()
+		phases = $States2.get_children()
+		current_phase = 0
+		phase_change.rpc()
+		$PhaseTimer.start()
 
 func _on_head_anim_timeout():
 	$Polygons/Head.texture_offset.x = int($Polygons/Head.texture_offset.x + 38) % (38*4)

@@ -2,8 +2,6 @@ extends BaseState
 
 #var direction = Vector2(1,0)
 
-@onready var boss = get_parent().get_parent()
-
 @onready var path = boss.get_parent().get_node("CirclePath")
 
 var last_rotation = 0
@@ -23,7 +21,8 @@ func activation():
 
 func _process(delta):
 	if not active:
-		helper.active = active
+		if helper:
+			helper.active = active
 		return
 	if last_rotation != boss.segments[0].rotation:
 		rotation_change(1)
