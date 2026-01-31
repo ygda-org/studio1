@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://gmr2mrr3v55v"]
+[gd_scene format=3 uid="uid://gmr2mrr3v55v"]
 
 [ext_resource type="Script" uid="uid://4022vrnuk032" path="res://players/base_player.gd" id="1_2a3vx"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_qp1xa"]
@@ -23,35 +23,35 @@ properties/0/path = NodePath(".:net_id")
 properties/0/spawn = true
 properties/0/replication_mode = 2
 
-[node name="BasePlayer" type="CharacterBody2D"]
+[node name="BasePlayer" type="CharacterBody2D" unique_id=517100479]
 script = ExtResource("1_2a3vx")
 acceleration_curve = SubResource("Curve_o42b7")
 gravity_curve = SubResource("Curve_v4bkq")
 health_override = 100
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=901007230]
 scale = Vector2(0.125, 0.25)
 texture = ExtResource("2_qp1xa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=221408394]
 shape = SubResource("CapsuleShape2D_qp1xa")
 
-[node name="CoyoteTime" type="Timer" parent="."]
+[node name="CoyoteTime" type="Timer" parent="." unique_id=1776565429]
 wait_time = 0.15
 one_shot = true
 
-[node name="JumpBuffer" type="Timer" parent="."]
+[node name="JumpBuffer" type="Timer" parent="." unique_id=93707708]
 wait_time = 0.1
 one_shot = true
 
-[node name="GravityChange" parent="." instance=ExtResource("3_o42b7")]
+[node name="GravityChange" parent="." unique_id=1131558621 instance=ExtResource("3_o42b7")]
 
-[node name="Health" parent="." instance=ExtResource("4_6pihb")]
+[node name="Health" parent="." unique_id=1934936735 instance=ExtResource("4_6pihb")]
 health = 30
 
-[node name="EnemyDamageable" parent="Health" instance=ExtResource("5_botgt")]
+[node name="EnemyDamageable" parent="Health" unique_id=1268536245 instance=ExtResource("5_botgt")]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1705536657]
 replication_config = SubResource("SceneReplicationConfig_6pihb")
 
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]

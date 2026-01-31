@@ -7,7 +7,7 @@ var current_phase = 0
 var current_tick = 0
 
 const SPEED = 200
-const WIGGLE = 1
+const WIGGLE_CONSTANT = 0.004
 
 const PHASE_2_HEALTH = 400
 
@@ -47,9 +47,9 @@ func _process(delta):
 	while n.get_children():
 		n = n.get_children()[0]
 		if stage == 1 and $States/Circle.active:
-			n.rotation += WIGGLE*delta*sin(float(current_tick)/10+start)
+			n.rotation += delta*sin(float(current_tick)/10+start)
 		else:
-			n.rotation = WIGGLE*delta*sin(float(current_tick)/10+start)
+			n.rotation = velocity.length() * WIGGLE_CONSTANT*delta*sin(float(current_tick)/10+start)
 		start += 1
 	$CollisionPivot.rotation = segments[0].rotation
 	current_tick += 1
@@ -65,8 +65,9 @@ func die():
 		phases = $States2.get_children()
 		velocity.x = cos(segments[0].rotation - PI/2) * 450
 		velocity.y = sin(segments[0].rotation - PI/2) * 450
-		current_phase = 0
-		phase_change.rpc()
+		current_phase = -1
+		if NetworkState.is_server():
+			phase_change.rpc()
 		$PhaseTimer.stop()
 
 func _on_head_anim_timeout():

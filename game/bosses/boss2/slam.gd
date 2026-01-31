@@ -16,9 +16,19 @@ func activation():
 	$TimeBetween.start()
 
 func _on_time_between_timeout():
-	extras.rotation = PI
+	if NetworkState.is_server() and active:
+		slam.rpc()
+
+@rpc ("call_local", "authority")
+func slam():
 	for n in extras.get_children():
 		n.queue_free()
+	if slam_num > 9:
+		if NetworkState.is_server():
+			boss.phase_change.rpc()
+		slam_num = 0
+		return
+	extras.rotation = PI
 	$TimeBetween.start()
 	boss.position = Vector2(10, -400)
 	boss.segments[0].rotation = PI
@@ -34,5 +44,3 @@ func _on_time_between_timeout():
 			telegraph.position.x += 20
 			copy.add_child(telegraph)
 	slam_num += 2
-	if slam_num > 9:
-		boss.phase_change.rpc()
