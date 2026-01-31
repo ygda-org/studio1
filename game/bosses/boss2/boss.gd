@@ -63,6 +63,8 @@ func die():
 		for n in phases:
 			n.deactivate()
 		phases = $States2.get_children()
+		velocity.x = cos(segments[0].rotation - PI/2) * 450
+		velocity.y = sin(segments[0].rotation - PI/2) * 450
 		current_phase = 0
 		phase_change.rpc()
 		$PhaseTimer.stop()

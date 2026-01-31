@@ -15,11 +15,6 @@ func activation():
 	slam_num = 0
 	$TimeBetween.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_time_between_timeout():
 	extras.rotation = PI
 	for n in extras.get_children():
@@ -29,7 +24,7 @@ func _on_time_between_timeout():
 	boss.segments[0].rotation = PI
 	boss.velocity = Vector2(0, SLAM_SPEED)
 	var tele = TELEGRAPH.instantiate()
-	extras.add_child(tele)
+	add_child(tele)
 	for i in range(slam_num):
 		for n in boss.get_node("Polygons").get_children():
 			var copy = n.duplicate()
