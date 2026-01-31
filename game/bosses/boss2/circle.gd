@@ -36,9 +36,10 @@ func rotation_change(seg):
 		return
 	#boss.segments[seg].rotation = PI/2
 	boss.base_rotations[seg] = PI/2
-	$Timer.wait_time = float(SIZES[seg]) / helper.SPEED
-	$Timer.seg_num = seg
-	$Timer.start()
+	if helper:
+		$Timer.wait_time = float(SIZES[seg]) / helper.SPEED
+		$Timer.seg_num = seg
+		$Timer.start()
 
 
 func _on_timer_timeout():

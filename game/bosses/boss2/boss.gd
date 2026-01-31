@@ -65,7 +65,7 @@ func die():
 		phases = $States2.get_children()
 		current_phase = 0
 		phase_change.rpc()
-		$PhaseTimer.start()
+		$PhaseTimer.stop()
 
 func _on_head_anim_timeout():
 	$Polygons/Head.texture_offset.x = int($Polygons/Head.texture_offset.x + 38) % (38*4)

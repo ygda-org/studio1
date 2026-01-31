@@ -44,7 +44,7 @@ one_shot = true
 script = ExtResource("5_uf8xv")
 
 [node name="TimeBetween" type="Timer" parent="States2/Slam" unique_id=546016774]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="Extras" type="Node2D" parent="States2/Slam" unique_id=473799891]

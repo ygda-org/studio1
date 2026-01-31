@@ -81,7 +81,7 @@ tile_map_data = PackedByteArray("AADs/wcAAAAHAAMAAADt/wcAAAAHAAMAAADu/wcAAAACAAA
 tile_set = ExtResource("2_fmp8c")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1537690810]
-z_index = -1
+z_index = -5
 offset_left = -510.0
 offset_top = -150.0
 offset_right = 503.0

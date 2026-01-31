@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://doeas68favqnr"]
+
+[ext_resource type="Script" uid="uid://drrb4rec0w2dx" path="res://bosses/boss2/telegraph_line.gd" id="1_d3dxn"]
+
+[sub_resource type="Gradient" id="Gradient_c1eja"]
+offsets = PackedFloat32Array(0, 0.5254902, 1)
+colors = PackedColorArray(1, 0.56078434, 0.72156864, 0, 0.66664743, 1.0107458e-06, 0.37086847, 1, 1, 0.56078434, 0.72156864, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d3dxn"]
+gradient = SubResource("Gradient_c1eja")
+
+[node name="TelegraphLine" type="Sprite2D" unique_id=1112615552]
+z_index = -2
+scale = Vector2(0.3, 50)
+texture = SubResource("GradientTexture2D_d3dxn")
+script = ExtResource("1_d3dxn")
