@@ -169,6 +169,16 @@ one_shot = true
 
 [node name="States2" type="Node2D" parent="." unique_id=1033481878]
 
+[node name="Slam" type="Node2D" parent="States2" unique_id=1378243755]
+script = ExtResource("5_uf8xv")
+
+[node name="TimeBetween" type="Timer" parent="States2/Slam" unique_id=546016774]
+wait_time = 2.0
+one_shot = true
+
+[node name="Extras" type="Node2D" parent="States2/Slam" unique_id=473799891]
+modulate = Color(0.50219375, 0.50219357, 0.50219345, 1)
+
 [node name="Hanging" type="Node2D" parent="States2" unique_id=134730560]
 script = ExtResource("6_slcy7")
 glow_gradient = SubResource("GradientTexture2D_xgnpq")
@@ -182,16 +192,6 @@ libraries/ = SubResource("AnimationLibrary_xgnpq")
 [node name="ShootCD" type="Timer" parent="States2/Hanging" unique_id=1096004043]
 wait_time = 1.5
 one_shot = true
-
-[node name="Slam" type="Node2D" parent="States2" unique_id=1378243755]
-script = ExtResource("5_uf8xv")
-
-[node name="TimeBetween" type="Timer" parent="States2/Slam" unique_id=546016774]
-wait_time = 2.0
-one_shot = true
-
-[node name="Extras" type="Node2D" parent="States2/Slam" unique_id=473799891]
-modulate = Color(0.50219375, 0.50219357, 0.50219345, 1)
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
 wait_time = 10.0
@@ -385,9 +385,9 @@ health = 20
 [connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="animation_finished" from="States2/Hanging/AnimationPlayer" to="States2/Hanging" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States2/Hanging/ShootCD" to="States2/Hanging" method="_on_shoot_cd_timeout"]
-[connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HeadAnim" to="." method="_on_head_anim_timeout"]
