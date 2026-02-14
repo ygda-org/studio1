@@ -10,7 +10,7 @@ const AIR_FRICTION = 0.02
 
 @export var acceleration_curve: Curve
 @export var gravity_curve: Curve
-@export var health_override: int
+
 
 var can_jump
 var movement_locked = false
@@ -42,9 +42,6 @@ var curr_state: ClientState = ClientState.new()
 func _ready():
 	input_buffer.resize(BUFFER_SIZE)
 	state_buffer.resize(BUFFER_SIZE)
-	
-	if health_override:
-		$Health.health = health_override
 	add_child(load("uid://c3yx6fq1qrhfd").instantiate()) # just having all players set to shotgun for now
 
 func get_current_state() -> ClientState:
@@ -89,6 +86,10 @@ func reconcile_state(delta: float):
 	
 func _physics_process(delta: float):
 	var buffer_index: int = current_tick % BUFFER_SIZE
+	
+	#UI
+	$HealthBar.value = $Health.health
+	$HealthBar.max_value = $Health.max_health
 	
 	if NetworkState.is_server(): # The server
 		buffer_index = -1 
@@ -166,7 +167,6 @@ func send_state_to_other_clients(pos, vel):
 func movement(input: ClientInput, delta: float):
 	if movement_locked:
 		return
-
 	# gravity
 	if not is_on_floor() and velocity.y < MAX_FALL_SPEED and not gravity_locked:
 		velocity += get_gravity() * delta * gravity_curve.sample((JUMP_VELOCITY-velocity.y)/JUMP_VELOCITY if velocity.y < 0 and velocity.y > JUMP_VELOCITY else 1.0)

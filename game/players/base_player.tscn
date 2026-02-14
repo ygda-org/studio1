@@ -72,11 +72,26 @@ _data = {
 &"light_on": SubResource("Animation_botgt")
 }
 
+[sub_resource type="Gradient" id="Gradient_botgt"]
+colors = PackedColorArray(0.46666667, 0.46666667, 0.46666667, 1, 0.46666667, 0.46666667, 0.46666667, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x2kg0"]
+gradient = SubResource("Gradient_botgt")
+width = 32
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_x2kg0"]
+colors = PackedColorArray(0.47058824, 0.69411767, 0.48235294, 1, 0.47058824, 0.69411767, 0.48235294, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_evh7i"]
+gradient = SubResource("Gradient_x2kg0")
+width = 32
+height = 8
+
 [node name="BasePlayer" type="CharacterBody2D" unique_id=517100479]
 script = ExtResource("1_2a3vx")
 acceleration_curve = SubResource("Curve_o42b7")
 gravity_curve = SubResource("Curve_v4bkq")
-health_override = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=901007230]
 scale = Vector2(0.125, 0.25)
@@ -96,7 +111,8 @@ one_shot = true
 [node name="GravityChange" parent="." unique_id=1131558621 instance=ExtResource("3_o42b7")]
 
 [node name="Health" parent="." unique_id=1934936735 instance=ExtResource("4_6pihb")]
-health = 30
+max_health = 100
+health = 100
 
 [node name="EnemyDamageable" parent="Health" unique_id=1268536245 instance=ExtResource("5_botgt")]
 
@@ -109,6 +125,14 @@ texture = SubResource("GradientTexture2D_botgt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=839570542]
 libraries/ = SubResource("AnimationLibrary_x2kg0")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=653565216]
+offset_left = -16.0
+offset_top = 18.0
+offset_right = 16.0
+offset_bottom = 26.0
+texture_under = SubResource("GradientTexture2D_x2kg0")
+texture_progress = SubResource("GradientTexture2D_evh7i")
 
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]

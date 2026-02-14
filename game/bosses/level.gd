@@ -28,7 +28,7 @@ func start_game():
 		new_player.net_id = player.id
 		add_child(new_player)
 			
-func _process(_delta: float) -> void:
-	if not NetworkState.is_server():
-		if %Ping: 
-			%Ping.text = str(NetworkState.peer.get_peer(1).get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME))
+#func _process(_delta: float) -> void:
+#	if not NetworkState.is_server():
+#		if %Ping: 
+#			%Ping.text = str(NetworkState.peer.get_peer(1).get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME))

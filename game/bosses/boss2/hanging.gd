@@ -14,7 +14,8 @@ func _ready():
 	connect("activating", activation)
 
 func activation():
-	$Duration.start()
+	if NetworkState.is_server():
+		$Duration.start()
 	boss_glow = PointLight2D.new()
 	boss_glow.color = glow_color
 	boss_glow.position.y -= 60
@@ -29,13 +30,14 @@ func activation():
 
 func deactivate():
 	if active:
+		super()
+		boss.velocity = Vector2(0, -90)
 		if boss_glow:
 			boss_glow.queue_free()
 			boss_glow = null
 		$AnimationPlayer.play_backwards("Darken")
 		for p in GameState.players:
-			p.get_node("AnimationPlayer").play_backwards("light_on")
-	super()
+			p.get_parent().get_node("AnimationPlayer").play_backwards("light_on")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -45,6 +47,8 @@ func _process(_delta):
 
 
 func _on_animation_player_animation_finished(anim_name):
+	if not active:
+		return
 	if anim_name == "Darken":
 		$AnimationPlayer.play("Start")
 	elif anim_name == "Start":
