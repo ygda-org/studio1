@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d05mwq2yktdsv"]
+
+[ext_resource type="Script" uid="uid://dxstgk2cd8we6" path="res://bosses/boss2/light_projectile.gd" id="1_tr0ys"]
+[ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="2_xtdeh"]
+
+[sub_resource type="Gradient" id="Gradient_aif07"]
+colors = PackedColorArray(0.4559871, 0.31184122, 0, 1, 0.72736204, 0.40501234, 0.12055371, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tr0ys"]
+gradient = SubResource("Gradient_aif07")
+
+[sub_resource type="Gradient" id="Gradient_xtdeh"]
+offsets = PackedFloat32Array(0, 0.61960787, 0.7176471, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.54509807, 0.54509807, 0.54509807, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_abp8f"]
+gradient = SubResource("Gradient_xtdeh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[node name="LightProjectile" type="Area2D" unique_id=81021034]
+script = ExtResource("1_tr0ys")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1460118484]
+scale = Vector2(0.078125, 19.75)
+texture = SubResource("GradientTexture1D_tr0ys")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1225826807]
+color = Color(0.73567563, 0.37297705, 0.1101458, 1)
+texture = SubResource("GradientTexture2D_abp8f")
+
+[node name="PositionSyncNoCollision" parent="." unique_id=237048449 instance=ExtResource("2_xtdeh")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1774589653]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

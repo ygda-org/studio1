@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=4 uid="uid://dacq1xa1gdhw6"]
+[gd_scene format=4 uid="uid://dacq1xa1gdhw6"]
 
 [ext_resource type="Script" uid="uid://dxgjv3in3m4ip" path="res://bosses/boss1/boss1_level.gd" id="1_65syt"]
-[ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/tiles.tres" id="2_65syt"]
+[ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/boss2_tiles.tres" id="2_65syt"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_65syt")

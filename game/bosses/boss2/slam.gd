@@ -39,6 +39,7 @@ func slam():
 		for n in boss.get_node("Polygons").get_children():
 			var copy = n.duplicate()
 			copy.position = n.position + Vector2(70.0 * (1.0+i/2.0) * (1.0 if i % 2 == 0 else -1.0), 70.0+i*5)
+			copy.z_index = -1
 			extras.add_child(copy)
 			var telegraph = TELEGRAPH.instantiate()
 			telegraph.position.x += 20

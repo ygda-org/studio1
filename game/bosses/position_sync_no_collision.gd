@@ -7,7 +7,8 @@ const BUFFER_SIZE = 1024
 const MAXIMUM_RECONCILE_DISTANCE = 40
 
 func _process(delta):
-	parent.position += parent.velocity * delta
+	if parent.velocity != null:
+		parent.position += parent.velocity * delta
 	if NetworkState.is_server():
 		client_receive_state.rpc(parent.position, parent.velocity)
 	else:

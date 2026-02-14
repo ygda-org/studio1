@@ -48,6 +48,8 @@ func _process(delta):
 		n = n.get_children()[0]
 		if stage == 1 and $States/Circle.active:
 			n.rotation += delta*sin(float(current_tick)/10+start)
+		elif stage == 2 and $States2/Hanging.active:
+			pass
 		else:
 			n.rotation = velocity.length() * WIGGLE_CONSTANT*delta*sin(float(current_tick)/10+start)
 		start += 1

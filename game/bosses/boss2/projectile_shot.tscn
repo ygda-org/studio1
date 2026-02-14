@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://defoqes0q5vgm"]
+
+[ext_resource type="Script" uid="uid://cluxd2hlmxnkr" path="res://bosses/boss2/projectile_shot.gd" id="1_5sfi5"]
+
+[node name="ProjectileShot" type="Node2D" unique_id=1982396344]
+script = ExtResource("1_5sfi5")
+
+[node name="DespawnTimer" type="Timer" parent="." unique_id=1184932425]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

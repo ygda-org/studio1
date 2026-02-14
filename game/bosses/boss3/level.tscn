@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dli5wcy0r3pan"]
 
 [ext_resource type="Script" uid="uid://cpjmddkp0kwim" path="res://bosses/boss3/boss3_level.gd" id="1_rocqg"]
-[ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/tiles.tres" id="1_yh4d1"]
+[ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/boss2_tiles.tres" id="1_yh4d1"]
 
 [node name="Level" type="Node2D" unique_id=828389712]
 script = ExtResource("1_rocqg")
