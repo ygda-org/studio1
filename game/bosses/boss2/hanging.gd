@@ -14,6 +14,7 @@ func _ready():
 	connect("activating", activation)
 
 func activation():
+	$Duration.start()
 	boss_glow = PointLight2D.new()
 	boss_glow.color = glow_color
 	boss_glow.position.y -= 60
@@ -67,3 +68,7 @@ func shoot():
 	shot.name = "shot" + str(GameState.elapsed_time)
 	GameState.set_shot_velocity.rpc(boss.segments[0].global_position.direction_to(GameState.players.pick_random().global_position) * PROJECTILE_SPEED)
 	boss.get_parent().add_child(shot)
+
+
+func _on_duration_timeout():
+	boss.phase_change.rpc()

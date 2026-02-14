@@ -31,7 +31,7 @@ func _ready():
 func _on_phase_timer_timeout(): # switch phase
 	if NetworkState.is_server():
 		phase_change.rpc()
-		
+
 
 @rpc ("call_local", "authority")
 func phase_change():

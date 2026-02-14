@@ -64,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.103743605, 0.103743516, 0.103743516, 1)]
+"values": [Color(1, 1, 1, 1), Color(0.17068037, 0.17068037, 0.17068037, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_xgnpq"]
@@ -191,6 +191,10 @@ libraries/ = SubResource("AnimationLibrary_xgnpq")
 
 [node name="ShootCD" type="Timer" parent="States2/Hanging" unique_id=1096004043]
 wait_time = 1.5
+one_shot = true
+
+[node name="Duration" type="Timer" parent="States2/Hanging" unique_id=1570509011]
+wait_time = 15.0
 one_shot = true
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
@@ -388,6 +392,7 @@ health = 20
 [connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="animation_finished" from="States2/Hanging/AnimationPlayer" to="States2/Hanging" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States2/Hanging/ShootCD" to="States2/Hanging" method="_on_shoot_cd_timeout"]
+[connection signal="timeout" from="States2/Hanging/Duration" to="States2/Hanging" method="_on_duration_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HeadAnim" to="." method="_on_head_anim_timeout"]

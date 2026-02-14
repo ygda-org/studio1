@@ -3,11 +3,17 @@
 [ext_resource type="Script" uid="uid://dxstgk2cd8we6" path="res://bosses/boss2/light_projectile.gd" id="1_tr0ys"]
 [ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="2_xtdeh"]
 
-[sub_resource type="Gradient" id="Gradient_aif07"]
-colors = PackedColorArray(0.4559871, 0.31184122, 0, 1, 0.72736204, 0.40501234, 0.12055371, 1)
+[sub_resource type="Gradient" id="Gradient_abp8f"]
+offsets = PackedFloat32Array(0, 0.41379312, 0.537931, 0.95862067)
+colors = PackedColorArray(0.89401555, 0.41396627, 0.18833822, 1, 0.89411765, 0.41568628, 0.1882353, 1, 0.73333335, 0.45882353, 0.34901962, 0, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tr0ys"]
-gradient = SubResource("Gradient_aif07")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3amax"]
+gradient = SubResource("Gradient_abp8f")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_xtdeh"]
 offsets = PackedFloat32Array(0, 0.61960787, 0.7176471, 1)
@@ -23,8 +29,7 @@ fill_to = Vector2(0, 0)
 script = ExtResource("1_tr0ys")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1460118484]
-scale = Vector2(0.078125, 19.75)
-texture = SubResource("GradientTexture1D_tr0ys")
+texture = SubResource("GradientTexture2D_3amax")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1225826807]
 color = Color(0.73567563, 0.37297705, 0.1101458, 1)
