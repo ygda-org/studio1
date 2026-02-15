@@ -20,7 +20,7 @@ var jump_input = false # for jump buffering
 var mouse_position: Vector2 # for syncing up stuffs
 
 ### Network Vars
-const MAXIMUM_RECONCILE_DISTANCE: float = 40 # we can experiment with this value later
+const MAXIMUM_RECONCILE_DISTANCE: float = 120 # we can experiment with this value later
 
 @export var net_id: int = -1
 
@@ -167,6 +167,8 @@ func send_state_to_other_clients(pos, vel):
 	
 	
 func movement(input: ClientInput, delta: float):
+	if latest_server_state:
+		position = position.lerp(latest_server_state.position, delta)
 	if movement_locked:
 		return
 	# gravity
