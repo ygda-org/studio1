@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="4_ap83x"]
 [ext_resource type="Script" uid="uid://ccrtr6pj42fkk" path="res://bosses/boss2/slam.gd" id="5_uf8xv"]
 [ext_resource type="Script" uid="uid://b6gufp5dnfccm" path="res://bosses/boss2/hanging.gd" id="6_slcy7"]
+[ext_resource type="Script" uid="uid://daiae1s2h2lxy" path="res://bosses/boss2/laser.gd" id="7_xgnpq"]
 [ext_resource type="Script" uid="uid://dndupog4cs4ly" path="res://bosses/boss2/collision_pivot.gd" id="8_ah8y3"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="8_wu4lc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="9_s8npy"]
@@ -196,6 +197,9 @@ one_shot = true
 [node name="Duration" type="Timer" parent="States2/Hanging" unique_id=1570509011]
 wait_time = 15.0
 one_shot = true
+
+[node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
+script = ExtResource("7_xgnpq")
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
 wait_time = 10.0

@@ -26,6 +26,7 @@ func start_game():
 	for player: PlayerInfo in NetworkState.players.values():
 		var new_player = BASE_PLAYER.instantiate()
 		new_player.net_id = player.id
+		new_player.name = "Player" + str(player.id)
 		add_child(new_player)
 			
 #func _process(_delta: float) -> void:

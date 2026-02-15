@@ -64,7 +64,7 @@ func get_current_input() -> ClientInput:
 	
 	return input
 	
-func reconcile_state(delta: float):	
+func reconcile_state(delta: float):
 	if latest_server_state == null or state_buffer[latest_server_state.tick % BUFFER_SIZE] == null:
 		return
 	
@@ -109,13 +109,16 @@ func _physics_process(delta: float):
 			
 		var input: ClientInput = get_current_input()
 		input_buffer[buffer_index] = input
-		movement(input, delta)
+		movement(input, delta) # gonna add a bit of reconcile to movement
 		
 		state_buffer[buffer_index] = get_current_state()
 		
 		send_input_to_server_wrapper(input)
 	else: # Another remote peer 
-		position = prev_state.position.lerp(curr_state.position, delta)
+		# both positions are 0
+		if latest_server_state:
+			position = prev_state.position.lerp(latest_server_state.position, delta*5)#curr_state.position, delta*5)
+			prev_state = latest_server_state
 		
 	current_tick += 1
 
@@ -137,15 +140,14 @@ func send_input_to_server(x_direction, is_jumping, mouse_pos, left_click, right_
 	input_queue.append(input)
 
 func send_state_to_client_wrapper(state: ClientState):
-	send_state_to_client.rpc_id(net_id, state.position, state.velocity, state.tick)
+	send_state_to_client.rpc(net_id, state.position, state.velocity, state.tick)
 
 @rpc("authority", "call_remote", "unreliable")
-func send_state_to_client(pos: Vector2, vel: Vector2, tick: int):
+func send_state_to_client(id, pos: Vector2, vel: Vector2, tick: int):
 	var state: ClientState = ClientState.new()
 	state.position = pos
 	state.velocity = vel
 	state.tick = tick
-	
 	if latest_server_state == null or tick > latest_server_state.tick:
 		latest_server_state = state
 
@@ -190,6 +192,8 @@ func movement(input: ClientInput, delta: float):
 			velocity.x = clampf(velocity.x + acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta, -SPEED, SPEED)
 		else:
 			velocity.x = lerp(velocity.x, 0.0, DECELERATION)
+			if latest_server_state:
+				position = position.lerp(latest_server_state.position, delta*10)
 	else:
 		if direction and (abs(velocity.x) < SPEED or direction * velocity.x<0):
 			velocity.x += acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta * AIR_CONTROL
