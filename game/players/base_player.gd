@@ -157,7 +157,7 @@ func send_state_to_other_clients_wrapper(state: ClientState):
 			continue
 		
 		send_state_to_other_clients.rpc_id(id, state.position, state.velocity)
-	
+
 @rpc("authority", "call_remote", "unreliable")
 func send_state_to_other_clients(pos, vel):
 	prev_state = curr_state
@@ -165,7 +165,10 @@ func send_state_to_other_clients(pos, vel):
 	curr_state.position = position
 	curr_state.velocity = vel
 	
-	
+@rpc ("authority", "call_local")
+func jump():
+	velocity.y = JUMP_VELOCITY
+
 func movement(input: ClientInput, delta: float):
 	if latest_server_state:
 		position = position.lerp(latest_server_state.position, delta)
@@ -183,9 +186,9 @@ func movement(input: ClientInput, delta: float):
 	if input.is_jumping:
 		jump_input = true
 		$JumpBuffer.start()
-	if jump_input and can_jump:
+	if jump_input and can_jump and NetworkState.is_server():
 		jump_input = false
-		velocity.y = JUMP_VELOCITY
+		jump.rpc()
 
 	# movement
 	var direction = input.x_direction

@@ -9,7 +9,7 @@ var current_tick = 0
 const SPEED = 200
 const WIGGLE_CONSTANT = 0.004
 
-const PHASE_2_HEALTH = 400
+const PHASE_2_HEALTH = 40
 
 var segments = []
 var base_rotations = [null]
@@ -71,6 +71,12 @@ func die():
 		if NetworkState.is_server():
 			phase_change.rpc()
 		$PhaseTimer.stop()
+	elif stage == 2:
+		stage = 3
+		get_parent().phase3()
+		for n in phases:
+			n.deactivate()
+		$States3/Transition.activate()
 
 func _on_head_anim_timeout():
 	$Polygons/Head.texture_offset.x = int($Polygons/Head.texture_offset.x + 38) % (38*4)

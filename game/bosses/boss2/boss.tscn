@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b6gufp5dnfccm" path="res://bosses/boss2/hanging.gd" id="6_slcy7"]
 [ext_resource type="Script" uid="uid://daiae1s2h2lxy" path="res://bosses/boss2/laser.gd" id="7_xgnpq"]
 [ext_resource type="Script" uid="uid://dndupog4cs4ly" path="res://bosses/boss2/collision_pivot.gd" id="8_ah8y3"]
+[ext_resource type="Script" uid="uid://k16dy2rwjbci" path="res://bosses/boss2/transition.gd" id="8_lcgyy"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="8_wu4lc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="9_s8npy"]
 
@@ -200,6 +201,14 @@ one_shot = true
 
 [node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
 script = ExtResource("7_xgnpq")
+
+[node name="States3" type="Node2D" parent="." unique_id=344976133]
+
+[node name="Transition" type="Node2D" parent="States3" unique_id=448882992]
+script = ExtResource("8_lcgyy")
+
+[node name="StartTimer" type="Timer" parent="States3/Transition" unique_id=548156563]
+wait_time = 4.0
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
 wait_time = 10.0
@@ -397,6 +406,7 @@ health = 20
 [connection signal="animation_finished" from="States2/Hanging/AnimationPlayer" to="States2/Hanging" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States2/Hanging/ShootCD" to="States2/Hanging" method="_on_shoot_cd_timeout"]
 [connection signal="timeout" from="States2/Hanging/Duration" to="States2/Hanging" method="_on_duration_timeout"]
+[connection signal="timeout" from="States3/Transition/StartTimer" to="States3/Transition" method="_on_start_timer_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HeadAnim" to="." method="_on_head_anim_timeout"]
