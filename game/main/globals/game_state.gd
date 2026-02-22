@@ -21,7 +21,7 @@ func _process(delta):
 
 @rpc("any_peer")
 func ninja_swap(swapped):
-	var ninja = ninja_mage.get_parnet().get_node("ninja_swappable") # two guys are the two swappables nodes
+	var ninja = ninja_mage.get_parent().get_node("ninja_swappable") # two guys are the two swappables nodes
 	ninja.ninja_swap.rpc(swapped)
 	swapped.ninja_swap.rpc(ninja)
 

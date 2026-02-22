@@ -11,7 +11,6 @@ func _ready():
 	position = get_parent().get_node("ProjectilePosition").position
 	phases[0].activate()
 
-		
 @rpc ("call_local", "authority")
 func phase_change():
 	phases[current_phase].deactivate()
