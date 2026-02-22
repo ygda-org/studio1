@@ -7,9 +7,10 @@ func _ready():
 	position = get_parent().get_node("Boss").position
 
 func _process(delta):
-	if not velocity:
+	if velocity:
+		position += velocity*delta
+	else:
 		queue_free()
-	position += velocity*delta
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
