@@ -23,6 +23,7 @@ texture = ExtResource("2_o52tc")
 script = ExtResource("3_xb807")
 
 [node name="BulletCD" type="Timer" parent="States/Projectiles" unique_id=792745749]
+wait_time = 1.5
 one_shot = true
 
 [node name="PhaseTimer" type="Timer" parent="States/Projectiles" unique_id=1857199281]
@@ -44,5 +45,6 @@ shape = SubResource("CircleShape2D_2acpk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="change_phase" from="States/Projectiles" to="." method="_on_projectiles_change_phase"]
+[connection signal="timeout" from="States/Projectiles/BulletCD" to="States/Projectiles" method="_on_bullet_cd_timeout"]
 [connection signal="timeout" from="States/Projectiles/PhaseTimer" to="States/Projectiles" method="_on_phase_timer_timeout"]
 [connection signal="change_phase" from="States/Dashing" to="." method="_on_dashing_change_phase"]
