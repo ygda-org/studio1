@@ -19,16 +19,33 @@ func _ready():
 	connect("activating", activation)
 	
 func activation():
-	$PhaseTimer.wait_time = randf_range(5, 10)
+	$PhaseTimer.wait_time = randf_range(4, 8)
 	$PhaseTimer.start()
+	$BulletCD.wait_time = 0.5
 	$BulletCD.start()
-	attack = Attacks.values().pick_random()
+	if abs(global_position.x) < 200:
+		double = true
+		if global_position.y < -100:
+			attack = Attacks.BULLETS # TOP
+		else:
+			attack = Attacks.GRAVITY_BULLETS # BOTTOM
+	else: # HORIZONTAL
+		double = false
+		if randi_range(0, 1) == 1:
+			attack = Attacks.BULLETS 
+		else:
+			attack = Attacks.GRAVITY_BULLETS
+	if double:
+		$BulletCD.wait_time = 2
+	else:
+		$BulletCD.wait_time = 1.5
 	
+
 func _on_phase_timer_timeout() -> void:
 	change_phase.emit()
 
 @rpc ("authority", "call_local")
-func shoot(target, velocity, gravity_affected):
+func shoot(target, velocity, gravity_affected, double):
 	if not target:
 		return
 	var projectile = load("res://bosses/boss1/bullet.tscn").instantiate()
@@ -37,6 +54,8 @@ func shoot(target, velocity, gravity_affected):
 	projectile.global_position = global_position
 	projectile.gravity_affected = gravity_affected
 	states.get_parent().get_parent().add_child(projectile)
+	if double:
+		shoot(target, Vector2(velocity.x * -1, velocity.y), gravity_affected, false)
 
 
 func _on_bullet_cd_timeout() -> void:
@@ -46,14 +65,9 @@ func _on_bullet_cd_timeout() -> void:
 	if active and NetworkState.is_server():
 		$BulletCD.start()
 		var target = GameState.players.pick_random()
-		double = abs(global_position.x) < 5
+		var velocity
 		if attack == Attacks.GRAVITY_BULLETS:
-			var velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-20, 20), -100)
-			shoot.rpc(target, velocity, true)
-			if double:
-				shoot.rpc(target, Vector2(velocity.x * -1, velocity.y), true)
+			velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-20, 20), -100)
 		else:
-			var velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-10, 10), randf_range(-10, 10))
-			shoot.rpc(target, velocity, false)
-			if double:
-				shoot.rpc(target, Vector2(velocity.x * -1, velocity.y), false)
+			velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+		shoot.rpc(target, velocity, attack == Attacks.GRAVITY_BULLETS, double)

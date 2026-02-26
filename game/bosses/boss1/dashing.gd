@@ -21,7 +21,7 @@ func dash(delta):
 		states.get_parent().global_position = target
 		set_boss_target(null)
 		if NetworkState.is_server():
-			change_phase.emit()
+			$PhaseTimer.start()
 
 @rpc ("call_local", "authority")
 func set_boss_target(t):
@@ -38,3 +38,7 @@ func activation():
 		while states.get_parent().global_position.distance_to(target) < 100:
 			target = possible_targets[randi_range(0, possible_targets.size() - 1)]
 		set_boss_target.rpc(target) 
+
+
+func _on_phase_timer_timeout() -> void:
+	change_phase.emit()
