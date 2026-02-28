@@ -20,7 +20,7 @@ var jump_input = false # for jump buffering
 var mouse_position: Vector2 # for syncing up stuffs
 
 ### Network Vars
-const MAXIMUM_RECONCILE_DISTANCE: float = 120 # we can experiment with this value later
+const MAXIMUM_RECONCILE_DISTANCE: float = 60 # we can experiment with this value later
 
 @export var net_id: int = -1
 

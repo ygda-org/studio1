@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://k11n2301hx1l" path="res://bosses/boss2/timer.gd" id="3_y0c7d"]
 [ext_resource type="Texture2D" uid="uid://ci6yjddexcxv3" path="res://assets/wormface-spritesheet.png" id="4_8w0dp"]
 [ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="4_ap83x"]
+[ext_resource type="Script" uid="uid://b1foyjm6n1hwo" path="res://bosses/boss2/waves.gd" id="5_plbj8"]
 [ext_resource type="Script" uid="uid://ccrtr6pj42fkk" path="res://bosses/boss2/slam.gd" id="5_uf8xv"]
 [ext_resource type="Script" uid="uid://b6gufp5dnfccm" path="res://bosses/boss2/hanging.gd" id="6_slcy7"]
 [ext_resource type="Script" uid="uid://daiae1s2h2lxy" path="res://bosses/boss2/laser.gd" id="7_xgnpq"]
@@ -14,6 +15,111 @@
 [ext_resource type="Script" uid="uid://k16dy2rwjbci" path="res://bosses/boss2/transition.gd" id="8_lcgyy"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="8_wu4lc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="9_s8npy"]
+
+[sub_resource type="Animation" id="Animation_04t4s"]
+resource_name = "Down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 3),
+"update": 0,
+"values": [-50.0, 140.0]
+}
+
+[sub_resource type="Animation" id="Animation_jrjdf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Skeleton2D/Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.1415925]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_plbj8"]
+resource_name = "StartRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(400, -50), Vector2(280, -50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Skeleton2D/Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5707963267948966]
+}
+
+[sub_resource type="Animation" id="Animation_efktk"]
+resource_name = "Up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 3),
+"update": 0,
+"values": [140.0, -50.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_heb4p"]
+_data = {
+&"Down": SubResource("Animation_04t4s"),
+&"RESET": SubResource("Animation_jrjdf"),
+&"StartRight": SubResource("Animation_plbj8"),
+&"Up": SubResource("Animation_efktk")
+}
 
 [sub_resource type="Gradient" id="Gradient_slcy7"]
 offsets = PackedFloat32Array(0, 0.47843137, 0.6666667, 1)
@@ -157,6 +263,16 @@ script = ExtResource("3_7aa3u")
 [node name="Timer" type="Timer" parent="States/Circle" unique_id=568805593]
 one_shot = true
 script = ExtResource("3_y0c7d")
+
+[node name="Waves" type="Node2D" parent="States" unique_id=465449489]
+script = ExtResource("5_plbj8")
+
+[node name="CD" type="Timer" parent="States/Waves" unique_id=283314423]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Waves" unique_id=355143327]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_heb4p")
 
 [node name="Dashes" type="Node2D" parent="States" unique_id=196401348]
 script = ExtResource("2_ap83x")
@@ -400,6 +516,7 @@ health = 20
 [node name="PlayerDamageable" parent="CollisionPivot/Health" unique_id=327038509 instance=ExtResource("9_s8npy")]
 
 [connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
+[connection signal="timeout" from="States/Waves/CD" to="States/Waves" method="_on_cd_timeout"]
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
