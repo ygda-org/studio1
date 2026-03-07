@@ -95,6 +95,7 @@ offset_left = 1365.0
 offset_top = 326.0
 offset_right = 1710.0
 offset_bottom = 439.0
+selected = 0
 item_count = 3
 popup/item_0/text = "Shotgun"
 popup/item_0/id = 0
