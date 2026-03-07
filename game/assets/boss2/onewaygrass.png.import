@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ri5gbcy4mo4h"
-path="res://.godot/imported/WingEye.png-508fb5d0591634ff479d346331e9554d.ctex"
+uid="uid://c2150v3sp7s2h"
+path="res://.godot/imported/onewaygrass.png-bb9dffb3eb3382a3d012e0a1c6382da7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/WingEye.png"
-dest_files=["res://.godot/imported/WingEye.png-508fb5d0591634ff479d346331e9554d.ctex"]
+source_file="res://assets/boss2/onewaygrass.png"
+dest_files=["res://.godot/imported/onewaygrass.png-bb9dffb3eb3382a3d012e0a1c6382da7.ctex"]
 
 [params]
 

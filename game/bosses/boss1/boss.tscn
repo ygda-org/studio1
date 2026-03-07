@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4gqrtfo36bvu"]
 
 [ext_resource type="Script" uid="uid://nslpqj1373yv" path="res://bosses/boss1/boss.gd" id="1_5v2qa"]
-[ext_resource type="Texture2D" uid="uid://ri5gbcy4mo4h" path="res://assets/WingEye.png" id="2_o52tc"]
+[ext_resource type="Texture2D" uid="uid://ri5gbcy4mo4h" path="res://assets/boss1/WingEye.png" id="2_o52tc"]
 [ext_resource type="Script" uid="uid://hp2xtgfv3ld6" path="res://bosses/boss1/projectiles.gd" id="3_xb807"]
 [ext_resource type="Script" uid="uid://c4hcu8gyovk3i" path="res://bosses/boss1/dashing.gd" id="4_y7273"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="5_o52tc"]

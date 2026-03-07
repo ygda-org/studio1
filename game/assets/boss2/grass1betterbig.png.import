@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duauev4ogakpk"
-path="res://.godot/imported/wurmcut-tentacles.png-e2ed0dbae8be44a0d7b58af10674dd33.ctex"
+uid="uid://dlqo2i0dupnqm"
+path="res://.godot/imported/grass1betterbig.png-8ca7afa405f90ae143fcf3cd8d793973.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wurmcut-tentacles.png"
-dest_files=["res://.godot/imported/wurmcut-tentacles.png-e2ed0dbae8be44a0d7b58af10674dd33.ctex"]
+source_file="res://assets/boss2/grass1betterbig.png"
+dest_files=["res://.godot/imported/grass1betterbig.png-8ca7afa405f90ae143fcf3cd8d793973.ctex"]
 
 [params]
 

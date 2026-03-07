@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlqo2i0dupnqm"
-path="res://.godot/imported/grass1betterbig.png-479522506bfa4bb07cdc773296bcfca9.ctex"
+uid="uid://ci6yjddexcxv3"
+path="res://.godot/imported/wormface-spritesheet.png-fcbd5fa0581124e73099ef1832d61c27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/grass1betterbig.png"
-dest_files=["res://.godot/imported/grass1betterbig.png-479522506bfa4bb07cdc773296bcfca9.ctex"]
+source_file="res://assets/boss2/wormface-spritesheet.png"
+dest_files=["res://.godot/imported/wormface-spritesheet.png-fcbd5fa0581124e73099ef1832d61c27.ctex"]
 
 [params]
 

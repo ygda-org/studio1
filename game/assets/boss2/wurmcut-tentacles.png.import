@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnlibxal31co8"
-path="res://.godot/imported/boss1_tileset.png-02e2f51c85d4a438eccd7b5b257d3789.ctex"
+uid="uid://duauev4ogakpk"
+path="res://.godot/imported/wurmcut-tentacles.png-354c2972fb2385085cb37e96382d1c21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/boss1_tileset.png"
-dest_files=["res://.godot/imported/boss1_tileset.png-02e2f51c85d4a438eccd7b5b257d3789.ctex"]
+source_file="res://assets/boss2/wurmcut-tentacles.png"
+dest_files=["res://.godot/imported/wurmcut-tentacles.png-354c2972fb2385085cb37e96382d1c21.ctex"]
 
 [params]
 

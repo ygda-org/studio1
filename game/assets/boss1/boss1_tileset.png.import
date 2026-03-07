@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2150v3sp7s2h"
-path="res://.godot/imported/onewaygrass.png-8ec959fb767e81502a3e3a198db4397a.ctex"
+uid="uid://dnlibxal31co8"
+path="res://.godot/imported/boss1_tileset.png-55dd0255808987088878a88325e0c39d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/onewaygrass.png"
-dest_files=["res://.godot/imported/onewaygrass.png-8ec959fb767e81502a3e3a198db4397a.ctex"]
+source_file="res://assets/boss1/boss1_tileset.png"
+dest_files=["res://.godot/imported/boss1_tileset.png-55dd0255808987088878a88325e0c39d.ctex"]
 
 [params]
 

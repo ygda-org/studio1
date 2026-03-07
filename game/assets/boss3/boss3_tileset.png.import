@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coi86na248vcy"
-path="res://.godot/imported/wurmcompact.png-a7133eef3f7e6fd629fb8eda40f3b530.ctex"
+uid="uid://dkbh0ddnofq81"
+path="res://.godot/imported/boss3_tileset.png-d1254fd151bf201abd21e0687108c153.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wurmcompact.png"
-dest_files=["res://.godot/imported/wurmcompact.png-a7133eef3f7e6fd629fb8eda40f3b530.ctex"]
+source_file="res://assets/boss3/boss3_tileset.png"
+dest_files=["res://.godot/imported/boss3_tileset.png-d1254fd151bf201abd21e0687108c153.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dacq1xa1gdhw6"]
 
 [ext_resource type="Script" uid="uid://dxgjv3in3m4ip" path="res://bosses/boss1/boss1_level.gd" id="1_65syt"]
-[ext_resource type="Texture2D" uid="uid://dnlibxal31co8" path="res://assets/boss1_tileset.png" id="2_65syt"]
+[ext_resource type="Texture2D" uid="uid://dnlibxal31co8" path="res://assets/boss1/boss1_tileset.png" id="2_65syt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pg0b6"]
 texture = ExtResource("2_65syt")

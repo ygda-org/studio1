@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" format=3 uid="uid://bhp3y2c02uu58"]
 
-[ext_resource type="Texture2D" uid="uid://dlqo2i0dupnqm" path="res://assets/grass1betterbig.png" id="1_5xb8h"]
-[ext_resource type="Texture2D" uid="uid://c2150v3sp7s2h" path="res://assets/onewaygrass.png" id="2_ft7xy"]
+[ext_resource type="Texture2D" uid="uid://dlqo2i0dupnqm" path="res://assets/boss2/grass1betterbig.png" id="1_46iys"]
+[ext_resource type="Texture2D" uid="uid://c2150v3sp7s2h" path="res://assets/boss2/onewaygrass.png" id="2_2c5w0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ms3jd"]
-texture = ExtResource("1_5xb8h")
+texture = ExtResource("1_46iys")
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -97,7 +97,7 @@ texture = ExtResource("1_5xb8h")
 11:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1i2l"]
-texture = ExtResource("2_ft7xy")
+texture = ExtResource("2_2c5w0")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/physics_layer_0/polygon_0/one_way = true

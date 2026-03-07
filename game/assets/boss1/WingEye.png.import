@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci6yjddexcxv3"
-path="res://.godot/imported/wormface-spritesheet.png-b6471fde2308b518f5b5bd0ff500f73e.ctex"
+uid="uid://ri5gbcy4mo4h"
+path="res://.godot/imported/WingEye.png-6ff0d9cb8b7374af207a1171bb537bd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wormface-spritesheet.png"
-dest_files=["res://.godot/imported/wormface-spritesheet.png-b6471fde2308b518f5b5bd0ff500f73e.ctex"]
+source_file="res://assets/boss1/WingEye.png"
+dest_files=["res://.godot/imported/WingEye.png-6ff0d9cb8b7374af207a1171bb537bd1.ctex"]
 
 [params]
 

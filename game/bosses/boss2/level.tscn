@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dlhc57vc4uddi"]
 
 [ext_resource type="Script" uid="uid://2hi0lf0ib4di" path="res://bosses/boss2/boss2_level.gd" id="1_0wpnm"]
-[ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/boss2_tiles.tres" id="2_fmp8c"]
+[ext_resource type="TileSet" uid="uid://bhp3y2c02uu58" path="res://assets/boss2/boss2_tiles.tres" id="2_fmp8c"]
 [ext_resource type="Script" uid="uid://5vx425rn0g6x" path="res://bosses/boss2/circle_helper.gd" id="3_hb4ey"]
 
 [sub_resource type="Curve2D" id="Curve2D_fmp8c"]
