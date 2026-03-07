@@ -1,3 +1,8 @@
 [gd_scene format=3 uid="uid://cnn2tvrs7l0ql"]
 
+[ext_resource type="Texture2D" uid="uid://dxfirsrahfi3y" path="res://assets/boss3/skull.png" id="1_0hpv2"]
+
 [node name="Boss" type="Node2D" unique_id=943626385]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=481006779]
+texture = ExtResource("1_0hpv2")
