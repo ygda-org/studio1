@@ -42,7 +42,12 @@ var curr_state: ClientState = ClientState.new()
 func _ready():
 	input_buffer.resize(BUFFER_SIZE)
 	state_buffer.resize(BUFFER_SIZE)
-	add_child(load("uid://c3yx6fq1qrhfd").instantiate()) # just having all players set to shotgun for now
+	if net_id == multiplayer.get_unique_id():
+		set_role.rpc(NetworkState.this_player_role)
+
+@rpc ("call_local", "any_peer")
+func set_role(path):
+	add_child(load(path).instantiate())
 
 func get_current_state() -> ClientState:
 	var state: ClientState = ClientState.new()

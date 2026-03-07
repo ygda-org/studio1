@@ -115,3 +115,4 @@ text = "Select a character"
 [connection signal="toggled" from="ReadyToggle" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="Begin" to="." method="_on_begin_pressed"]
 [connection signal="item_selected" from="LevelSelect" to="." method="_on_level_select_item_selected"]
+[connection signal="item_selected" from="CharacterSelect" to="." method="_on_character_select_item_selected"]

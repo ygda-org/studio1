@@ -58,5 +58,8 @@ func start_game(level_id):
 			path = "res://bosses/boss3/level.tscn"
 		_:
 			return
-	
 	NetworkState.server_switch_scene(path)
+
+
+func _on_character_select_item_selected(index):
+	NetworkState.this_player_role = ["uid://c3yx6fq1qrhfd", "uid://byl55cel8luie", "uid://bnsrnd6fed7hc"][index]

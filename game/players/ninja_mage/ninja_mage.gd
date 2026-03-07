@@ -8,3 +8,6 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("right_click"):
 		ninja_attempt_swap.emit()
+
+func process_input(input):
+	pass

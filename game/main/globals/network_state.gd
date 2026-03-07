@@ -14,6 +14,7 @@ var peer: ENetMultiplayerPeer
 
 var room_password: String = "placeholder_password"
 var players: Dictionary[int, PlayerInfo] = {} # ID -> Player info
+var this_player_role = null
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_player_joined)
