@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://cc1jd47ign5tn"]
 
+[ext_resource type="Script" uid="uid://o8c7ccmctt8u" path="res://bosses/boss2/shockwave.gd" id="1_n88ed"]
+[ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="2_ug5dv"]
+
 [sub_resource type="Gradient" id="Gradient_ric3j"]
 offsets = PackedFloat32Array(0, 0.31034482, 0.37931034, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.38039216, 0.38039216, 0.38039216, 0, 1, 1, 1, 0)
@@ -25,9 +28,9 @@ angle_min = -14.9999895
 angle_max = 15.0000105
 direction = Vector3(0, -1, 0)
 spread = 10.0
-initial_velocity_min = 120.0
-initial_velocity_max = 120.0
-gravity = Vector3(0, 98, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.9
 scale_max = 1.1
 alpha_curve = SubResource("CurveTexture_n88ed")
@@ -36,6 +39,8 @@ alpha_curve = SubResource("CurveTexture_n88ed")
 size = Vector2(10, 59)
 
 [node name="Shockwave" type="Area2D" unique_id=240550015]
+z_index = -1
+script = ExtResource("1_n88ed")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1681656740]
 amount = 64
@@ -47,3 +52,5 @@ process_material = SubResource("ParticleProcessMaterial_ric3j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=911334602]
 position = Vector2(0, -29.5)
 shape = SubResource("RectangleShape2D_ric3j")
+
+[node name="PositionSyncNoCollision" parent="." unique_id=1978431174 instance=ExtResource("2_ug5dv")]

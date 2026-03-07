@@ -257,13 +257,6 @@ script = ExtResource("1_vvsd4")
 
 [node name="States" type="Node2D" parent="." unique_id=782599312]
 
-[node name="Circle" type="Node2D" parent="States" unique_id=990711573]
-script = ExtResource("3_7aa3u")
-
-[node name="Timer" type="Timer" parent="States/Circle" unique_id=568805593]
-one_shot = true
-script = ExtResource("3_y0c7d")
-
 [node name="Waves" type="Node2D" parent="States" unique_id=465449489]
 script = ExtResource("5_plbj8")
 
@@ -273,6 +266,13 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="States/Waves" unique_id=355143327]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_heb4p")
+
+[node name="Circle" type="Node2D" parent="States" unique_id=990711573]
+script = ExtResource("3_7aa3u")
+
+[node name="Timer" type="Timer" parent="States/Circle" unique_id=568805593]
+one_shot = true
+script = ExtResource("3_y0c7d")
 
 [node name="Dashes" type="Node2D" parent="States" unique_id=196401348]
 script = ExtResource("2_ap83x")
@@ -515,8 +515,8 @@ health = 20
 
 [node name="PlayerDamageable" parent="CollisionPivot/Health" unique_id=327038509 instance=ExtResource("9_s8npy")]
 
-[connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Waves/CD" to="States/Waves" method="_on_cd_timeout"]
+[connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]

@@ -1,7 +1,5 @@
 extends BaseState
 
-var waves = []
-
 const WAVE_SPEED = 100
 const WAVE = preload("uid://cc1jd47ign5tn")
 var dir = 0
@@ -27,27 +25,21 @@ func set_dir(d):
 	else:
 		$AnimationPlayer.play("StartLeft")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	for wave in waves:
-		wave.position.x += WAVE_SPEED * dir * delta
-
-
 func _on_cd_timeout():
 	if alternation == 1:
 		$AnimationPlayer.play("Up")
 	elif alternation == -1:
 		$AnimationPlayer.play("Down")
 	var wav = WAVE.instantiate()
-	waves.append(wav)
-	boss.get_parent().add_child(wav)
-	wav.position = boss.position
-	wav.position.y -= 5 * alternation
+	wav.rotation = 0.0 if alternation == 1 else PI
+	wav.position.x = boss.position.x
+	wav.global_position.y = boss.get_parent().get_node("ShockwaveMidpoint").global_position.y
+	wav.position.y += 125 * alternation
+	wav.wave_speed = WAVE_SPEED
 	alternation = 1 if alternation == -1 else -1
+	if NetworkState.is_server():
+		wav.name = "Shockwave" + str(GameState.elapsed_time)
+		boss.get_parent().add_child(wav)
+		wav.set_dir.rpc(dir, wav.rotation)
 	if active:
 		$CD.start()
