@@ -4,11 +4,11 @@
 
 [sub_resource type="Gradient" id="Gradient_agd5a"]
 offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.7474765, 0.45981866, 0.081341125, 1, 0, 0, 0, 0)
+colors = PackedColorArray(1, 0.6039216, 0.3137255, 0, 0.99999994, 0.60522324, 0.31261975, 1, 1, 0.6039216, 0.3137255, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2etgo"]
 gradient = SubResource("Gradient_agd5a")
-width = 128
+width = 24
 
 [sub_resource type="Gradient" id="Gradient_2etgo"]
 offsets = PackedFloat32Array(0, 0.5588235, 0.6117647, 1)
@@ -16,6 +16,8 @@ colors = PackedColorArray(0.59068006, 0.4231824, 0.35632998, 1, 0.74270463, 0.48
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_48845"]
 gradient = SubResource("Gradient_2etgo")
+width = 8
+height = 8
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0)
@@ -28,6 +30,7 @@ initial_velocity_min = 70.0
 initial_velocity_max = 70.0
 
 [node name="LaserBeam" type="Node2D" unique_id=1774754034]
+z_index = -2
 script = ExtResource("1_kyrxm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1055508429]
@@ -36,8 +39,10 @@ scale = Vector2(1, 40)
 texture = SubResource("GradientTexture2D_2etgo")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=865696492]
+position = Vector2(0, 50)
 target_position = Vector2(0, 1280)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=302119306]
+amount = 64
 texture = SubResource("GradientTexture2D_48845")
 process_material = SubResource("ParticleProcessMaterial_agd5a")

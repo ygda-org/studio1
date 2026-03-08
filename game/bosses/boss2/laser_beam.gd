@@ -1,6 +1,6 @@
 extends Node2D
 
-func process(_delta):
+func _process(_delta):
 	if $RayCast2D.is_colliding():
 		$GPUParticles2D.visible = true
 		$GPUParticles2D.global_position = $RayCast2D.get_collision_point()

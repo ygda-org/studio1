@@ -316,6 +316,9 @@ libraries/ = SubResource("AnimationLibrary_heb4p")
 
 [node name="States2" type="Node2D" parent="." unique_id=1033481878]
 
+[node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
+script = ExtResource("7_xgnpq")
+
 [node name="Slam" type="Node2D" parent="States2" unique_id=1378243755]
 script = ExtResource("5_uf8xv")
 
@@ -343,9 +346,6 @@ one_shot = true
 [node name="Duration" type="Timer" parent="States2/Hanging" unique_id=1570509011]
 wait_time = 15.0
 one_shot = true
-
-[node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
-script = ExtResource("7_xgnpq")
 
 [node name="States3" type="Node2D" parent="." unique_id=344976133]
 
