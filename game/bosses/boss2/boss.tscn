@@ -70,6 +70,34 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_4ybpr"]
+resource_name = "StartLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-400, -50), Vector2(-280, -50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Skeleton2D/Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707963267948966]
+}
+
 [sub_resource type="Animation" id="Animation_plbj8"]
 resource_name = "StartRight"
 length = 0.5
@@ -117,6 +145,7 @@ tracks/0/keys = {
 _data = {
 &"Down": SubResource("Animation_04t4s"),
 &"RESET": SubResource("Animation_jrjdf"),
+&"StartLeft": SubResource("Animation_4ybpr"),
 &"StartRight": SubResource("Animation_plbj8"),
 &"Up": SubResource("Animation_efktk")
 }
@@ -257,16 +286,6 @@ script = ExtResource("1_vvsd4")
 
 [node name="States" type="Node2D" parent="." unique_id=782599312]
 
-[node name="Waves" type="Node2D" parent="States" unique_id=465449489]
-script = ExtResource("5_plbj8")
-
-[node name="CD" type="Timer" parent="States/Waves" unique_id=283314423]
-one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Waves" unique_id=355143327]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_heb4p")
-
 [node name="Circle" type="Node2D" parent="States" unique_id=990711573]
 script = ExtResource("3_7aa3u")
 
@@ -284,6 +303,16 @@ one_shot = true
 [node name="Cooldown" type="Timer" parent="States/Dashes" unique_id=1837901082]
 wait_time = 0.5
 one_shot = true
+
+[node name="Waves" type="Node2D" parent="States" unique_id=465449489]
+script = ExtResource("5_plbj8")
+
+[node name="CD" type="Timer" parent="States/Waves" unique_id=283314423]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States/Waves" unique_id=355143327]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_heb4p")
 
 [node name="States2" type="Node2D" parent="." unique_id=1033481878]
 
@@ -515,10 +544,10 @@ health = 20
 
 [node name="PlayerDamageable" parent="CollisionPivot/Health" unique_id=327038509 instance=ExtResource("9_s8npy")]
 
-[connection signal="timeout" from="States/Waves/CD" to="States/Waves" method="_on_cd_timeout"]
 [connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="States/Waves/CD" to="States/Waves" method="_on_cd_timeout"]
 [connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="animation_finished" from="States2/Hanging/AnimationPlayer" to="States2/Hanging" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States2/Hanging/ShootCD" to="States2/Hanging" method="_on_shoot_cd_timeout"]

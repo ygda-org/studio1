@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://cnn2tvrs7l0ql"]
 
 [ext_resource type="Texture2D" uid="uid://dxfirsrahfi3y" path="res://assets/boss3/skull.png" id="1_0hpv2"]
+[ext_resource type="Texture2D" uid="uid://cp05xuas8hrlu" path="res://assets/boss3/boss3_parts.png" id="2_a0i2r"]
 
 [node name="Boss" type="Node2D" unique_id=943626385]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=481006779]
+visible = false
 texture = ExtResource("1_0hpv2")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=870525827]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D" unique_id=712121727]
+texture = ExtResource("2_a0i2r")

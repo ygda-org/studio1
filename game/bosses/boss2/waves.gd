@@ -1,15 +1,17 @@
 extends BaseState
 
-const WAVE_SPEED = 100
+const WAVE_SPEED = 120
 const WAVE = preload("uid://cc1jd47ign5tn")
 var dir = 0
 var alternation = 1
 
 func activate():
 	super()
-	alternation = 1
+	alternation = -1
+	#position = Vector2(400, 0)
+	boss.velocity = Vector2.ZERO
 	if NetworkState.is_server():
-		dir = -1#randi_range(0,1)*2-1
+		dir = randi_range(0,1)*2-1
 		if dir == -1:
 			$AnimationPlayer.play("StartRight")
 		else:
