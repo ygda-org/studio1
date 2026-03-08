@@ -1,11 +1,5 @@
-extends "res://components/BaseState.gd"
+extends BaseState
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func activate():
+	super()
+	boss.add_child(load("uid://t6ptb3a68nj4").instantiate())

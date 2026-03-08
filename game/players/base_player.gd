@@ -176,7 +176,7 @@ func jump():
 
 func movement(input: ClientInput, delta: float):
 	if latest_server_state:
-		position = position.lerp(latest_server_state.position, delta)
+		position = position.lerp(latest_server_state.position, 5*delta*(position-latest_server_state.position).length())
 	if movement_locked:
 		return
 	# gravity

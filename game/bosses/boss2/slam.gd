@@ -30,7 +30,7 @@ func slam():
 		return
 	extras.rotation = PI
 	$TimeBetween.start()
-	boss.position = Vector2(10, -400)
+	boss.position = Vector2(10++randi_range(-30,30), -400)
 	boss.segments[0].rotation = PI
 	boss.velocity = Vector2(0, SLAM_SPEED)
 	var tele = TELEGRAPH.instantiate()
