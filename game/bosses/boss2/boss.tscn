@@ -319,6 +319,10 @@ libraries/ = SubResource("AnimationLibrary_heb4p")
 [node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
 script = ExtResource("7_xgnpq")
 
+[node name="LaserTimer" type="Timer" parent="States2/Laser" unique_id=1625456355]
+wait_time = 3.0
+one_shot = true
+
 [node name="Slam" type="Node2D" parent="States2" unique_id=1378243755]
 script = ExtResource("5_uf8xv")
 
@@ -548,6 +552,7 @@ health = 20
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="States/Waves/CD" to="States/Waves" method="_on_cd_timeout"]
+[connection signal="timeout" from="States2/Laser/LaserTimer" to="States2/Laser" method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="animation_finished" from="States2/Hanging/AnimationPlayer" to="States2/Hanging" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States2/Hanging/ShootCD" to="States2/Hanging" method="_on_shoot_cd_timeout"]

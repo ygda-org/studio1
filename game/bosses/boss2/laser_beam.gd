@@ -6,3 +6,7 @@ func _process(_delta):
 		$GPUParticles2D.global_position = $RayCast2D.get_collision_point()
 	else:
 		$GPUParticles2D.visible = false
+
+@rpc ("call_local", "authority")
+func suicide():
+	call_deferred("queue_free")
