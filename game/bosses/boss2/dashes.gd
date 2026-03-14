@@ -1,7 +1,7 @@
 extends BaseState
 
 const DASH_SPEED = 200
-const PROJECTILE = preload("uid://d05mwq2yktdsv") # I need to make a new projectile for this, needs to be smaller
+const PROJECTILE = preload("uid://ra0jbtcys7gx")
 
 var leaving_screen = false
 var shoot = false
@@ -32,6 +32,8 @@ func _on_startup_timeout():
 
 @rpc ("authority", "call_local")
 func dash(dir, x_pos):
+	if not active:
+		return
 	leaving_screen = false
 	shoot = false
 	boss.segments[0].rotation = PI + PI/4 * -dir
@@ -43,9 +45,8 @@ func burst():
 	for i in range(6):
 		var proj = PROJECTILE.instantiate()
 		proj.name = 'projectile' + str(i) + str(GameState.elapsed_time)
-		proj.velocity = boss.velocity.rotated(pow(-1, i)*PI/2)
 		world.add_child(proj)
-		proj.global_position = boss.segments[0].global_position + Vector2(0, 20-int(i/2)*50).rotated(pow(-1, i+1)*PI/4)
+		proj.var_init.rpc(boss.segments[0].global_position + Vector2(0, 20-int(i/2)*50).rotated(pow(-1, i+1)*PI/4), boss.velocity.rotated(pow(-1, i)*PI/2), atan(boss.velocity.y/boss.velocity.x))
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
