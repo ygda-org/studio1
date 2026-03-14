@@ -14,6 +14,5 @@ func _process(_delta):
 		return
 	
 
-
 func _on_start_timer_timeout():
-	boss.velocity.x = SPEED
+	boss.velocity.y = SPEED

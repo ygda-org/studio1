@@ -46,7 +46,7 @@ func burst():
 		var proj = PROJECTILE.instantiate()
 		proj.name = 'projectile' + str(i) + str(GameState.elapsed_time)
 		world.add_child(proj)
-		proj.var_init.rpc(boss.segments[0].global_position + Vector2(0, 20-int(i/2)*50).rotated(pow(-1, i+1)*PI/4), boss.velocity.rotated(pow(-1, i)*PI/2), atan(boss.velocity.y/boss.velocity.x))
+		proj.var_init.rpc(boss.segments[0].global_position + Vector2(0, 40-int(i/2)*70).rotated(pow(-1, i+1)*PI/4), boss.velocity.rotated(pow(-1, i)*PI/2), atan(boss.velocity.y/boss.velocity.x))
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

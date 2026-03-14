@@ -16,6 +16,7 @@ func phase2():
 
 @rpc ("call_local", "authority")
 func phase3():
+	$TileMapLayer3.collision_enabled = true
 	$TileMapLayer2.queue_free()
 	$AnimationPlayer.play("PhaseTransition2")
 	$TileMapLayer3.visible = true
