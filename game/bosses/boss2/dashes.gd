@@ -1,8 +1,10 @@
 extends BaseState
 
 const DASH_SPEED = 200
+const PROJECTILE = preload("uid://d05mwq2yktdsv") # I need to make a new projectile for this, needs to be smaller
 
 var leaving_screen = false
+var shoot = false
 
 func _ready():
 	connect("activating", activation)
@@ -19,6 +21,9 @@ func _process(delta):
 			boss.segments[0].rotation = lerpf(boss.segments[0].rotation, 0, delta*5)
 		else:
 			boss.segments[0].rotation = lerpf(boss.segments[0].rotation, 0, -delta*5)
+	elif abs(boss.global_position.y) < 2 and NetworkState.is_server() and not shoot:
+		shoot = true
+		burst()
 
 func _on_startup_timeout():
 	leaving_screen = false
@@ -27,10 +32,20 @@ func _on_startup_timeout():
 
 @rpc ("authority", "call_local")
 func dash(dir, x_pos):
+	leaving_screen = false
+	shoot = false
 	boss.segments[0].rotation = PI + PI/4 * -dir
 	boss.velocity = Vector2(DASH_SPEED*dir, DASH_SPEED)
 	boss.position = Vector2(x_pos, -200)
 
+func burst():
+	var world = boss.get_parent()
+	for i in range(6):
+		var proj = PROJECTILE.instantiate()
+		proj.name = 'projectile' + str(i) + str(GameState.elapsed_time)
+		proj.velocity = boss.velocity.rotated(pow(-1, i)*PI/2)
+		world.add_child(proj)
+		proj.global_position = boss.segments[0].global_position + Vector2(0, 20-int(i/2)*50).rotated(pow(-1, i+1)*PI/4)
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -39,4 +54,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_cooldown_timeout():
 	if NetworkState.is_server() and active and $Startup.is_stopped():
-		dash.rpc((randi_range(0,1) * 2) - 1, randi_range(-150, 150))
+		dash.rpc((randi_range(0,1) * 2) - 1, randi_range(-100, 100))
