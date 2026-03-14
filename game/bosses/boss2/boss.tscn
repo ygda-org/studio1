@@ -286,13 +286,6 @@ script = ExtResource("1_vvsd4")
 
 [node name="States" type="Node2D" parent="." unique_id=782599312]
 
-[node name="Circle" type="Node2D" parent="States" unique_id=990711573]
-script = ExtResource("3_7aa3u")
-
-[node name="Timer" type="Timer" parent="States/Circle" unique_id=568805593]
-one_shot = true
-script = ExtResource("3_y0c7d")
-
 [node name="Dashes" type="Node2D" parent="States" unique_id=196401348]
 script = ExtResource("2_ap83x")
 
@@ -303,6 +296,13 @@ one_shot = true
 [node name="Cooldown" type="Timer" parent="States/Dashes" unique_id=1837901082]
 wait_time = 0.5
 one_shot = true
+
+[node name="Circle" type="Node2D" parent="States" unique_id=990711573]
+script = ExtResource("3_7aa3u")
+
+[node name="Timer" type="Timer" parent="States/Circle" unique_id=568805593]
+one_shot = true
+script = ExtResource("3_y0c7d")
 
 [node name="Waves" type="Node2D" parent="States" unique_id=465449489]
 script = ExtResource("5_plbj8")
@@ -315,13 +315,6 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_heb4p")
 
 [node name="States2" type="Node2D" parent="." unique_id=1033481878]
-
-[node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
-script = ExtResource("7_xgnpq")
-
-[node name="LaserTimer" type="Timer" parent="States2/Laser" unique_id=1625456355]
-wait_time = 3.0
-one_shot = true
 
 [node name="Slam" type="Node2D" parent="States2" unique_id=1378243755]
 script = ExtResource("5_uf8xv")
@@ -349,6 +342,13 @@ one_shot = true
 
 [node name="Duration" type="Timer" parent="States2/Hanging" unique_id=1570509011]
 wait_time = 15.0
+one_shot = true
+
+[node name="Laser" type="Node2D" parent="States2" unique_id=1876173500]
+script = ExtResource("7_xgnpq")
+
+[node name="LaserTimer" type="Timer" parent="States2/Laser" unique_id=1625456355]
+wait_time = 3.0
 one_shot = true
 
 [node name="States3" type="Node2D" parent="." unique_id=344976133]
@@ -548,15 +548,15 @@ health = 20
 
 [node name="PlayerDamageable" parent="CollisionPivot/Health" unique_id=327038509 instance=ExtResource("9_s8npy")]
 
-[connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Dashes/Startup" to="States/Dashes" method="_on_startup_timeout"]
 [connection signal="timeout" from="States/Dashes/Cooldown" to="States/Dashes" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="States/Circle/Timer" to="States/Circle" method="_on_timer_timeout"]
 [connection signal="timeout" from="States/Waves/CD" to="States/Waves" method="_on_cd_timeout"]
-[connection signal="timeout" from="States2/Laser/LaserTimer" to="States2/Laser" method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="States2/Slam/TimeBetween" to="States2/Slam" method="_on_time_between_timeout"]
 [connection signal="animation_finished" from="States2/Hanging/AnimationPlayer" to="States2/Hanging" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States2/Hanging/ShootCD" to="States2/Hanging" method="_on_shoot_cd_timeout"]
 [connection signal="timeout" from="States2/Hanging/Duration" to="States2/Hanging" method="_on_duration_timeout"]
+[connection signal="timeout" from="States2/Laser/LaserTimer" to="States2/Laser" method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="States3/Transition/StartTimer" to="States3/Transition" method="_on_start_timer_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
