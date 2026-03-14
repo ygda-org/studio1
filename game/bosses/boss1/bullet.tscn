@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="1_nxrrh"]
 [ext_resource type="Script" uid="uid://c01taok4tcb0g" path="res://bosses/boss1/new_bullet.gd" id="1_ua7pb"]
 [ext_resource type="PackedScene" uid="uid://12i740e4ob6y" path="res://players/gravity_mage/gravity_change.tscn" id="3_xuly5"]
-[ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="4_ua7pb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2qdo"]
 radius = 8.0
@@ -11,6 +10,7 @@ height = 16.0
 
 [node name="Bullet" type="RigidBody2D" unique_id=1128221627]
 collision_layer = 0
+gravity_scale = 0.0
 script = ExtResource("1_ua7pb")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1791216015]
@@ -24,8 +24,6 @@ texture = ExtResource("1_nxrrh")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=384610145]
 
 [node name="GravityChange" parent="." unique_id=1135932526 instance=ExtResource("3_xuly5")]
-
-[node name="PositionSyncNoCollision" parent="." unique_id=1984121576 instance=ExtResource("4_ua7pb")]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=685649473]
 

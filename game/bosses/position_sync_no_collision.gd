@@ -23,7 +23,7 @@ func reconcile_state(delta: float):
 		return
 	var difference = latest_server_state['pos'].distance_to(parent.position)
 	if difference > MAXIMUM_RECONCILE_DISTANCE:
-		GameState.log("Syncing %s position desync!" % parent)
+		#GameState.log("Syncing %s position desync!" % parent)
 		
 		parent.position = parent.position.lerp(latest_server_state['pos'], 50 * delta)
 		parent.velocity = latest_server_state['v']

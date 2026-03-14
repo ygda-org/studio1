@@ -75,7 +75,7 @@ func reconcile_state(delta: float):
 	
 	var difference: float = latest_server_state.position.distance_to(state_buffer[latest_server_state.tick % BUFFER_SIZE].position)
 	if difference > MAXIMUM_RECONCILE_DISTANCE:
-		GameState.log("Client %s position desync!" % multiplayer.get_unique_id())
+		#GameState.log("Client %s position desync!" % multiplayer.get_unique_id())
 		
 		position = latest_server_state.position
 		velocity = latest_server_state.velocity

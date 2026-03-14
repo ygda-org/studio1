@@ -7,7 +7,7 @@ const PROJECTILE_SPEED = 150
 const PROJECTILE_DMG = 10
 var attack
 var double
-@onready var projectile_position = states.get_parent().get_parent().get_node("ProjectilePosition").global_position
+#@onready var projectile_position = states.get_parent().get_parent().get_node("ProjectilePosition").global_position
 
 enum Attacks {
 	BULLETS,
@@ -15,7 +15,7 @@ enum Attacks {
 }
 
 func _ready():
-	get_parent().global_position = projectile_position
+#	get_parent().global_position = projectile_position
 	connect("activating", activation)
 	
 func activation():
@@ -56,7 +56,6 @@ func shoot(target, velocity, gravity_affected, double):
 	states.get_parent().get_parent().add_child(projectile)
 	if double:
 		shoot(target, Vector2(velocity.x * -1, velocity.y), gravity_affected, false)
-
 
 func _on_bullet_cd_timeout() -> void:
 	if not active:

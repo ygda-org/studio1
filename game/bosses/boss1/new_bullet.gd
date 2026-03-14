@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+# apparently i shouldnt have removed the physics sync thing
+# sounds like a problem for future me oops
+
 var dmg
 var gravity_affected
 var velocity
@@ -22,6 +25,8 @@ func _physics_process(delta):
 			move_and_collide(velocity * delta)
 	else:
 		queue_free()
+	if velocity != null:
+		position += velocity * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
