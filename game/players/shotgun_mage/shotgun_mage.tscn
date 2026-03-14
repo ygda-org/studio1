@@ -1,83 +1,97 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3yx6fq1qrhfd"]
+[gd_scene format=3 uid="uid://c3yx6fq1qrhfd"]
 
 [ext_resource type="Script" uid="uid://d0vwe5cy56mvd" path="res://players/shotgun_mage/shotgun_mage.gd" id="1_oix6k"]
+[ext_resource type="Texture2D" uid="uid://dq8nu2ec2b2kv" path="res://assets/gunicorn_armless.png" id="2_jpkrd"]
+[ext_resource type="Texture2D" uid="uid://b7ehvac8d7lm4" path="res://assets/gunicorn_arm.png" id="3_bed4l"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="3_jpkrd"]
+[ext_resource type="Texture2D" uid="uid://bapxiqoc8upj" path="res://assets/gun.png" id="4_sfohl"]
 
-[node name="ShotgunMage" type="Node2D"]
+[node name="ShotgunMage" type="Node2D" unique_id=1206900027]
 script = ExtResource("1_oix6k")
 
-[node name="MainCD" type="Timer" parent="."]
+[node name="MainCD" type="Timer" parent="." unique_id=746328222]
 wait_time = 0.7
 one_shot = true
 
-[node name="BigBombCD" type="Timer" parent="."]
+[node name="BigBombCD" type="Timer" parent="." unique_id=1288211844]
 wait_time = 5.0
 one_shot = true
 
-[node name="GravityNullDur" type="Timer" parent="."]
+[node name="GravityNullDur" type="Timer" parent="." unique_id=1816781001]
 wait_time = 0.1
 one_shot = true
 
-[node name="TracerDur" type="Timer" parent="."]
+[node name="TracerDur" type="Timer" parent="." unique_id=151816905]
 wait_time = 0.1
 
-[node name="ShotgunHelper" type="Node2D" parent="."]
+[node name="Body" type="Sprite2D" parent="." unique_id=1291336433]
+position = Vector2(5, 0)
+texture = ExtResource("2_jpkrd")
+flip_h = true
 
-[node name="Shotgun" type="Sprite2D" parent="ShotgunHelper"]
-position = Vector2(15, -5)
-scale = Vector2(0.121093765, 0.058593746)
-texture = ExtResource("3_jpkrd")
+[node name="ShotgunHelper" type="Node2D" parent="." unique_id=1033709764]
+position = Vector2(-4, -3)
 
-[node name="Barrel" type="Marker2D" parent="ShotgunHelper"]
-position = Vector2(22.992188, -5)
+[node name="Arm" type="Sprite2D" parent="ShotgunHelper" unique_id=913013155]
+position = Vector2(9, 3)
+texture = ExtResource("3_bed4l")
+flip_h = true
 
-[node name="RayCast2D" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+[node name="Shotgun" type="Sprite2D" parent="ShotgunHelper" unique_id=655042564]
+position = Vector2(10, 3)
+texture = ExtResource("4_sfohl")
+flip_h = true
+
+[node name="Barrel" type="Marker2D" parent="ShotgunHelper" unique_id=21160975]
+position = Vector2(20, -1)
+
+[node name="RayCast2D" type="RayCast2D" parent="ShotgunHelper/Barrel" unique_id=1275738074]
 target_position = Vector2(150, -120)
 collide_with_areas = true
 
-[node name="RayCast2D2" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+[node name="RayCast2D2" type="RayCast2D" parent="ShotgunHelper/Barrel" unique_id=1860153456]
 target_position = Vector2(150, -60)
 collide_with_areas = true
 
-[node name="RayCast2D3" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+[node name="RayCast2D3" type="RayCast2D" parent="ShotgunHelper/Barrel" unique_id=913193955]
 target_position = Vector2(150, 0)
 collide_with_areas = true
 
-[node name="RayCast2D4" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+[node name="RayCast2D4" type="RayCast2D" parent="ShotgunHelper/Barrel" unique_id=566412170]
 target_position = Vector2(150, 60)
 collide_with_areas = true
 
-[node name="RayCast2D5" type="RayCast2D" parent="ShotgunHelper/Barrel"]
+[node name="RayCast2D5" type="RayCast2D" parent="ShotgunHelper/Barrel" unique_id=684030104]
 target_position = Vector2(150, 120)
 collide_with_areas = true
 
-[node name="Tracers" type="Node2D" parent="ShotgunHelper/Barrel"]
+[node name="Tracers" type="Node2D" parent="ShotgunHelper/Barrel" unique_id=927528108]
 visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+[node name="Sprite2D" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=668173994]
 position = Vector2(74.00391, 0)
 scale = Vector2(1.156311, 0.02)
 texture = ExtResource("3_jpkrd")
 
-[node name="Sprite2D2" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+[node name="Sprite2D2" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=2099921841]
 position = Vector2(74.003914, 29)
 rotation = 0.38397244
 scale = Vector2(1.156311, 0.02)
 texture = ExtResource("3_jpkrd")
 
-[node name="Sprite2D3" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+[node name="Sprite2D3" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=26289207]
 position = Vector2(74.004, -29)
 rotation = -0.38397244
 scale = Vector2(1.156311, 0.02)
 texture = ExtResource("3_jpkrd")
 
-[node name="Sprite2D4" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+[node name="Sprite2D4" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=1861017069]
 position = Vector2(73.7509, -59.7516)
 rotation = -0.6806784
 scale = Vector2(1.4729124, 0.02)
 texture = ExtResource("3_jpkrd")
 
-[node name="Sprite2D5" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers"]
+[node name="Sprite2D5" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=2018851489]
 position = Vector2(73.751, 59.752)
 rotation = 0.6806784
 scale = Vector2(1.4729124, 0.02)

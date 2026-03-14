@@ -11,6 +11,14 @@ var can_shoot_big = true
 
 func _ready():
 	GameState.shotgun_mage = self
+	get_parent().get_node("Sprite2D").visible = false # just to remove base player sprite
+
+func _process(_delta): # purely visual stuff
+	if get_parent().is_on_floor():
+		if get_parent().velocity.x > 0:
+			scale.x = 1
+		elif get_parent().velocity.x < 0:
+			scale.x = -1
 
 func process_input(input):
 	if input.mouse_pos.x > global_position.x:
