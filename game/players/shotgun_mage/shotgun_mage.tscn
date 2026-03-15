@@ -33,9 +33,11 @@ flip_h = true
 position = Vector2(-4, -3)
 
 [node name="Arm" type="Sprite2D" parent="ShotgunHelper" unique_id=913013155]
-position = Vector2(9, 3)
+position = Vector2(6, 0)
 texture = ExtResource("3_bed4l")
 flip_h = true
+region_enabled = true
+region_rect = Rect2(13, 11, 12, 4)
 
 [node name="Shotgun" type="Sprite2D" parent="ShotgunHelper" unique_id=655042564]
 position = Vector2(16, 1)
@@ -71,29 +73,34 @@ collide_with_areas = true
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=668173994]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(74.00391, 0)
 scale = Vector2(1.156311, 0.02)
 texture = ExtResource("3_jpkrd")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=2099921841]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(74.003914, 29)
 rotation = 0.38397244
 scale = Vector2(1.156311, 0.02)
 texture = ExtResource("3_jpkrd")
 
 [node name="Sprite2D3" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=26289207]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(74.004, -29)
 rotation = -0.38397244
 scale = Vector2(1.156311, 0.02)
 texture = ExtResource("3_jpkrd")
 
 [node name="Sprite2D4" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=1861017069]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(73.7509, -59.7516)
 rotation = -0.6806784
 scale = Vector2(1.4729124, 0.02)
 texture = ExtResource("3_jpkrd")
 
 [node name="Sprite2D5" type="Sprite2D" parent="ShotgunHelper/Barrel/Tracers" unique_id=2018851489]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(73.751, 59.752)
 rotation = 0.6806784
 scale = Vector2(1.4729124, 0.02)

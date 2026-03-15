@@ -9,6 +9,8 @@ const BOMB_VELOCITY = 400
 var can_shoot = true
 var can_shoot_big = true
 
+var last_mouse_pos = Vector2()
+
 func _ready():
 	GameState.shotgun_mage = self
 	get_parent().get_node("Sprite2D").visible = false # just to remove base player sprite
@@ -16,20 +18,23 @@ func _ready():
 func _process(_delta): # purely visual stuff
 	if get_parent().is_on_floor():
 		if get_parent().velocity.x > 0:
+			$ShotgunHelper/Arm.flip_v = false
 			$ShotgunHelper/Shotgun.flip_v = false
 			scale.x = 1
 		elif get_parent().velocity.x < 0:
+			$ShotgunHelper/Arm.flip_v = true
 			$ShotgunHelper/Shotgun.flip_v = true
 			scale.x = -1
-
-func process_input(input):
-	if input.mouse_pos.x > global_position.x:
+	if last_mouse_pos.x > global_position.x:
 		$ShotgunHelper.scale.x = 1
-		$ShotgunHelper.look_at(input.mouse_pos)
+		$ShotgunHelper.look_at(last_mouse_pos)
 	else:
 		$ShotgunHelper.scale.x = -1
-		$ShotgunHelper.look_at(input.mouse_pos) 
+		$ShotgunHelper.look_at(last_mouse_pos) 
 		$ShotgunHelper.rotation += PI
+
+func process_input(input):
+	last_mouse_pos = input.mouse_pos
 	if input.left_click and can_shoot:
 		shoot()
 		recoil(NORMAL_RECOIL, input.mouse_pos)

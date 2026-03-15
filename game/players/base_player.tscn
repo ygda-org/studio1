@@ -15,7 +15,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5538461, 0.8988764), -0.324594
 point_count = 3
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qp1xa"]
-radius = 7.0
+radius = 5.0
 height = 32.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6pihb"]
