@@ -38,9 +38,11 @@ texture = ExtResource("3_bed4l")
 flip_h = true
 
 [node name="Shotgun" type="Sprite2D" parent="ShotgunHelper" unique_id=655042564]
-position = Vector2(10, 3)
+position = Vector2(16, 1)
 texture = ExtResource("4_sfohl")
 flip_h = true
+region_enabled = true
+region_rect = Rect2(6, 11, 8, 5)
 
 [node name="Barrel" type="Marker2D" parent="ShotgunHelper" unique_id=21160975]
 position = Vector2(20, -1)

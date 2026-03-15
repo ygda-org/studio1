@@ -16,8 +16,10 @@ func _ready():
 func _process(_delta): # purely visual stuff
 	if get_parent().is_on_floor():
 		if get_parent().velocity.x > 0:
+			$ShotgunHelper/Shotgun.flip_v = false
 			scale.x = 1
 		elif get_parent().velocity.x < 0:
+			$ShotgunHelper/Shotgun.flip_v = true
 			scale.x = -1
 
 func process_input(input):
