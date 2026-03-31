@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ri5gbcy4mo4h" path="res://assets/boss1/WingEye.png" id="2_o52tc"]
 [ext_resource type="Script" uid="uid://hp2xtgfv3ld6" path="res://bosses/boss1/projectiles.gd" id="3_xb807"]
 [ext_resource type="Script" uid="uid://c4hcu8gyovk3i" path="res://bosses/boss1/dashing.gd" id="4_y7273"]
+[ext_resource type="Script" uid="uid://lbien2befsre" path="res://bosses/boss1/laser.gd" id="5_1a6y5"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="5_o52tc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="5_y7273"]
 [ext_resource type="PackedScene" uid="uid://dr1c766dxmmos" path="res://bosses/position_sync_no_collision.tscn" id="7_2acpk"]
@@ -35,6 +36,15 @@ script = ExtResource("4_y7273")
 [node name="PhaseTimer" type="Timer" parent="States/Dashing" unique_id=989073711]
 one_shot = true
 
+[node name="Laser" type="Node2D" parent="States" unique_id=662738061]
+script = ExtResource("5_1a6y5")
+
+[node name="PhaseTimer" type="Timer" parent="States/Laser" unique_id=1675652021]
+one_shot = true
+
+[node name="LaserCD" type="Timer" parent="States/Laser" unique_id=471284860]
+wait_time = 3.0
+
 [node name="Health" parent="." unique_id=1784201451 instance=ExtResource("5_o52tc")]
 health = 150
 
@@ -52,3 +62,6 @@ shape = SubResource("CircleShape2D_2acpk")
 [connection signal="timeout" from="States/Projectiles/PhaseTimer" to="States/Projectiles" method="_on_phase_timer_timeout"]
 [connection signal="change_phase" from="States/Dashing" to="." method="_on_dashing_change_phase"]
 [connection signal="timeout" from="States/Dashing/PhaseTimer" to="States/Dashing" method="_on_phase_timer_timeout"]
+[connection signal="change_phase" from="States/Laser" to="." method="_on_laser_change_phase"]
+[connection signal="timeout" from="States/Laser/PhaseTimer" to="States/Laser" method="_on_phase_timer_timeout"]
+[connection signal="timeout" from="States/Laser/LaserCD" to="States/Laser" method="_on_laser_cd_timeout"]

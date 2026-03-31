@@ -19,8 +19,7 @@ func _ready():
 	connect("activating", activation)
 	
 func activation():
-	$PhaseTimer.wait_time = randf_range(4, 8)
-	$PhaseTimer.start()
+	$PhaseTimer.start(randf_range(4, 8))
 	$BulletCD.wait_time = 0.5
 	$BulletCD.start()
 	if abs(global_position.x) < 200:
@@ -53,7 +52,7 @@ func shoot(target, velocity, gravity_affected, double):
 	projectile.dmg = PROJECTILE_DMG
 	projectile.global_position = global_position
 	projectile.gravity_affected = gravity_affected
-	states.get_parent().get_parent().add_child(projectile)
+	states.get_parent().get_parent().add_child(projectile, true)
 	if double:
 		shoot(target, Vector2(velocity.x * -1, velocity.y), gravity_affected, false)
 
