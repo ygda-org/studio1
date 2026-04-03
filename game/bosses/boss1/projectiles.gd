@@ -20,7 +20,6 @@ func _ready():
 	
 func activation():
 	$PhaseTimer.start(randf_range(4, 8))
-	$BulletCD.wait_time = 0.5
 	$BulletCD.start()
 	if abs(global_position.x) < 200:
 		double = true
@@ -35,9 +34,9 @@ func activation():
 		else:
 			attack = Attacks.GRAVITY_BULLETS
 	if double:
-		$BulletCD.wait_time = 2
-	else:
 		$BulletCD.wait_time = 1.5
+	else:
+		$BulletCD.wait_time = 1
 	
 
 func _on_phase_timer_timeout() -> void:

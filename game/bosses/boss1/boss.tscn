@@ -24,7 +24,6 @@ texture = ExtResource("2_o52tc")
 script = ExtResource("3_xb807")
 
 [node name="BulletCD" type="Timer" parent="States/Projectiles" unique_id=792745749]
-wait_time = 1.5
 one_shot = true
 
 [node name="PhaseTimer" type="Timer" parent="States/Projectiles" unique_id=1857199281]
