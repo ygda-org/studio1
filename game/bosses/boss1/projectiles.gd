@@ -33,10 +33,10 @@ func activation():
 			attack = Attacks.BULLETS 
 		else:
 			attack = Attacks.GRAVITY_BULLETS
-	if double:
-		$BulletCD.wait_time = 1.5
+	if attack == Attacks.GRAVITY_BULLETS:
+		$BulletCD.wait_time = 1.25
 	else:
-		$BulletCD.wait_time = 1
+		$BulletCD.wait_time = 0.75
 	
 
 func _on_phase_timer_timeout() -> void:
@@ -64,7 +64,7 @@ func _on_bullet_cd_timeout() -> void:
 		var target = GameState.players.pick_random()
 		var velocity
 		if attack == Attacks.GRAVITY_BULLETS:
-			velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-20, 20), -100)
+			velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-50, 50), -120)
 		else:
-			velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+			velocity = get_parent().global_position.direction_to(target.global_position) * PROJECTILE_SPEED + Vector2(randf_range(-50, 50), randf_range(-50, 50))
 		shoot.rpc(target, velocity, attack == Attacks.GRAVITY_BULLETS, double)

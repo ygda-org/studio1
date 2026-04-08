@@ -3,7 +3,7 @@ extends RayCast2D
 # followed a gd quest tutorial for this
 
 var rotation_speed = 30
-var speed = 400
+var speed = 300
 var is_casting := true
 var dmg = 10
 
