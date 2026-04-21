@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coyyrlhr1vcb0"
-path="res://.godot/imported/gunicorn_full.png-cc80a2a58ece627b8be07cc077c8864e.ctex"
+uid="uid://bapxiqoc8upj"
+path="res://.godot/imported/gun.png-3d53abf296b770e963c8db57a514e70e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gunicorn_full.png"
-dest_files=["res://.godot/imported/gunicorn_full.png-cc80a2a58ece627b8be07cc077c8864e.ctex"]
+source_file="res://assets/players/gun.png"
+dest_files=["res://.godot/imported/gun.png-3d53abf296b770e963c8db57a514e70e.ctex"]
 
 [params]
 

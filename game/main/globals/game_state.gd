@@ -9,6 +9,7 @@ var ninja_mage
 var shot_velocity: Vector2
 
 var players = []
+var player_roles = {}
 
 func _process(delta):
 	elapsed_time += delta 
@@ -18,6 +19,10 @@ func _process(delta):
 		players.append(shotgun_mage)
 	if ninja_mage and ninja_mage not in players:
 		players.append(ninja_mage)
+
+@rpc("call_local", "any_peer")
+func set_player_role(id, role):
+	player_roles[id] = role
 
 @rpc("any_peer")
 func ninja_swap(swapped):

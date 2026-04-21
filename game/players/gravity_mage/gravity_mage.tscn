@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://byl55cel8luie"]
+[gd_scene format=3 uid="uid://byl55cel8luie"]
 
 [ext_resource type="Script" uid="uid://dgr50e4pin1iu" path="res://players/gravity_mage/gravity_mage.gd" id="1_2xofm"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_p0i7d"]
 
-[node name="GravityMage" type="Node2D"]
+[node name="GravityMage" type="Node2D" unique_id=151795856]
 script = ExtResource("1_2xofm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=766620313]
+scale = Vector2(0.125, 0.25)
+texture = ExtResource("2_p0i7d")

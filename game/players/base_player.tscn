@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://gmr2mrr3v55v"]
 
 [ext_resource type="Script" uid="uid://4022vrnuk032" path="res://players/base_player.gd" id="1_2a3vx"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_qp1xa"]
 [ext_resource type="PackedScene" uid="uid://12i740e4ob6y" path="res://players/gravity_mage/gravity_change.tscn" id="3_o42b7"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="4_6pihb"]
 [ext_resource type="PackedScene" uid="uid://byjvi3o4x173x" path="res://components/enemy_damageable.tscn" id="5_botgt"]
@@ -92,10 +91,6 @@ height = 8
 script = ExtResource("1_2a3vx")
 acceleration_curve = SubResource("Curve_o42b7")
 gravity_curve = SubResource("Curve_v4bkq")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=901007230]
-scale = Vector2(0.125, 0.25)
-texture = ExtResource("2_qp1xa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=221408394]
 shape = SubResource("CapsuleShape2D_qp1xa")

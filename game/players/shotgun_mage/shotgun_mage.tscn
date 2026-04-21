@@ -1,10 +1,83 @@
 [gd_scene format=3 uid="uid://c3yx6fq1qrhfd"]
 
 [ext_resource type="Script" uid="uid://d0vwe5cy56mvd" path="res://players/shotgun_mage/shotgun_mage.gd" id="1_oix6k"]
-[ext_resource type="Texture2D" uid="uid://dq8nu2ec2b2kv" path="res://assets/gunicorn_armless.png" id="2_jpkrd"]
-[ext_resource type="Texture2D" uid="uid://b7ehvac8d7lm4" path="res://assets/gunicorn_arm.png" id="3_bed4l"]
+[ext_resource type="Texture2D" uid="uid://dq8nu2ec2b2kv" path="res://assets/players/gunicorn_armless.png" id="2_jpkrd"]
+[ext_resource type="Texture2D" uid="uid://b7ehvac8d7lm4" path="res://assets/players/gunicorn_arm.png" id="3_bed4l"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="3_jpkrd"]
-[ext_resource type="Texture2D" uid="uid://bapxiqoc8upj" path="res://assets/gun.png" id="4_sfohl"]
+[ext_resource type="Texture2D" uid="uid://yx8gngprm43q" path="res://assets/players/gunicorn_run.png" id="3_sfohl"]
+[ext_resource type="Texture2D" uid="uid://bapxiqoc8upj" path="res://assets/players/gun.png" id="4_sfohl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdxkb"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(0, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mos5a"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(35, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccw5f"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(70, 0, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4amft"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(0, 36, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymc8s"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(35, 36, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu043"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(70, 36, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw20o"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(0, 72, 35, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxerb"]
+atlas = ExtResource("3_sfohl")
+region = Rect2(35, 72, 35, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntlc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jpkrd")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdxkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mos5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccw5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4amft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymc8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu043")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw20o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxerb")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
 
 [node name="ShotgunMage" type="Node2D" unique_id=1206900027]
 script = ExtResource("1_oix6k")
@@ -24,9 +97,11 @@ one_shot = true
 [node name="TracerDur" type="Timer" parent="." unique_id=151816905]
 wait_time = 0.1
 
-[node name="Body" type="Sprite2D" parent="." unique_id=1291336433]
+[node name="Anim" type="AnimatedSprite2D" parent="." unique_id=1017829912]
 position = Vector2(5, 0)
-texture = ExtResource("2_jpkrd")
+sprite_frames = SubResource("SpriteFrames_4ntlc")
+animation = &"run"
+autoplay = "idle"
 flip_h = true
 
 [node name="ShotgunHelper" type="Node2D" parent="." unique_id=1033709764]

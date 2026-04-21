@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnsrnd6fed7hc"]
+[gd_scene format=3 uid="uid://bnsrnd6fed7hc"]
 
 [ext_resource type="Script" uid="uid://dukw8uq676glt" path="res://players/ninja_mage/ninja_mage.gd" id="1_krw7d"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://assets/icon.svg" id="2_p4kkg"]
 
-[node name="NinjaMage" type="Node2D"]
+[node name="NinjaMage" type="Node2D" unique_id=1060091265]
 script = ExtResource("1_krw7d")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=587169653]
+scale = Vector2(0.125, 0.25)
+texture = ExtResource("2_p4kkg")

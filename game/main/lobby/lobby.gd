@@ -62,4 +62,5 @@ func start_game(level_id):
 
 
 func _on_character_select_item_selected(index):
-	NetworkState.this_player_role = ["uid://c3yx6fq1qrhfd", "uid://byl55cel8luie", "uid://bnsrnd6fed7hc"][index]
+	GameState.set_player_role.rpc(multiplayer.get_unique_id(), ["uid://c3yx6fq1qrhfd", "uid://byl55cel8luie", "uid://bnsrnd6fed7hc"][index])
+	#NetworkState.this_player_role = ["uid://c3yx6fq1qrhfd", "uid://byl55cel8luie", "uid://bnsrnd6fed7hc"][index]

@@ -42,10 +42,14 @@ var curr_state: ClientState = ClientState.new()
 func _ready():
 	input_buffer.resize(BUFFER_SIZE)
 	state_buffer.resize(BUFFER_SIZE)
-	if net_id == multiplayer.get_unique_id():
-		set_role.rpc(NetworkState.this_player_role)
+	if net_id in GameState.player_roles:
+		set_role(GameState.player_roles[net_id])
+	else:
+		set_role("uid://c3yx6fq1qrhfd")
+	#if net_id == multiplayer.get_unique_id():
+	#	set_role.rpc(NetworkState.this_player_role)
 
-@rpc ("call_local", "any_peer")
+#@rpc ("call_local", "any_peer")
 func set_role(path):
 	add_child(load(path).instantiate())
 
