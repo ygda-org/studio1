@@ -28,6 +28,8 @@ func _process(_delta): # purely visual stuff
 			$Anim.play("run")
 		else:
 			$Anim.play("idle")
+	else:
+		$Anim.play("idle") # later, jump
 	if last_mouse_pos.x > global_position.x:
 		$ShotgunHelper.scale.x = 1
 		$ShotgunHelper.look_at(last_mouse_pos)
