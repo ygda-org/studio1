@@ -20,3 +20,11 @@ func phase3():
 	$TileMapLayer2.queue_free()
 	$AnimationPlayer.play("PhaseTransition2")
 	$TileMapLayer3.visible = true
+
+@rpc ("call_local", "authority")
+func phase4():
+	$TileMapLayer4.collision_enabled = true
+	$TileMapLayer3.queue_free()
+	$Phase4Pit.visible = true
+	$Phase4Light.visible = true
+	$TileMapLayer4.visible = true
