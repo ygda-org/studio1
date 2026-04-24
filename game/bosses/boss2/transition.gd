@@ -1,4 +1,4 @@
-extends "res://components/BaseState.gd"
+extends BaseState
 
 const SPEED = 100
 
@@ -15,4 +15,10 @@ func _process(_delta):
 	
 
 func _on_start_timer_timeout():
-	boss.velocity.y = SPEED
+	$AnimationPlayer.play("transition")
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if NetworkState.is_server() and anim_name == 'transition':
+		boss.die.rpc()

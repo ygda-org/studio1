@@ -23,8 +23,8 @@ func phase3():
 
 @rpc ("call_local", "authority")
 func phase4():
-	$TileMapLayer4.collision_enabled = true
+	#$TileMapLayer5.collision_enabled = true
 	$TileMapLayer3.queue_free()
 	$Phase4Pit.visible = true
 	$Phase4Light.visible = true
-	$TileMapLayer4.visible = true
+	$TileMapLayer5.visible = true

@@ -278,6 +278,67 @@ _data = {
 &"Start": SubResource("Animation_slcy7")
 }
 
+[sub_resource type="Animation" id="Animation_f7vgp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Skeleton2D/Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.1415925]
+}
+
+[sub_resource type="Animation" id="Animation_i8trn"]
+resource_name = "transition"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12, 22, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 300), Vector2(0, -300), Vector2(400, -564), Vector2(1472, -564)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Skeleton2D/Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 12.166667, 22),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 0.7853981633974483, 1.5707963267948966]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7vgp"]
+_data = {
+&"RESET": SubResource("Animation_f7vgp"),
+&"transition": SubResource("Animation_i8trn")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wu4lc"]
 size = Vector2(24, 146)
 
@@ -358,6 +419,10 @@ script = ExtResource("8_lcgyy")
 
 [node name="StartTimer" type="Timer" parent="States3/Transition" unique_id=548156563]
 wait_time = 4.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="States3/Transition" unique_id=1156476092]
+libraries/ = SubResource("AnimationLibrary_f7vgp")
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
 wait_time = 10.0
@@ -558,6 +623,7 @@ health = 20
 [connection signal="timeout" from="States2/Hanging/Duration" to="States2/Hanging" method="_on_duration_timeout"]
 [connection signal="timeout" from="States2/Laser/LaserTimer" to="States2/Laser" method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="States3/Transition/StartTimer" to="States3/Transition" method="_on_start_timer_timeout"]
+[connection signal="animation_finished" from="States3/Transition/AnimationPlayer" to="States3/Transition" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HeadAnim" to="." method="_on_head_anim_timeout"]
