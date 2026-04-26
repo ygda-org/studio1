@@ -4,6 +4,8 @@ const SPEED = 100
 
 @export var bounce_shape: Shape2D
 
+@onready var extras = $Extras
+
 var bounce
 
 func activate():
@@ -18,6 +20,7 @@ func _process(_delta):
 		return
 	if bounce:
 		bounce.rotation = boss.segments[0].rotation
+		extras.rotation = boss.segments[0].rotation
 
 func _on_start_timer_timeout():
 	bounce = load("uid://boh7edtc42xte").instantiate()
@@ -26,15 +29,24 @@ func _on_start_timer_timeout():
 	bounce.add_child(bounce_coll)
 	add_child(bounce)
 	boss.get_node("States").queue_free()
-	boss.get_node("States2").queue_free() # to clear clones
+	boss.get_node("States2").queue_free() # to clear slam clones
 	$BounceQueueFreeTimer.start()
 	$AnimationPlayer.play("transition")
+	for i in range(20):
+		var copy
+		for n in boss.get_node("Polygons").get_children():
+			copy = n.duplicate()
+			copy.position = n.position + Vector2(30.0 * (1.0+i/2.0) * (1.0 if i % 2 == 0 else -1.0) - 12, -8.0)
+			copy.z_index = -1
+			copy.modulate = Color(0.231, 0.231, 0.231, 1.0)
+			extras.add_child(copy)
 
 
 
 func _on_animation_player_animation_finished(anim_name):
 	if NetworkState.is_server() and anim_name == 'transition':
 		boss.die.rpc()
+		queue_free()
 
 
 func _on_bounce_queue_free_timer_timeout():
