@@ -17,10 +17,10 @@ func activation():
 
 func _process(delta):
 	if leaving_screen:
-		if boss.segments[0].rotation > PI:
-			boss.segments[0].rotation = lerpf(boss.segments[0].rotation, 0, delta*5)
-		else:
-			boss.segments[0].rotation = lerpf(boss.segments[0].rotation, 0, -delta*5)
+		#if boss.segments[0].rotation > PI:
+		boss.segments[0].rotation = lerpf(boss.segments[0].rotation, 0, delta*5)
+		#else:
+		#	boss.segments[0].rotation = lerpf(boss.segments[0].rotation, 0, delta*5)
 	elif abs(boss.global_position.y) < 2 and NetworkState.is_server() and not shoot:
 		shoot = true
 		burst()

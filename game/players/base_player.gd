@@ -81,18 +81,25 @@ func reconcile_state(delta: float):
 	if difference > MAXIMUM_RECONCILE_DISTANCE:
 		#GameState.log("Client %s position desync!" % multiplayer.get_unique_id())
 		
-		position = latest_server_state.position
-		velocity = latest_server_state.velocity
+		#position = latest_server_state.position # I'm going to flip it
+		#velocity = latest_server_state.velocity # imma make client fix server, instead of server fix client
+		fix_server.rpc_id(1, position, velocity)
 				
-		state_buffer[latest_server_state.tick % BUFFER_SIZE] = latest_server_state
-		
-		for tick in range(latest_server_state.tick, current_tick):
-			var buffer_index: int = tick % BUFFER_SIZE
-			movement(input_buffer[buffer_index], delta) # delta should be bout the same anyways
-			state_buffer[buffer_index] = get_current_state()
+		#state_buffer[latest_server_state.tick % BUFFER_SIZE] = latest_server_state
+		# bye bye sroshsafa's code, we don't need an authoritative server anyway (who's gonna even cheat?)
+		#for tick in range(latest_server_state.tick, current_tick):
+		#	var buffer_index: int = tick % BUFFER_SIZE
+		#	movement(input_buffer[buffer_index], delta) # delta should be bout the same anyways
+		#	state_buffer[buffer_index] = get_current_state()
 	
 	latest_server_state = null
-	
+
+@rpc("any_peer", "call_remote")
+func fix_server(pos, v):
+	if NetworkState.is_server():
+		position = pos
+		velocity = v
+
 func _physics_process(delta: float):
 	var buffer_index: int = current_tick % BUFFER_SIZE
 	

@@ -15,16 +15,19 @@ func _ready():
 	GameState.shotgun_mage = self
 
 func _process(_delta): # purely visual stuff
+	$Anim.position = Vector2(5, 0)
 	if get_parent().is_on_floor():
 		if int(get_parent().velocity.x) > 0:
 			$ShotgunHelper/Arm.flip_v = false
 			$ShotgunHelper/Shotgun.flip_v = false
 			scale.x = 1
+			$Anim.position = Vector2(4, -1)
 			$Anim.play("run")
 		elif int(get_parent().velocity.x) < 0:
 			$ShotgunHelper/Arm.flip_v = true
 			$ShotgunHelper/Shotgun.flip_v = true
 			scale.x = -1
+			$Anim.position = Vector2(4, -1)
 			$Anim.play("run")
 		else:
 			$Anim.play("idle")

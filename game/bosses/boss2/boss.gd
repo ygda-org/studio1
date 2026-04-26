@@ -20,7 +20,7 @@ var stage = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = Vector2(100,0)
+	position = Vector2(0, -300)
 	phases[0].activate()
 	var n = $Skeleton2D/Bone2D
 	while n.get_children():

@@ -100,7 +100,7 @@ wait_time = 0.1
 [node name="Anim" type="AnimatedSprite2D" parent="." unique_id=1017829912]
 position = Vector2(5, 0)
 sprite_frames = SubResource("SpriteFrames_4ntlc")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
@@ -108,21 +108,21 @@ flip_h = true
 position = Vector2(-4, -3)
 
 [node name="Arm" type="Sprite2D" parent="ShotgunHelper" unique_id=913013155]
-position = Vector2(6, 0)
+position = Vector2(5, 0)
 texture = ExtResource("3_bed4l")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(13, 11, 12, 4)
 
 [node name="Shotgun" type="Sprite2D" parent="ShotgunHelper" unique_id=655042564]
-position = Vector2(16, 1)
+position = Vector2(15, 1)
 texture = ExtResource("4_sfohl")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(6, 11, 8, 5)
 
 [node name="Barrel" type="Marker2D" parent="ShotgunHelper" unique_id=21160975]
-position = Vector2(20, -1)
+position = Vector2(19, -1)
 
 [node name="RayCast2D" type="RayCast2D" parent="ShotgunHelper/Barrel" unique_id=1275738074]
 target_position = Vector2(150, -120)

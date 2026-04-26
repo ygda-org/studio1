@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://boh7edtc42xte"]
+
+[ext_resource type="Script" uid="uid://cccguv0m3mivj" path="res://bosses/boss2/bouncy_damage_zone.gd" id="1_glnl5"]
+
+[node name="BouncyDamageZone" type="Area2D" unique_id=1492872580]
+script = ExtResource("1_glnl5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
