@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://12g1q21pqau4"]
+
+[ext_resource type="Script" uid="uid://v6m08khha1jk" path="res://bosses/boss2/curving_projectile.gd" id="1_s0svh"]
+
+[sub_resource type="Gradient" id="Gradient_5j2cy"]
+colors = PackedColorArray(0.90357757, 0.17768604, 0.12495982, 1, 0.9019608, 0.1764706, 0.1254902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvsdu"]
+gradient = SubResource("Gradient_5j2cy")
+width = 8
+height = 16
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0svh"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_s0svh"]
+resource_name = "Fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5j2cy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bvsdu"]
+_data = {
+&"Fadeout": SubResource("Animation_s0svh"),
+&"RESET": SubResource("Animation_5j2cy")
+}
+
+[node name="CurvingProjectile" type="Area2D" unique_id=2146003491]
+script = ExtResource("1_s0svh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=165274353]
+texture = SubResource("GradientTexture2D_bvsdu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=529049396]
+shape = SubResource("CircleShape2D_s0svh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1872748948]
+
+[node name="MaxDur" type="Timer" parent="." unique_id=1736073910]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="AbsoluteMaxDur" type="Timer" parent="." unique_id=1930330856]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1310634230]
+libraries/ = SubResource("AnimationLibrary_bvsdu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="MaxDur" to="." method="_on_max_dur_timeout"]
+[connection signal="timeout" from="AbsoluteMaxDur" to="." method="_on_absolute_max_dur_timeout"]

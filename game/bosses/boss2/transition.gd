@@ -8,6 +8,8 @@ const SPEED = 100
 
 var bounce
 
+var dir_alternate = 1
+
 func activate():
 	super()
 	$StartTimer.start()
@@ -31,6 +33,7 @@ func _on_start_timer_timeout():
 	boss.get_node("States").queue_free()
 	boss.get_node("States2").queue_free() # to clear slam clones
 	$BounceQueueFreeTimer.start()
+	$ProjectileTimer.start()
 	$AnimationPlayer.play("transition")
 	for i in range(20):
 		var copy
@@ -51,3 +54,16 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_bounce_queue_free_timer_timeout():
 	bounce.queue_free()
+
+
+func _on_projectile_timer_timeout():
+	if NetworkState.is_server():
+		$ProjectileTimer.start()
+		shoot()
+
+func shoot():
+	var proj = load("uid://12g1q21pqau4").instantiate()
+	proj.name = "Sickle" + str(GameState.elapsed_time)
+	boss.get_parent().add_child(proj)
+	proj.initial_setup.rpc(boss.global_position, dir_alternate)
+	dir_alternate *= -1

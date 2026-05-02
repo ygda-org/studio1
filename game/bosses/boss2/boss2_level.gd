@@ -1,7 +1,11 @@
-extends "res://bosses/level.gd"
+extends Level
+
+# player spawn pos 0,-1200
+# intro lock dur 15
 
 func start_game():
-	play_intro.rpc()
+	#play_intro.rpc()
+	_on_animation_player_animation_finished("Intro")
 	super()
 
 @rpc ("authority", "call_local")

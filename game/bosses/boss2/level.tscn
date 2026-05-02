@@ -211,8 +211,6 @@ size = Vector2(638, 20)
 
 [node name="Level" type="Node2D" unique_id=1371369374]
 script = ExtResource("1_0wpnm")
-player_spawn_pos = Vector2(0, -1200)
-intro_lock_dur = 15
 
 [node name="TileMapLayer-1" type="TileMapLayer" parent="." unique_id=806819845]
 tile_map_data = PackedByteArray("AAD8/7f/AAACAAAAAAD9/7f/AAACAAAAAAD+/7f/AAACAAAAAAD//7f/AAACAAAAAAAAALf/AAACAAAAAAABALf/AAACAAAAAAACALf/AAACAAAAAAADALf/AAACAAAAAAD9/7j/AAACAAIAAAD+/7j/AAACAAIAAAD//7j/AAACAAIAAAAAALj/AAACAAIAAAABALj/AAACAAIAAAACALj/AAACAAIAAAADALj/AAACAAIAAAD8/7j/AAACAAIAAAA=")
@@ -240,7 +238,7 @@ offset_bottom = 593.0
 color = Color(0.13777408, 0.1550363, 0.22140485, 1)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1261230932]
-_spawnable_scenes = PackedStringArray("uid://gmr2mrr3v55v", "uid://bmq26vykccdr8", "uid://d05mwq2yktdsv", "uid://defoqes0q5vgm", "uid://cc1jd47ign5tn", "uid://ra0jbtcys7gx", "uid://brhpjcmtbdjpf")
+_spawnable_scenes = PackedStringArray("uid://gmr2mrr3v55v", "uid://bmq26vykccdr8", "uid://d05mwq2yktdsv", "uid://defoqes0q5vgm", "uid://cc1jd47ign5tn", "uid://ra0jbtcys7gx", "uid://brhpjcmtbdjpf", "uid://12g1q21pqau4")
 spawn_path = NodePath("..")
 
 [node name="CirclePath" type="Path2D" parent="." unique_id=1837153423]

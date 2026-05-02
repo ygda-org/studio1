@@ -28,7 +28,9 @@ func _process(delta):
 func _on_startup_timeout():
 	leaving_screen = false
 	if NetworkState.is_server():
-		dash.rpc((randi_range(0,1) * 2) - 1, randi_range(-100, 100))
+		var dir = (randi_range(0,1) * 2) - 1
+		var pos = randi_range(-100-dir*150, 100-dir*150)
+		dash.rpc(dir, pos)
 
 @rpc ("authority", "call_local")
 func dash(dir, x_pos):

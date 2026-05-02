@@ -197,8 +197,8 @@ func intro_lock_for_time(t):
 	$IntroLockTimer.start()
 
 func movement(input: ClientInput, delta: float):
-	if latest_server_state:
-		position = position.lerp(latest_server_state.position, 5*delta*(position-latest_server_state.position).length())
+	#if latest_server_state:
+		#position = position.lerp(latest_server_state.position, 5*delta*(position-latest_server_state.position).length())
 	if movement_locked:
 		return
 	# gravity

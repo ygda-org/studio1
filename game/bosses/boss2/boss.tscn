@@ -280,7 +280,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plbj8"]
-size = Vector2(800, 20)
+size = Vector2(800, 60)
 
 [sub_resource type="Animation" id="Animation_f7vgp"]
 length = 0.001
@@ -434,6 +434,10 @@ wait_time = 26.0
 one_shot = true
 
 [node name="Extras" type="Node2D" parent="States3/Transition" unique_id=697938609]
+
+[node name="ProjectileTimer" type="Timer" parent="States3/Transition" unique_id=1258539419]
+wait_time = 2.0
+one_shot = true
 
 [node name="States4" type="Node2D" parent="." unique_id=1099882239]
 
@@ -645,6 +649,7 @@ health = 20
 [connection signal="timeout" from="States3/Transition/StartTimer" to="States3/Transition" method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="States3/Transition/AnimationPlayer" to="States3/Transition" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States3/Transition/BounceQueueFreeTimer" to="States3/Transition" method="_on_bounce_queue_free_timer_timeout"]
+[connection signal="timeout" from="States3/Transition/ProjectileTimer" to="States3/Transition" method="_on_projectile_timer_timeout"]
 [connection signal="timeout" from="States4/Flare/InBetween" to="States4/Flare" method="_on_in_between_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
