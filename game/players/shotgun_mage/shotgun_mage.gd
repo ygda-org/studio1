@@ -11,19 +11,24 @@ var can_shoot_big = true
 
 var last_mouse_pos = Vector2()
 
+var stored_velocityX_for_anims = 0
+
 func _ready():
 	GameState.shotgun_mage = self
 
 func _process(_delta): # purely visual stuff
+	if multiplayer.get_unique_id() == get_parent().net_id:
+		send_input_info_to_other_clients_wrapper()
+		stored_velocityX_for_anims = get_parent().velocity.x
 	$Anim.position = Vector2(5, 0)
 	if get_parent().is_on_floor():
-		if int(get_parent().velocity.x) > 0:
+		if int(stored_velocityX_for_anims) > 0:
 			$ShotgunHelper/Arm.flip_v = false
 			$ShotgunHelper/Shotgun.flip_v = false
 			scale.x = 1
 			$Anim.position = Vector2(4, -1)
 			$Anim.play("run")
-		elif int(get_parent().velocity.x) < 0:
+		elif int(stored_velocityX_for_anims) < 0:
 			$ShotgunHelper/Arm.flip_v = true
 			$ShotgunHelper/Shotgun.flip_v = true
 			scale.x = -1
@@ -41,6 +46,17 @@ func _process(_delta): # purely visual stuff
 		$ShotgunHelper.look_at(last_mouse_pos) 
 		$ShotgunHelper.rotation += PI
 
+func send_input_info_to_other_clients_wrapper():
+	for id in multiplayer.get_peers():
+		if id == 1:
+			continue
+		send_input_info_to_other_clients.rpc_id(id, last_mouse_pos, get_parent().velocity.x)
+
+@rpc ("any_peer", "unreliable")
+func send_input_info_to_other_clients(mouse_pos, velocityX): # for animations and stuff
+	last_mouse_pos = mouse_pos
+	stored_velocityX_for_anims = velocityX
+
 func process_input(input):
 	last_mouse_pos = input.mouse_pos
 	if get_parent().intro_lock:
@@ -57,7 +73,15 @@ func recoil(weight, mouse_pos):
 	get_parent().gravity_locked = true
 	get_parent().velocity += weight*(mouse_pos-global_position).normalized()*Vector2(-1,-1)
 
+@rpc ("reliable", "any_peer", "call_remote")
+func other_client_shoot_visual():
+	shoot()
+
 func shoot():
+	for id in multiplayer.get_peers():
+		if id == 1 or id == get_parent().net_id:
+			continue
+		other_client_shoot_visual.rpc_id(id)
 	can_shoot = false
 	$MainCD.start()
 	$ShotgunHelper/Barrel/Tracers.visible = true

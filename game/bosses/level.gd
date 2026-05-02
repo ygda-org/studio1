@@ -32,6 +32,7 @@ func start_game():
 		new_player.name = "Player" + str(player.id)
 		add_child(new_player)
 		new_player.set_pos.rpc(player_spawn_pos)
+		player_spawn_pos.x += 20
 		new_player.intro_lock_for_time.rpc(intro_lock_dur)
 			
 #func _process(_delta: float) -> void:

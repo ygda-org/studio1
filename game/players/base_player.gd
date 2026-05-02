@@ -136,6 +136,8 @@ func _physics_process(delta: float):
 		if latest_server_state:
 			position = prev_state.position.lerp(latest_server_state.position, delta*5)#curr_state.position, delta*5)
 			prev_state = latest_server_state
+			velocity = Vector2(0,1)
+			move_and_slide() # need floor collisions for animations
 		
 	current_tick += 1
 
