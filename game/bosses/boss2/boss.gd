@@ -75,6 +75,7 @@ func die():
 		$CollisionPivot/Health.health = 100000
 		stage = 3
 		get_parent().phase3.rpc()
+		$States2/Hanging/Dark.queue_free()
 		$States3/Transition.activate()
 	elif stage == 3:
 		stage = 4

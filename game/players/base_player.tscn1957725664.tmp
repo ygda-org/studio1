@@ -134,4 +134,4 @@ one_shot = true
 
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="JumpBuffer" to="." method="_on_jump_buffer_timeout"]
-[connection signal="timeout" from="IntroLockTimer" to="." method="_on_intro_lock_timer_timeout"]
+[connection signal="timeout" from="IntroLockTimer" to="." method="_on_movement_lock_timer_timeout"]

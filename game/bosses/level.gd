@@ -1,6 +1,9 @@
 class_name Level
 extends Node2D
 
+@export var player_spawn_pos: Vector2 = Vector2(0,0)
+@export var intro_lock_dur: int = 0
+
 const BASE_PLAYER = preload("uid://gmr2mrr3v55v")
 
 signal has_loaded()
@@ -28,6 +31,8 @@ func start_game():
 		new_player.net_id = player.id
 		new_player.name = "Player" + str(player.id)
 		add_child(new_player)
+		new_player.set_pos.rpc(player_spawn_pos)
+		new_player.intro_lock_for_time.rpc(intro_lock_dur)
 			
 #func _process(_delta: float) -> void:
 #	if not NetworkState.is_server():

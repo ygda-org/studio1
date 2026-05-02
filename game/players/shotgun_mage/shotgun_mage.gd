@@ -43,6 +43,8 @@ func _process(_delta): # purely visual stuff
 
 func process_input(input):
 	last_mouse_pos = input.mouse_pos
+	if get_parent().intro_lock:
+		return
 	if input.left_click and can_shoot:
 		shoot()
 		recoil(NORMAL_RECOIL, input.mouse_pos)

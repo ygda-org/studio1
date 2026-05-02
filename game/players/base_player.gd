@@ -16,6 +16,7 @@ var can_jump
 var movement_locked = false
 var gravity_locked = false
 var jump_input = false # for jump buffering
+var intro_lock = false
 
 var mouse_position: Vector2 # for syncing up stuffs
 
@@ -185,6 +186,16 @@ func send_state_to_other_clients(pos, vel):
 func jump():
 	velocity.y = JUMP_VELOCITY
 
+@rpc ("authority", "call_local")
+func set_pos(p):
+	global_position = p
+
+@rpc ("authority", "call_local")
+func intro_lock_for_time(t):
+	intro_lock = true
+	$IntroLockTimer.wait_time = t
+	$IntroLockTimer.start()
+
 func movement(input: ClientInput, delta: float):
 	if latest_server_state:
 		position = position.lerp(latest_server_state.position, 5*delta*(position-latest_server_state.position).length())
@@ -208,6 +219,8 @@ func movement(input: ClientInput, delta: float):
 
 	# movement
 	var direction = input.x_direction
+	if intro_lock:
+		direction = 0
 	if is_on_floor():
 		if direction:
 			velocity.x = clampf(velocity.x + acceleration_curve.sample(abs(velocity.x/SPEED)) * direction * ACCELERATION * delta, -SPEED, SPEED)
@@ -242,3 +255,7 @@ func _on_coyote_time_timeout():
 
 func _on_jump_buffer_timeout():
 	jump_input = false
+
+
+func _on_intro_lock_timer_timeout():
+	intro_lock = false
