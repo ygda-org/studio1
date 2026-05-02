@@ -1,4 +1,4 @@
-extends "res://bosses/level.gd"
+extends Level
 
 func start_game():
 	super()
@@ -6,3 +6,9 @@ func start_game():
 	boss.name = "Boss"
 	boss.position = Vector2(0,0)
 	add_child(boss)
+	boss.play_intro.rpc()
+	play_intro.rpc()
+
+@rpc ("authority", "call_local")
+func play_intro():
+	$AnimationPlayer.play("Intro")

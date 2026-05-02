@@ -1,15 +1,210 @@
 [gd_scene format=3 uid="uid://cnn2tvrs7l0ql"]
 
 [ext_resource type="Texture2D" uid="uid://dxfirsrahfi3y" path="res://assets/boss3/skull.png" id="1_0hpv2"]
+[ext_resource type="Script" uid="uid://b22ylvqgqhoma" path="res://bosses/boss3/boss.gd" id="1_wi1jh"]
 [ext_resource type="Texture2D" uid="uid://cp05xuas8hrlu" path="res://assets/boss3/boss3_parts.png" id="2_a0i2r"]
+[ext_resource type="Texture2D" uid="uid://ctxedgoagfwk4" path="res://assets/boss3/back.png" id="3_5erdo"]
+[ext_resource type="Texture2D" uid="uid://k8evskutjngt" path="res://assets/boss3/hand_top.png" id="4_wi1jh"]
+
+[sub_resource type="Animation" id="Animation_wi1jh"]
+resource_name = "Intro"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3.5, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-200, 0), Vector2(0, 100), Vector2(0, 100), Vector2(0, 200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 3.5, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(200, 0), Vector2(0, -100), Vector2(0, -100), Vector2(0, -200)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707963267948966, 3.141592653589793]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5707964, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skull:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.5, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -160), Vector2(0, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_hjwyx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-200, 50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, 50)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707963267948966]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5707963267948966]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skull:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -136)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjwyx"]
+_data = {
+&"Intro": SubResource("Animation_wi1jh"),
+&"RESET": SubResource("Animation_hjwyx")
+}
 
 [node name="Boss" type="Node2D" unique_id=943626385]
+script = ExtResource("1_wi1jh")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=481006779]
-visible = false
+[node name="Skull" type="Sprite2D" parent="." unique_id=481006779]
+z_index = -3
+position = Vector2(0, -136)
 texture = ExtResource("1_0hpv2")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=870525827]
+[node name="Hand" type="Node2D" parent="." unique_id=870525827]
+position = Vector2(-200, 50)
+rotation = -1.5707964
 
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D" unique_id=712121727]
+[node name="Thumb" type="Sprite2D" parent="Hand" unique_id=712121727]
+z_index = 1
 texture = ExtResource("2_a0i2r")
+
+[node name="Back" type="Sprite2D" parent="Hand" unique_id=1866464896]
+z_index = -2
+texture = ExtResource("3_5erdo")
+
+[node name="Fingers" type="Sprite2D" parent="Hand" unique_id=1099011555]
+z_index = 1
+texture = ExtResource("4_wi1jh")
+
+[node name="Hand2" type="Node2D" parent="." unique_id=1774677697]
+position = Vector2(200, 50)
+rotation = 1.5707964
+
+[node name="Thumb" type="Sprite2D" parent="Hand2" unique_id=2114251556]
+z_index = 1
+texture = ExtResource("2_a0i2r")
+flip_h = true
+
+[node name="Back" type="Sprite2D" parent="Hand2" unique_id=1561771710]
+z_index = -2
+texture = ExtResource("3_5erdo")
+flip_h = true
+
+[node name="Fingers" type="Sprite2D" parent="Hand2" unique_id=583907477]
+z_index = 1
+texture = ExtResource("4_wi1jh")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1988370489]
+libraries/ = SubResource("AnimationLibrary_hjwyx")
