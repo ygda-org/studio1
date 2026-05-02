@@ -17,7 +17,7 @@ size = Vector2(8, 8)
 script = ExtResource("1_kqpg8")
 
 [node name="Preburst" type="Timer" parent="." unique_id=865627332]
-wait_time = 3.0
+wait_time = 5.7
 one_shot = true
 autostart = true
 
@@ -86,4 +86,10 @@ texture = SubResource("GradientTexture2D_lw02l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/6" unique_id=704662276]
 shape = SubResource("RectangleShape2D_tww0y")
 
+[node name="LifeTime" type="Timer" parent="." unique_id=1204045749]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="Preburst" to="." method="_on_preburst_timeout"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

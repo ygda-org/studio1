@@ -75,12 +75,11 @@ func die():
 		$CollisionPivot/Health.health = 100000
 		stage = 3
 		get_parent().phase3.rpc()
-		for n in phases:
-			n.deactivate()
 		$States3/Transition.activate()
 	elif stage == 3:
 		stage = 4
 		get_parent().phase4()
+		$States4/Flare.activate()
 
 func _on_head_anim_timeout():
 	$Polygons/Head.texture_offset.x = int($Polygons/Head.texture_offset.x + 38) % (38*4)
