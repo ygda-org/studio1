@@ -261,3 +261,6 @@ position = Vector2(1472, -374)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BouncyDamageZone" unique_id=112850575]
 position = Vector2(-1, 6)
 shape = SubResource("RectangleShape2D_agvso")
+
+[node name="Phase4Center" type="Marker2D" parent="." unique_id=186436893]
+position = Vector2(1472, -564)

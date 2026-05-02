@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://k16dy2rwjbci" path="res://bosses/boss2/transition.gd" id="8_lcgyy"]
 [ext_resource type="PackedScene" uid="uid://0t8h64jsgvhd" path="res://components/health.tscn" id="8_wu4lc"]
 [ext_resource type="PackedScene" uid="uid://1sfdk15g8egn" path="res://components/player_damageable.tscn" id="9_s8npy"]
+[ext_resource type="Script" uid="uid://c2a7h4axk2dq5" path="res://bosses/boss2/flare.gd" id="10_heb4p"]
 
 [sub_resource type="Animation" id="Animation_04t4s"]
 resource_name = "Down"
@@ -434,6 +435,14 @@ one_shot = true
 
 [node name="Extras" type="Node2D" parent="States3/Transition" unique_id=697938609]
 
+[node name="States4" type="Node2D" parent="." unique_id=1099882239]
+
+[node name="Flare" type="Node2D" parent="States4" unique_id=318004551]
+script = ExtResource("10_heb4p")
+
+[node name="InBetween" type="Timer" parent="States4/Flare" unique_id=1024671563]
+one_shot = true
+
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1978560868]
 wait_time = 10.0
 autostart = true
@@ -635,6 +644,7 @@ health = 20
 [connection signal="timeout" from="States3/Transition/StartTimer" to="States3/Transition" method="_on_start_timer_timeout"]
 [connection signal="animation_finished" from="States3/Transition/AnimationPlayer" to="States3/Transition" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="States3/Transition/BounceQueueFreeTimer" to="States3/Transition" method="_on_bounce_queue_free_timer_timeout"]
+[connection signal="timeout" from="States4/Flare/InBetween" to="States4/Flare" method="_on_in_between_timeout"]
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="States/Dashes" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="HeadAnim" to="." method="_on_head_anim_timeout"]

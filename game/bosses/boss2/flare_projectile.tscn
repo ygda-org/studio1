@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://brhpjcmtbdjpf"]
+
+[ext_resource type="Script" uid="uid://b1lgdikaed5r1" path="res://bosses/boss2/flare_projectile.gd" id="1_kqpg8"]
+
+[sub_resource type="Gradient" id="Gradient_kqpg8"]
+colors = PackedColorArray(0.88235295, 0.29803923, 0, 1, 0.8813848, 0.29656857, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lw02l"]
+gradient = SubResource("Gradient_kqpg8")
+width = 8
+height = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tww0y"]
+size = Vector2(8, 8)
+
+[node name="FlareProjectile" type="Node2D" unique_id=1625407229]
+script = ExtResource("1_kqpg8")
+
+[node name="Preburst" type="Timer" parent="." unique_id=865627332]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Riser" type="Area2D" parent="." unique_id=1113987897]
+
+[node name="Sprite2D" type="Sprite2D" parent="Riser" unique_id=312485204]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Riser" unique_id=1299910588]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[node name="Bursts" type="Node2D" parent="." unique_id=447692284]
+visible = false
+
+[node name="1" type="Area2D" parent="Bursts" unique_id=400830026]
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bursts/1" unique_id=493237842]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/1" unique_id=1155574858]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[node name="2" type="Area2D" parent="Bursts" unique_id=2041052871]
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bursts/2" unique_id=2104402417]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/2" unique_id=1120059312]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[node name="3" type="Area2D" parent="Bursts" unique_id=1663886658]
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bursts/3" unique_id=1615915838]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/3" unique_id=678507212]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[node name="4" type="Area2D" parent="Bursts" unique_id=1541075777]
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bursts/4" unique_id=1701763755]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/4" unique_id=984261158]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[node name="5" type="Area2D" parent="Bursts" unique_id=1845926354]
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bursts/5" unique_id=1048479596]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/5" unique_id=974119723]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[node name="6" type="Area2D" parent="Bursts" unique_id=318895494]
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bursts/6" unique_id=1588483901]
+texture = SubResource("GradientTexture2D_lw02l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bursts/6" unique_id=704662276]
+shape = SubResource("RectangleShape2D_tww0y")
+
+[connection signal="timeout" from="Preburst" to="." method="_on_preburst_timeout"]
